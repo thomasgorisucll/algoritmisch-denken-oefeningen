@@ -16,7 +16,7 @@
 * Copy paste de getoonde URL. Deze is van de vorm `https://github.com/ucll-algoritmisch-denken-1819/ad1819-????`.
 * Ga terug naar de console. Voer in: `algo initialize URL`.
 
-Je kan nu oefeningen maken zoals [hier](exercises.md) beschreven.
+Je kan nu oefeningen maken zoals [hier](usage.md) beschreven.
 
 
 ## Indien je studentennummer niet in de lijst stond
@@ -36,4 +36,4 @@ Wanneer we je hebben toegevoegd op GitHub Classroom voer je we dezelfde stappen 
 * Open de Git Bash console in de `algoritmisch-denken` directory.
 * Voer uit: `algo fork URL` waarbij URL het adres is dat je krijgt van GitHub Classroom.
 
-Hierna kan je je vooruitgang beginnen uploaden zoals [hier](exercises.md) beschreven.
+Hierna kan je je vooruitgang beginnen uploaden zoals [hier](usage.md) beschreven.
