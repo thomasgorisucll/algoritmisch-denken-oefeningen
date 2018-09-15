@@ -13,8 +13,8 @@
 * Selecteer je studentennummer uit de lijst. Indien je je studentennummer niet kan vinden, zie hieronder.
 * Aanvaard de assignment.
 * Wacht enkele seconden tot GitHub klaar is met je repository te initialiseren.
-* Copy paste de getoonde URL. Deze is van de vorm `https://github.com/ucll-algoritmisch-denken-1819/ad1819-????`.
-* Ga terug naar de console. Voer in: `algo initialize URL`.
+* Noteer de getoonde URL. Deze is van de vorm `https://github.com/ucll-algoritmisch-denken-1819/ad1819-*`.
+* Ga terug naar de console. Voer in: `algo initialize URL` waarbij URL het adres is dat je in de vorige stap verkreeg.
 
 Je kan nu oefeningen maken zoals [hier](usage.md) beschreven.
 
