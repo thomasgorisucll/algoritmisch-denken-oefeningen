@@ -13,3 +13,12 @@
 * Voer in: `algo`.
 
 Bewaar je vooruitgang vaak, bijvoorbeeld per dag dat je voortwerkt aan de oefeningen minstens een keer.
+
+
+# Bij foutmeldingen
+
+Indien het uitvoeren van `algo` leidt tot een fout, kan dat te maken hebben met het feit dat je git nog niet correct heb geconfigureerd.
+Voer de volgende stappen uit:
+
+* Voer in: `git config --global user.email EMAIL` waarbij je EMAIL vervangt door je e-mailadres (het adres dat je gebruikte bij de GitHub registratie).
+* Voer in: `git config --global user.name "VOORNAAM FAMILIENAAM"`.
