@@ -8,7 +8,9 @@
     * Ga naar de folder
     * Rechtsklik op de folder
     * Selecteer "Git Bash Here"
-* Voer in: `npm install -g UCLeuvenLimburg/algoritmisch-denken-cli` Op Macs lijkt dit problemen te geven. Zie hieronder voor verdere instructies.
+* Voer in:
+  * Windows: `npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
+  * Mac: `sudo install -g UCLeuvenLimburg/algoritmisch-denken-cli`
 * In een browser: ga naar [GitHub Classroom](https://classroom.github.com/a/CkWbidEY).
 * Selecteer je studentennummer uit de lijst. Indien je je studentennummer niet kan vinden, zie hieronder.
 * Aanvaard de assignment.
@@ -37,15 +39,3 @@ Wanneer we je hebben toegevoegd op GitHub Classroom voer je we dezelfde stappen 
 * Voer uit: `algo fork URL` waarbij URL het adres is dat je krijgt van GitHub Classroom.
 
 Hierna kan je je vooruitgang beginnen uploaden zoals [hier](usage.md) beschreven.
-
-
-## Mac-gebruikers
-
-De `npm install -g UCLeuvenLimburg/algoritmisch-denken-cli` stap lijkt te falen bij Mac-gebruikers.
-Terwijl we naar de achterliggende reden zoeken, bieden we het volgend alternatief aan:
-
-* Voer uit in de console: `git clone https://github.com/UCLeuvenLimburg/algoritmisch-denken-oefeningen-1819.git`
-
-Deze werkwijze laat niet toe om je vooruitgang te uploaden. Later volgen extra instructies om dit probleem te verhelpen.
-
-Je kan nu met de oefeningen beginnen zoals [hier](usage.md) beschreven.
