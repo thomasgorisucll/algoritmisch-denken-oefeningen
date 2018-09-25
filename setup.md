@@ -8,8 +8,8 @@
     * Ga naar de folder
     * Rechtsklik op de folder
     * Selecteer "Git Bash Here"
-* Voer in: `git config --global user.email EMAIL` waarbij je EMAIL vervangt door je e-mailadres (het adres dat je gebruikte bij de GitHub registratie)
-* Voer in: `git config --global user.name "VOORNAAM FAMILIENAAM"`.
+* Voer in: `git config --global user.email EMAIL` waarbij je EMAIL vervangt door je e-mailadres (het adres dat je gebruikte bij de GitHub registratie). Voorbeeld: `git config --global user.email jan.janssens@student.ucll.be`.
+* Voer in: `git config --global user.name "VOORNAAM FAMILIENAAM"`. Voorbeeld: `git config --global user.name "Jan Janssens"`.
 * Voer in:
   * Windows: `npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
   * Mac: `sudo install -g UCLeuvenLimburg/algoritmisch-denken-cli`
