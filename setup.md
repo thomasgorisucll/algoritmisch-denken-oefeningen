@@ -46,7 +46,7 @@ Hierna kan je je vooruitgang beginnen uploaden zoals [hier](usage.md) beschreven
 
 ## Voor Mac-gebruikers die de tijdelijke oplossing gebruikten
 
-1. Installeer het algo-script: `sudo install -g UCLeuvenLimburg/algoritmisch-denken-cli`
+1. Installeer het algo-script: `sudo npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
 2. In een browser: ga naar [GitHub Classroom](https://classroom.github.com/a/CkWbidEY).
 3. Twee mogelijkheden:
    * Je krijgt een "You are ready to go" scherm te zien omdat je deze stap al eerder uitvoerde. Ga naar de volgende stap.
