@@ -12,7 +12,7 @@
 * Voer in: `git config --global user.name "VOORNAAM FAMILIENAAM"`. Voorbeeld: `git config --global user.name "Jan Janssens"`.
 * Voer in:
   * Windows: `npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
-  * Mac: `sudo install -g UCLeuvenLimburg/algoritmisch-denken-cli`
+  * Mac: `sudo npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
 * In een browser: ga naar [GitHub Classroom](https://classroom.github.com/a/CkWbidEY).
 * Selecteer je studentennummer uit de lijst. Indien je je studentennummer niet kan vinden, zie hieronder.
 * Aanvaard de assignment.
