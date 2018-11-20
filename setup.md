@@ -12,7 +12,7 @@
 * Voer in: `git config --global user.name "VOORNAAM FAMILIENAAM"`. Voorbeeld: `git config --global user.name "Jan Janssens"`.
 * Voer in:
   * Windows: `npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
-  * Mac: `sudo install -g UCLeuvenLimburg/algoritmisch-denken-cli`
+  * Mac: `sudo npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
 * In een browser: ga naar [GitHub Classroom](https://classroom.github.com/a/CkWbidEY).
 * Selecteer je studentennummer uit de lijst. Indien je je studentennummer niet kan vinden, zie hieronder.
 * Aanvaard de assignment.
@@ -46,7 +46,7 @@ Hierna kan je je vooruitgang beginnen uploaden zoals [hier](usage.md) beschreven
 
 ## Voor Mac-gebruikers die de tijdelijke oplossing gebruikten
 
-1. Installeer het algo-script: `sudo install -g UCLeuvenLimburg/algoritmisch-denken-cli`
+1. Installeer het algo-script: `sudo npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
 2. In een browser: ga naar [GitHub Classroom](https://classroom.github.com/a/CkWbidEY).
 3. Twee mogelijkheden:
    * Je krijgt een "You are ready to go" scherm te zien omdat je deze stap al eerder uitvoerde. Ga naar de volgende stap.
