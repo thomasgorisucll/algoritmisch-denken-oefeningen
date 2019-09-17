@@ -5,7 +5,7 @@
 * Maak een directory aan waar je je cursusmateriaal voor dit vak wil bewaren.
 * Open een consolevenster in deze directory.
   * Windows: open Windows Explorer/Verkenner, ga naar de folder, rechterklik en kies "Git Bash Here".
-  * In SpotLight, typ `terminal`. Ga naar de juiste directory. Als je niet weet hoe, vraag om begeleiding.
+  * MacOS: In SpotLight, typ `terminal`. Ga naar de juiste directory. Als je niet weet hoe, vraag om begeleiding.
 * Voer in:
   * Windows: `npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
   * MacOS: `sudo npm install -g UCLeuvenLimburg/algoritmisch-denken-cli`
