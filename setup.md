@@ -20,5 +20,5 @@ Je kan nu oefeningen maken zoals [hier](usage.md) beschreven.
 ## Noodoplossing
 
 ```
-git clone https://github.com/UCLeuvenLimburg/algoritmisch-denken-oefeningen.git algoritmisch-denken
+git clone https://github.com/UCLeuvenLimburg/algoritmisch-denken-oefeningen.git algoritmisch-denken-temp
 ```
