@@ -16,3 +16,9 @@
 * Ga terug naar de console. Voer in: `algo initialize URL` waarbij URL het adres is dat je in de vorige stap verkreeg. Dit zou in principe slechts enkele seconden moeten duren. Als het langer duurt, wacht je best enkele minuten vooraleer je opnieuw probeert. Als het niet lukt, haal je best de lector erbij.
 
 Je kan nu oefeningen maken zoals [hier](usage.md) beschreven.
+
+## Noodoplossing
+
+```
+git clone https://github.com/UCLeuvenLimburg/algoritmisch-denken-oefeningen.git algoritmisch-denken
+```
