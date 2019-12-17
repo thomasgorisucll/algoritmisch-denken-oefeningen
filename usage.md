@@ -12,8 +12,7 @@
 * Open Git Bash in de directory `algoritmisch-denken`.
 * Voer in: `algo`.
 
-Bewaar je vooruitgang vaak, bijvoorbeeld per dag dat je voortwerkt aan de oefeningen minstens een keer.
-
+Idealiter voer je `algo` uit voor je aan oefeningen begint (om updates binnen te halen) en tevens nadat je oefeningen gemaakt hebt (om je vooruitgang te bewaren.)
 
 # Bij foutmeldingen
 
