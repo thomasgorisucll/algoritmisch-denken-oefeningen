@@ -7,7 +7,7 @@
 * Open het bestand `student.js` in een editor naar keuze.
 * Volg de instructies in `tests.html`.
 
-# Je vooruitgang bewaren
+# Je vooruitgang bewaren en updates binnenhalen
 
 * Open Git Bash in de directory `algoritmisch-denken`.
 * Voer in: `algo`.
