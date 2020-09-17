@@ -2,8 +2,7 @@
 
 ## Software
 
-Voor dit vak heb je Git en Chrome nodig (FireFox zou ook moeten werken, maar werd niet getest. Edge geeft sowieso problemen.) Indien deze nog niet geïnstalleerd zijn,
-  volg de instructies op [deze site](https://ucleuvenlimburg.github.io/software/).
+Voor dit vak heb je Git en Chrome nodig. Indien deze nog niet geïnstalleerd zijn, volg de instructies op [deze site](https://ucleuvenlimburg.github.io/software/).
 
 ## GitHub Classroom
 
@@ -20,5 +19,6 @@ Voor dit vak heb je Git en Chrome nodig (FireFox zou ook moeten werken, maar wer
   * MacOS: Bekijk dit [filmpje](https://www.youtube.com/watch?v=xsCCgITrrWI). Je kan ook vragen om hulp aan de lector.
 * Voer in op de console: `git clone URL .` waarbij URL het adres is dat je in een vorige stap verkreeg. Vergeet het puntje niet op het einde van de lijn!
 * Dit zou in principe slechts enkele seconden moeten duren. Als het langer duurt, wacht je best enkele minuten vooraleer je opnieuw probeert. Als het niet lukt, haal je best de lector erbij.
+* Nog steeds in de console, typ `git remote add upstream https://github.com/UCLeuvenLimburg/algoritmisch-denken-oefeningen`
 
 Je kan nu oefeningen beginnen maken zoals [hier](usage.md) beschreven.
