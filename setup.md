@@ -2,7 +2,13 @@
 
 ## Software
 
-Voor dit vak heb je Git en Chrome nodig. Indien deze nog niet geïnstalleerd zijn, volg de instructies op [deze site](https://ucleuvenlimburg.github.io/software/).
+Voor dit vak heb je als software nodig:
+
+* Git
+* Chrome
+* Visual Studio Code (dit is *niet* hetzelfde als Visual Studio)
+
+Indien deze nog niet geïnstalleerd zijn, volg de instructies op [deze site](https://ucleuvenlimburg.github.io/software/).
 
 ## GitHub Classroom
 
@@ -22,3 +28,9 @@ Voor dit vak heb je Git en Chrome nodig. Indien deze nog niet geïnstalleerd zij
 * Nog steeds in de console, typ `git remote add upstream https://github.com/UCLeuvenLimburg/algoritmisch-denken-oefeningen`
 
 Je kan nu oefeningen beginnen maken zoals [hier](usage.md) beschreven.
+
+## Visual Studio Code Extensions
+
+* Open Visual Studio Code.
+* Links staan een reeks iconen. Zoek naar het extensions icon (de 4 blokjes) en klik erop.
+* Zoek naar de extensie "open in browser". Installeer deze.
