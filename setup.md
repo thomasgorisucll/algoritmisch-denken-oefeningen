@@ -10,6 +10,12 @@ Voor dit vak heb je als software nodig:
 
 Indien deze nog niet geïnstalleerd zijn, volg de instructies op [deze site](https://ucleuvenlimburg.github.io/software/).
 
+## GitHub
+
+* Ga naar [de oefeningenrepository](https://github.com/UCLeuvenLimburg/algoritmisch-denken-oefeningen).
+* Rechtsboven, klik op Watch en kies voor "Releases only".
+* Als je in de toekomst een bericht ontvangt dat er een update werd doorgevoerd, zal je deze moeten binnenhalen. Hoe dit moet staat in [dit document](usage.md).
+
 ## GitHub Classroom
 
 * Ga naar [GitHub Classroom](https://classroom.github.com/a/YT4zM8bn).
