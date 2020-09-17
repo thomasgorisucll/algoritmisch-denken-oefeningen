@@ -27,7 +27,7 @@ Onder Windows kan je de directory ook "pinnen" in de taskbar zodat je niet telke
 
 * Open Git Bash in de directory waar je het algoritmisch denken materiaal in bewaard hebt.
 * Voer in: `git add chapters/CHAPTER/student.js` waarbij `CHAPTER` het hoofdstuk is waarvan je je vooruitgang wil bewaren.
-* Voer in: `git commit -m "BOODSCHAP"` waarbij `BOODSCHAP` een korte omschrijving is van wat je gedaan hebt, bv. de naam van de oefening.
+* Voer in: `git commit -m "BOODSCHAP"` waarbij `BOODSCHAP` een korte omschrijving is van wat je gedaan hebt, bv. de naam van de oefening. Indien je een foutmelding krijgt, [lees dit](#user-content-bij-foutmeldingen).
 * Voer in: `git push`.
 
 ## Wijzigingen Binnenhalen
@@ -44,10 +44,19 @@ Voer deze instructies uit om de recentste versie van het cursusmateriaal binnen 
 * Open Git Bash in de directory waar je het algoritmisch denken materiaal in bewaard hebt.
 * Voer in: `git pull upstream master`.
 
-## Bij foutmeldingen
+## Bij Foutmeldingen
 
-Indien het uitvoeren van `algo` leidt tot een fout, kan dat te maken hebben met het feit dat je git nog niet correct heb geconfigureerd.
-Voer de volgende stappen uit:
+Indien er zich foutmeldingen voordoen bij de commitstap (`git commit`) betekent dit dat je git niet correct hebt geconfigureerd. Voer de volgende stappen uit:
 
 * Voer in: `git config --global user.email EMAIL` waarbij je EMAIL vervangt door je e-mailadres (het adres dat je gebruikte bij de GitHub registratie). Bijvoorbeeld: `git config --global user.email jan.janssens@student.ucll.be`.
 * Voer in: `git config --global user.name "VOORNAAM FAMILIENAAM"`. Bijvoorbeeld: `git --config global user.name "Jan Janssens"`.
+
+## Fouten Melden
+
+Indien er fouten staan in het cursusmateriaal, kan je dit altijd melden als volgt:
+
+* Ga naar [de issues pagina van de oefeningenrepository](https://github.com/UCLeuvenLimburg/algoritmisch-denken-oefeningen/issues).
+* Maak een nieuwe issue aan.
+* Vermeld in de titel om welk hoofdstuk en welke oefening het gaat.
+* Vul een korte omschrijving van de fout in.
+* Klik op de submitknop.
