@@ -30,20 +30,24 @@ Onder Windows kan je de directory ook "pinnen" in de taskbar zodat je niet telke
 * Voer in: `git commit -m "BOODSCHAP"` waarbij `BOODSCHAP` een korte omschrijving is van wat je gedaan hebt, bv. de naam van de oefening.
 * Voer in: `git push`.
 
-## Wijzigingen binnenhalen
+## Wijzigingen Binnenhalen
+
+Voer deze instructies uit om updates aan je eigen code (bv. van een lector) binnen te halen.
 
 * Open Git Bash in de directory waar je het algoritmisch denken materiaal in bewaard hebt.
 * Voer in: `git pull`.
 
-## Updates binnenhalen
+## Updates Binnenhalen
+
+Voer deze instructies uit om de recentste versie van het cursusmateriaal binnen te halen.
 
 * Open Git Bash in de directory waar je het algoritmisch denken materiaal in bewaard hebt.
 * Voer in: `git pull upstream master`.
 
-### Bij foutmeldingen
+## Bij foutmeldingen
 
 Indien het uitvoeren van `algo` leidt tot een fout, kan dat te maken hebben met het feit dat je git nog niet correct heb geconfigureerd.
 Voer de volgende stappen uit:
 
-* Voer in: `git config --global user.email EMAIL` waarbij je EMAIL vervangt door je e-mailadres (het adres dat je gebruikte bij de GitHub registratie). Voorbeeld: `git config --global user.email jan.janssens@student.ucll.be`.
-* Voer in: `git config --global user.name "VOORNAAM FAMILIENAAM"`. Voorbeeld: `git --config global user.name "Jan Janssens"`.
+* Voer in: `git config --global user.email EMAIL` waarbij je EMAIL vervangt door je e-mailadres (het adres dat je gebruikte bij de GitHub registratie). Bijvoorbeeld: `git config --global user.email jan.janssens@student.ucll.be`.
+* Voer in: `git config --global user.name "VOORNAAM FAMILIENAAM"`. Bijvoorbeeld: `git --config global user.name "Jan Janssens"`.
