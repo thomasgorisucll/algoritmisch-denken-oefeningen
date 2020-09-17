@@ -8,7 +8,7 @@
 * Je krijgt een overzicht te zien van alle hoofdstukken (mogelijk moet je eerst `chapters` openklikken) in de Explorer tab.
 * Open het hoofdstuk waar je aan wil beginnen. Je zou moeten beginnen met het hoofdstuk `car`.
 * Rechterklik op `tests.html` en kies de optie om het in een browser te openen (als deze optie er niet is heb je de extensie "open in browser" niet geïnstalleerd).
-  Dit opent de html in een browser (liefts Chrome).
+  Dit opent de html in een browser (liefst Chrome).
 * Vervolgens klik je op `student.js` om dit bestand te openen.
 * Verdere instructies staan beschreven in `tests.html`.
 
