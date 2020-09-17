@@ -27,7 +27,7 @@ Onder Windows kan je de directory ook "pinnen" in de taskbar zodat je niet telke
 
 * Open Git Bash in de directory waar je het algoritmisch denken materiaal in bewaard hebt.
 * Voer in: `git add chapters/CHAPTER/student.js` waarbij `CHAPTER` het hoofdstuk is waarvan je je vooruitgang wil bewaren.
-* Voer in: `git commit -m "BOODSCHAP"` waarbij `BOODSCHAP` een korte omschrijving is van wat je gedaan hebt, bv. de naam van de oefening. Indien je een foutmelding krijgt, [lees dit](#user-content-bij-foutmeldingen).
+* Voer in: `git commit -m "BOODSCHAP"` waarbij `BOODSCHAP` een korte omschrijving is van wat je gedaan hebt, bv. de naam van de oefening. Indien je een foutmelding krijgt, [lees dit](#bij-foutmeldingen).
 * Voer in: `git push`.
 
 ## Wijzigingen Binnenhalen
