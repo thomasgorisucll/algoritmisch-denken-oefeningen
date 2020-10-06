@@ -2080,14 +2080,23 @@ exports.has29Days = ((isLeapYear, isDivisibleBy) => {
         get dependencies() { return [isLeapYear, isDivisibleBy]; }
     });
 })(exports.isLeapYear, isDivisibleBy);
-function isValidDate(day, month, year) {
-    return inRange(month, 1, 12) &&
-        ((has31Days(month) && inRange(day, 1, 31)) ||
-            (has30Days(month) && inRange(day, 1, 30)) ||
-            (exports.has28Days(month, year) && inRange(day, 1, 28)) ||
-            (exports.has29Days(month, year) && inRange(day, 1, 29)));
-}
-exports.isValidDate = isValidDate;
+exports.isValidDate = ((has31Days, has30Days, has29Days, has28Days, isLeapYear, isDivisibleBy) => {
+    const referenceImplementation = function isValidDate(day, month, year) {
+        return inRange(month, 1, 12) &&
+            ((has31Days(month) && inRange(day, 1, 31)) ||
+                (has30Days(month) && inRange(day, 1, 30)) ||
+                (has28Days(month, year) && inRange(day, 1, 28)) ||
+                (has29Days(month, year) && inRange(day, 1, 29)));
+    };
+    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = '';
+            this.implementation = referenceImplementation;
+        }
+        get dependencies() { return [has31Days, has30Days, has29Days, has28Days, isLeapYear, isDivisibleBy]; }
+    });
+})(has31Days, has30Days, exports.has29Days, exports.has28Days, exports.isLeapYear, isDivisibleBy);
 function majority(x, y, z) {
     return (x && y) || (x && z) || (y && z);
 }
