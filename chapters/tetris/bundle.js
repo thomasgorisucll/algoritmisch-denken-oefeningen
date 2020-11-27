@@ -1377,8 +1377,8 @@ exports.ExerciseSection = ExerciseSection;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-__webpack_require__(22);
-module.exports = __webpack_require__(23);
+__webpack_require__(23);
+module.exports = __webpack_require__(24);
 
 
 /***/ }),
@@ -1423,6 +1423,7 @@ const game_state_1 = __webpack_require__(21);
 const components_2 = __webpack_require__(2);
 const game_viewer_1 = __webpack_require__(8);
 const algo_testing_framework_1 = __webpack_require__(0);
+const parameter_viewer_1 = __webpack_require__(22);
 const code = ATF.Formatters.Jsx.code;
 const str = ATF.Formatters.String.convertToString;
 const defaultBlockSize = 20;
@@ -1651,7 +1652,7 @@ async function createChapter(student) {
                             react_1.default.createElement("td", null, "2D array die het huidige vallend vormpje voorstelt.")),
                         react_1.default.createElement("tr", null,
                             react_1.default.createElement("th", null, code(`state.shapeRow`)),
-                            react_1.default.createElement("td", null, "Rijindex waarop het vormpje zich bevindt.")),
+                            react_1.default.createElement("td", null, "Rij-index waarop het vormpje zich bevindt.")),
                         react_1.default.createElement("tr", null,
                             react_1.default.createElement("th", null, code(`state.shapeColumn`)),
                             react_1.default.createElement("td", null, "Kolomindex waarop het vormpje zich bevindt.")),
@@ -1688,10 +1689,10 @@ async function createChapter(student) {
                 const { signature, parameterNames: [color] } = ATF.Functional.parseFunction(this.referenceImplementations);
                 return (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
-                        "Eerst wat terminologie: dit is een ",
+                        "Eerst wat terminologie. Dit is een ",
                         react_1.default.createElement("em", null, "vormpje"),
                         ":"),
-                    react_1.default.createElement(CenteredColorGridViewer, { grid: Solutions.shapeJ(1), blockSize: 2 * defaultBlockSize }),
+                    react_1.default.createElement(CenteredColorGridViewer, { grid: Solutions.shapeT(1), blockSize: 2 * defaultBlockSize }),
                     react_1.default.createElement("p", null,
                         "In code zullen we dit een ",
                         react_1.default.createElement("em", null, "shape"),
@@ -1707,7 +1708,7 @@ async function createChapter(student) {
                         code(`1`),
                         " t.e.m. ",
                         code(`7`),
-                        "stellen blokjes van verschillende kleuren voor (rood, groen, blauw, \u2026)"),
+                        " stellen blokjes van verschillende kleuren voor (rood, groen, blauw, \u2026)"),
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
                         code(signature),
@@ -1791,6 +1792,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -1815,8 +1817,11 @@ async function createChapter(student) {
                         }
                     }
                     renderTestCaseHeader(expected, meta) {
+                        const [width, height] = expected.argumentsBeforeCall;
                         const result = expected.returnValue;
                         return (react_1.default.createElement(react_1.default.Fragment, null,
+                            react_1.default.createElement(parameter_viewer_1.ParameterViewer, { parameters: { width, height } }),
+                            " \u2192 ",
                             react_1.default.createElement(components_1.ColorGridViewer, { grid: result, blockSize: defaultBlockSize })));
                     }
                 };
@@ -1858,7 +1863,9 @@ async function createChapter(student) {
                         const [grid] = expected.argumentsBeforeCall;
                         const result = expected.returnValue;
                         return (react_1.default.createElement(react_1.default.Fragment, null,
+                            code(`${functionName}(`),
                             react_1.default.createElement(components_1.ColorGridViewer, { grid: grid, blockSize: defaultBlockSize }),
+                            code(`)`),
                             "\u00A0\u2192\u00A0",
                             result));
                     }
@@ -1901,7 +1908,9 @@ async function createChapter(student) {
                         const [grid] = expected.argumentsBeforeCall;
                         const result = expected.returnValue;
                         return (react_1.default.createElement(react_1.default.Fragment, null,
+                            code(`${functionName}(`),
                             react_1.default.createElement(components_1.ColorGridViewer, { grid: grid, blockSize: defaultBlockSize }),
+                            code(`)`),
                             "\u00A0\u2192\u00A0",
                             result));
                     }
@@ -1924,7 +1933,7 @@ async function createChapter(student) {
                         " die gegeven een vormpje een ",
                         react_1.default.createElement("em", null, "nieuw"),
                         " vormpje teruggeeft dat gelijk is aan het gegeven vormpje, maar kloksgewijs geroteerd.")));
-                this.difficulty = 2;
+                this.difficulty = 3;
             }
             get referenceImplementations() { return referenceImplementation; }
             createExercise() {
@@ -1958,19 +1967,20 @@ async function createChapter(student) {
     }
     async function isRowFullExercise() {
         const referenceImplementation = Solutions.isRowFull;
-        const { functionName, signature, parameterNames: [grid, rowIndex] } = ATF.Functional.parseFunction(referenceImplementation);
+        const { functionName, signature, parameterNames: [row] } = ATF.Functional.parseFunction(referenceImplementation);
         const testedImplementation = student.fetch(functionName);
         return new class extends exercise_section_1.ExerciseSection {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
                         code(signature),
-                        " die nagaat of de ",
-                        code(rowIndex),
-                        "-ste rij vol is. Dit betekent dat deze rij geen enkele ",
+                        " die nagaat of de gegeven rij ",
+                        code(row),
+                        " vol is. Dit betekent dat deze rij geen enkele ",
                         code(`0`),
                         " bevat.")));
             }
@@ -1997,12 +2007,20 @@ async function createChapter(student) {
                     }
                     renderTestCaseHeader(expected, meta) {
                         const [row] = expected.argumentsBeforeCall;
-                        return (react_1.default.createElement(react_1.default.Fragment, null,
-                            code(`${functionName}(`),
-                            react_1.default.createElement(components_1.ColorGridViewer, { grid: [row], blockSize: defaultBlockSize }),
-                            code(`, ${rowIndex})`),
-                            "\u00A0\u2192\u00A0",
-                            str(expected.returnValue)));
+                        if (row.length > 0) {
+                            return (react_1.default.createElement(react_1.default.Fragment, null,
+                                code(`${functionName}(`),
+                                react_1.default.createElement(components_1.ColorGridViewer, { grid: [row], blockSize: defaultBlockSize }),
+                                code(`)`),
+                                "\u00A0\u2192\u00A0",
+                                str(expected.returnValue)));
+                        }
+                        else {
+                            return (react_1.default.createElement(react_1.default.Fragment, null,
+                                code(`${functionName}([])`),
+                                "\u00A0\u2192\u00A0",
+                                str(expected.returnValue)));
+                        }
                     }
                 };
             }
@@ -2016,6 +2034,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2080,6 +2099,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2157,6 +2177,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2260,6 +2281,7 @@ async function createChapter(student) {
                     constructor() {
                         super(...arguments);
                         this.gridParameterName = grid;
+                        this.difficulty = 3;
                         this.testedImplementation = testedImplementation;
                     }
                     get referenceImplementation() { return referenceImplementation; }
@@ -2311,6 +2333,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2399,6 +2422,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2429,18 +2453,20 @@ async function createChapter(student) {
                         yield testCaseInput([
                             [1]
                         ], 0, -1);
+                        {
+                            const grid = [[2, 2, 2], [2, 2, 2]];
+                            const width = 3;
+                            const height = 2;
+                            for (let col = -1; col !== width + 1; ++col) {
+                                for (let row = -1; row !== height + 1; ++row) {
+                                    yield testCaseInput(grid, row, col);
+                                }
+                            }
+                        }
                         yield testCaseInput([
                             [2, 2, 2],
                             [2, 2, 2]
                         ], 1, 2);
-                        yield testCaseInput([
-                            [2, 2, 2],
-                            [2, 2, 2]
-                        ], 2, 2);
-                        yield testCaseInput([
-                            [2, 2, 2],
-                            [2, 2, 2]
-                        ], 1, 3);
                         function testCaseInput(...parameterValues) {
                             return { parameterValues, metadata: {} };
                         }
@@ -2466,6 +2492,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 3;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2583,6 +2610,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 3;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2662,6 +2690,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2681,6 +2710,7 @@ async function createChapter(student) {
                         super(...arguments);
                         this.gridParameterName = pit;
                         this.testedImplementation = testedImplementation;
+                        this.difficulty = 2;
                     }
                     get referenceImplementation() { return referenceImplementation; }
                     *generateTestCaseInputs() {
@@ -2755,6 +2785,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
             }
             get referenceImplementations() { return referenceImplementation; }
             createExercise() {
@@ -2916,6 +2947,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
             }
             get referenceImplementations() { return referenceImplementation; }
             createExercise() {
@@ -3079,6 +3111,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
             }
             get referenceImplementations() { return referenceImplementation; }
             createExercise() {
@@ -3217,6 +3250,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
             }
             get referenceImplementations() { return referenceImplementation; }
             createExercise() {
@@ -3370,6 +3404,7 @@ async function createChapter(student) {
                     constructor() {
                         super(...arguments);
                         this.testedImplementation = testedImplementation;
+                        this.difficulty = 2;
                     }
                     get referenceImplementation() { return referenceImplementation; }
                     get parameterCheckers() {
@@ -3468,6 +3503,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
             }
             get referenceImplementations() { return referenceImplementation; }
             createExercise() {
@@ -3594,6 +3630,7 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.testedImplementation = testedImplementation;
+                this.difficulty = 2;
             }
             get referenceImplementations() { return referenceImplementation; }
             createExercise() {
@@ -3795,7 +3832,7 @@ async function createChapter(student) {
                     return (dt) => {
                         acc += dt;
                         while (acc > 1) {
-                            callIfDefined('uiDropShape');
+                            callIfDefined('uiMoveShapeDown');
                             acc--;
                         }
                     };
@@ -4346,6 +4383,120 @@ exports.ListShapeGenerator = ListShapeGenerator;
 
 /***/ }),
 /* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CenteredParameterViewer = exports.ParameterViewer = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const ATF = __importStar(__webpack_require__(0));
+const algo_testing_framework_1 = __webpack_require__(0);
+const str = ATF.Formatters.String.convertToString;
+const Table = algo_testing_framework_1.styled.table `
+    border-collapse: collapse;
+    border: #888 1px solid;
+
+    & > tbody > tr > td {
+        border: #888 1px solid;
+        padding: 0.2em 0.5em;
+
+        &:first-child {
+            background: #AAA;
+        }
+    }
+
+    & > tbody > tr > td.key {
+        font-variant: small-caps;
+        text-align: right;
+    }
+
+    & > tbody > tr > td.value {
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    & > tbody > tr > td.empty {
+        text-align: center;
+        font-style: italic;
+    }
+`;
+class ParameterViewer extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const object = this.props.parameters;
+        const keys = Object.keys(object);
+        if (keys.length === 0) {
+            return this.renderEmptyObject();
+        }
+        else {
+            return this.renderNonEmptyObject(keys);
+        }
+    }
+    renderEmptyObject() {
+        return (react_1.default.createElement(Table, { className: this.props.className },
+            react_1.default.createElement("tbody", null,
+                react_1.default.createElement("tr", null,
+                    react_1.default.createElement("td", { className: "empty" }, "Empty")))));
+    }
+    renderNonEmptyObject(keys) {
+        return (react_1.default.createElement(Table, { className: this.props.className },
+            react_1.default.createElement("tbody", null, this.renderRows(keys))));
+    }
+    renderRows(keys) {
+        return keys.map((key, index) => {
+            const value = this.props.parameters[key];
+            return (react_1.default.createElement("tr", { key: `row-${index}` }, this.renderRow(key, value)));
+        });
+    }
+    renderRow(key, value) {
+        return (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement("td", { className: "key" }, this.renderKey(key)),
+            react_1.default.createElement("td", { className: "value" }, this.renderValue(key, value))));
+    }
+    renderKey(key) {
+        return (react_1.default.createElement(react_1.default.Fragment, null, key));
+    }
+    renderValue(key, value) {
+        const renderer = this.props.renderer || defaultRenderer;
+        return (react_1.default.createElement(react_1.default.Fragment, null, renderer(key, value)));
+        function defaultRenderer(key, x) {
+            return (react_1.default.createElement(react_1.default.Fragment, null, str(x)));
+        }
+    }
+}
+exports.ParameterViewer = ParameterViewer;
+exports.CenteredParameterViewer = algo_testing_framework_1.styled(ParameterViewer) `
+    margin: 0.2em auto;
+`;
+
+
+/***/ }),
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4353,7 +4504,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "tests.html");
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

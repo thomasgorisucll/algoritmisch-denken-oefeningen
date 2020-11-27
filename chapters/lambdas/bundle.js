@@ -3713,10 +3713,10 @@ exports.allEqual = (() => {
         }
     };
     const short = function allEqual(xs) {
-        return xs.length === 0 || xs.every(x => x === xs[0]);
+        return xs.every(x => x === xs[0]);
     };
     const efficient = function allEqual(xs) {
-        return xs.length === 0 || xs.slice(1).every(x => x === xs[0]);
+        return xs.slice(1).every(x => x === xs[0]);
     };
     const referenceImplementation = short;
     return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
