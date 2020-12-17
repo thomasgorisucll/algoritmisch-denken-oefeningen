@@ -1087,7 +1087,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -1136,7 +1136,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -1183,7 +1183,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -1232,7 +1232,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -1280,7 +1280,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -1323,7 +1323,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 2;
+                this.difficulty = 3;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -1371,7 +1371,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 2;
+                this.difficulty = 3;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null, "In een voorgaande oefening werden objecten ge\u00EFnterpreteerd als vertalingen. Een vertaling is \"omkeerbaar\" indien men ondubbelzinnig de vertaling weer kan omzetten naar het origineel. Bijvoorbeeld,"),
                     renderObject({ a: 'x', b: 'y', c: 'z' }),
@@ -1800,7 +1800,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -1949,7 +1949,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2051,7 +2051,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2174,7 +2174,7 @@ async function createChapter(student) {
                 super(...arguments);
                 this.solutionPack = referenceFunction;
                 this.testedImplementation = student.fetch(functionName);
-                this.difficulty = 1;
+                this.difficulty = 2;
                 this.description = (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
@@ -2464,6 +2464,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.merge = exports.update = exports.copy = exports.intersection = exports.containsCycle = exports.fixedPoints = exports.pairs = exports.findTranslation = exports.substitute = exports.frequencies = exports.isInvertible = exports.values = exports.keys = exports.cycle = exports.commonKeys = exports.reverseMap = exports.reverseLookup = exports.paternalAncestor = exports.bmi = exports.getAge = exports.touches8 = exports.touches4 = void 0;
+const algo_testing_framework_1 = __webpack_require__(0);
 function touches4(p, q) {
     const dx = Math.abs(p.x - q.x);
     const dy = Math.abs(p.y - q.y);
@@ -2621,19 +2622,46 @@ function fixedPoints(obj) {
     return result;
 }
 exports.fixedPoints = fixedPoints;
-function containsCycle(obj, start) {
-    let hare = start;
-    let turtle = start;
-    while (hare && turtle) {
-        turtle = obj[turtle];
-        hare = obj[obj[hare]];
-        if (turtle === hare) {
-            return true;
+exports.containsCycle = (() => {
+    const hareTurtle = function containsCycle(obj, start) {
+        let hare = start;
+        let turtle = start;
+        while (hare && turtle) {
+            turtle = obj[turtle];
+            hare = obj[obj[hare]];
+            if (turtle === hare) {
+                return true;
+            }
         }
-    }
-    return false;
-}
-exports.containsCycle = containsCycle;
+        return false;
+    };
+    const withMemory = function containsCycle(obj, start) {
+        const visited = [];
+        let current = start;
+        while (current !== undefined) {
+            if (visited.includes(current)) {
+                return true;
+            }
+            visited.push(current);
+            current = obj[current];
+        }
+        return false;
+    };
+    const referenceImplementation = hareTurtle;
+    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = "met lijst";
+            this.implementation = withMemory;
+        }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = "haas en schildpad";
+            this.implementation = hareTurtle;
+        }
+    });
+})();
 function intersection(x, y) {
     const result = {};
     for (const key in x) {

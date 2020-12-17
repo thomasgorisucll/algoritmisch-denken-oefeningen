@@ -3552,7 +3552,35 @@ var aux;
         return result;
     }
     aux.repeat = repeat;
+    function count(value, xs) {
+        let result = 0;
+        for (const x of xs) {
+            if (x === value) {
+                result++;
+            }
+        }
+        return result;
+    }
+    aux.count = count;
 })(aux || (aux = {}));
+var functional;
+(function (functional) {
+    function count(value, xs) {
+        return xs.filter(x => x === value).length;
+    }
+    functional.count = count;
+    function uniq(xs) {
+        if (xs.length === 0) {
+            return [];
+        }
+        else {
+            const [x, ...rest] = xs;
+            const filteredRest = rest.filter(y => x !== y);
+            return [x, ...uniq(filteredRest)];
+        }
+    }
+    functional.uniq = uniq;
+})(functional || (functional = {}));
 exports.sum = (() => {
     const withFor = function sum(ns) {
         let total = 0;
@@ -3891,15 +3919,7 @@ exports.count = (() => {
         constructor() {
             super(...arguments);
             this.label = 'for-of';
-            this.implementation = function count(value, xs) {
-                let result = 0;
-                for (let x of xs) {
-                    if (x === value) {
-                        ++result;
-                    }
-                }
-                return result;
-            };
+            this.implementation = aux.count;
         }
     });
 })();
@@ -4090,7 +4110,7 @@ exports.isPermutation = ((repeat) => {
     });
 })(aux.repeat);
 exports.mostFrequent = ((repeat) => {
-    const standard = function mostFrequent(xs) {
+    const monolithic = function mostFrequent(xs) {
         const used = repeat(xs.length, false);
         let mostFrequent = undefined;
         ;
@@ -4112,18 +4132,58 @@ exports.mostFrequent = ((repeat) => {
         }
         return mostFrequent;
     };
-    const referenceImplementation = standard;
+    const counts = ((count) => function counts(xs) {
+        const result = [];
+        for (const x of xs) {
+            const xCount = count(x, xs);
+            result.push(xCount);
+        }
+        return result;
+    })(aux.count);
+    const findWithCount = ((count) => function findWithCount(xs, targetCount) {
+        for (const x of xs) {
+            if (count(x, xs) === targetCount) {
+                return x;
+            }
+        }
+        return undefined;
+    })(aux.count);
+    const withHelperFunctions = function mostFrequent(xs) {
+        const cs = counts(xs);
+        const maxCount = Math.max(...cs);
+        return findWithCount(xs, maxCount);
+    };
+    const withLambdas = ((count) => function mostFrequent(xs) {
+        const counts = xs.map(x => count(x, xs));
+        const maxCount = Math.max(...counts);
+        return xs.find(x => count(x, xs) === maxCount);
+    })(functional.count);
+    const referenceImplementation = monolithic;
     return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
         constructor() {
             super(...arguments);
-            this.label = "";
-            this.implementation = standard;
+            this.label = "met hulpfuncties";
+            this.implementation = withHelperFunctions;
+        }
+        get dependencies() { return [aux.count, counts, findWithCount]; }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = "lambda's";
+            this.implementation = withLambdas;
+        }
+        get dependencies() { return [functional.count]; }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = "monolotisch";
+            this.implementation = monolithic;
         }
         get dependencies() { return [repeat]; }
     });
 })(aux.repeat);
-exports.mostFrequent2 = ((repeat) => {
-    const standard = function mostFrequent2(xs) {
+exports.mostFrequent2 = (() => {
+    const monolithic = ((repeat) => function mostFrequent2(xs) {
         const used = repeat(xs.length, false);
         let mostFrequent = [];
         let mostFrequentCount = 0;
@@ -4146,17 +4206,59 @@ exports.mostFrequent2 = ((repeat) => {
             }
         }
         return mostFrequent;
+    })(aux.repeat);
+    const withLambdas = ((count, uniq) => function mostFrequent2(xs) {
+        const uniqueXs = uniq(xs);
+        const counts = uniqueXs.map(x => count(x, xs));
+        const maxCount = Math.max(...counts);
+        return uniqueXs.filter(x => count(x, xs) === maxCount);
+    })(functional.count, functional.uniq);
+    const counts = ((count) => function counts(xs) {
+        const result = [];
+        for (const x of xs) {
+            const xCount = count(x, xs);
+            result.push(xCount);
+        }
+        return result;
+    })(aux.count);
+    const findWithCount = ((count) => function findWithCount(xs, targetCount) {
+        const result = [];
+        for (const x of xs) {
+            if (!result.includes(x) && count(x, xs) === targetCount) {
+                result.push(x);
+            }
+        }
+        return result;
+    })(aux.count);
+    const withHelperFunctions = function mostFrequent2(xs) {
+        const cs = counts(xs);
+        const maxCount = Math.max(...cs);
+        return findWithCount(xs, maxCount);
     };
-    const referenceImplementation = standard;
+    const referenceImplementation = monolithic;
     return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
         constructor() {
             super(...arguments);
-            this.label = "";
-            this.implementation = standard;
+            this.label = "met hulpfuncties";
+            this.implementation = withHelperFunctions;
         }
-        get dependencies() { return [repeat]; }
+        get dependencies() { return [counts, findWithCount, aux.count]; }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = "lambda's";
+            this.implementation = withLambdas;
+        }
+        get dependencies() { return [functional.count, functional.uniq]; }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = "monolotisch";
+            this.implementation = monolithic;
+        }
+        get dependencies() { return [aux.repeat]; }
     });
-})(exports.repeat);
+})();
 exports.isIncreasing = (() => {
     class S extends algo_testing_framework_1.Solution {
     }
@@ -4288,6 +4390,7 @@ exports.longestIncreasingSubsequence = (() => {
     });
 })();
 exports.uniq = ((repeat) => {
+    const recursive = functional.uniq;
     const standard = function uniq(xs) {
         const result = [];
         const used = repeat(xs.length, false);
@@ -4308,10 +4411,16 @@ exports.uniq = ((repeat) => {
     return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
         constructor() {
             super(...arguments);
-            this.label = "";
+            this.label = "lussen";
             this.implementation = standard;
         }
         get dependencies() { return [repeat]; }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = "recursief";
+            this.implementation = recursive;
+        }
     });
 })(aux.repeat);
 function uniqInPlace(xs) {

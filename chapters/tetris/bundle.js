@@ -723,11 +723,11 @@ exports.countFullRows = ((height, isRowFull) => {
     });
 })(exports.height, exports.isRowFull);
 exports.removeFullRows = ((height, removeRow, isRowFull) => {
-    return algo_testing_framework_1.packSingleSolution(function removeFullRows(grid) {
-        const h = height(grid);
+    return algo_testing_framework_1.packSingleSolution(function removeFullRows(pit) {
+        const h = height(pit);
         for (let row = 0; row !== h; ++row) {
-            if (isRowFull(grid[row])) {
-                removeRow(grid, row);
+            if (isRowFull(pit[row])) {
+                removeRow(pit, row);
             }
         }
     });
@@ -738,16 +738,16 @@ exports.isInside = ((width, height) => {
     });
 })(exports.width, exports.height);
 exports.shapeFitsAt = ((width, height, isInside) => {
-    return algo_testing_framework_1.packSingleSolution(function shapeFitsAt(shape, grid, row, column) {
+    return algo_testing_framework_1.packSingleSolution(function shapeFitsAt(shape, pit, row, column) {
         const shapeWidth = width(shape);
         const shapeHeight = height(shape);
         for (let shapeRow = 0; shapeRow !== shapeHeight; ++shapeRow) {
             for (let shapeColumn = 0; shapeColumn !== shapeWidth; ++shapeColumn) {
                 const square = shape[shapeRow][shapeColumn];
                 if (square !== 0) {
-                    const gridRow = shapeRow + row;
-                    const gridColumn = shapeColumn + column;
-                    if (!isInside(grid, gridRow, gridColumn) || grid[gridRow][gridColumn] !== 0) {
+                    const pitRow = shapeRow + row;
+                    const pitColumn = shapeColumn + column;
+                    if (!isInside(pit, pitRow, pitColumn) || pit[pitRow][pitColumn] !== 0) {
                         return false;
                     }
                 }
@@ -757,16 +757,16 @@ exports.shapeFitsAt = ((width, height, isInside) => {
     });
 })(exports.width, exports.height, exports.isInside);
 exports.addShapeAt = ((width, height) => {
-    return algo_testing_framework_1.packSingleSolution(function addShapeAt(shape, grid, row, column) {
+    return algo_testing_framework_1.packSingleSolution(function addShapeAt(shape, pit, row, column) {
         const shapeWidth = width(shape);
         const shapeHeight = height(shape);
         for (let shapeRow = 0; shapeRow !== shapeHeight; ++shapeRow) {
             for (let shapeColumn = 0; shapeColumn !== shapeWidth; ++shapeColumn) {
                 const square = shape[shapeRow][shapeColumn];
                 if (square !== 0) {
-                    const gridRow = shapeRow + row;
-                    const gridColumn = shapeColumn + column;
-                    grid[gridRow][gridColumn] = shape[shapeRow][shapeColumn];
+                    const pitRow = shapeRow + row;
+                    const pitColumn = shapeColumn + column;
+                    pit[pitRow][pitColumn] = shape[shapeRow][shapeColumn];
                 }
             }
         }

@@ -1345,6 +1345,10 @@ async function createChapter(student) {
                         " meegeven, moet de functie ",
                         code(str({ x: 2, y: 4 })),
                         " teruggeven."),
+                    react_1.default.createElement("p", null,
+                        "Indien er geen vakje is met de gegeven index, moet ",
+                        code(`invalid`),
+                        " teruggegeven worden."),
                     react_1.default.createElement(HeaderBox, { header: "Hint" },
                         react_1.default.createElement("p", null,
                             "Je zal het rooster moeten afgaan (van links naar rechts en van boven naar onder) en zoeken naar het ",
@@ -1435,7 +1439,7 @@ async function createChapter(student) {
                                             react_1.default.createElement(testcase_header_1.Inputs, null,
                                                 react_1.default.createElement(testcase_header_1.Argument, { name: grid },
                                                     react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: index }, code(str(index)))),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: index }, code(str(indexValue)))),
                                             react_1.default.createElement(testcase_header_1.Expected, null,
                                                 react_1.default.createElement(testcase_header_1.ReturnValue, null, result)))));
                                 }
@@ -1965,6 +1969,54 @@ async function createChapter(student) {
             ],
             { x: 0, y: 2 }, 'FFAA'
         ];
+        yield [
+            '',
+            false,
+            [
+                '.*.',
+            ],
+            { x: 0, y: 0 }, 'ABC'
+        ];
+        yield [
+            '',
+            false,
+            [
+                '.*.*',
+            ],
+            { x: 0, y: 0 }, 'ABC'
+        ];
+        yield [
+            '',
+            false,
+            [
+                '.*...',
+            ],
+            { x: 0, y: 0 }, 'AAAAA'
+        ];
+        yield [
+            '',
+            false,
+            [
+                '..*..',
+            ],
+            { x: 0, y: 0 }, 'AAAAA'
+        ];
+        yield [
+            '',
+            false,
+            [
+                '...*.',
+            ],
+            { x: 0, y: 0 }, 'AAAAA'
+        ];
+        yield [
+            '',
+            false,
+            [
+                '*..*.',
+            ],
+            { x: 1, y: 0 }, 'AAAA'
+        ];
     }
     function* fits2Cases() {
         for (const [caption, expected, puzzle, { x, y }, word] of fits1Cases()) {
@@ -2272,7 +2324,7 @@ async function createChapter(student) {
                             code(str(false)),
                             " in het andere geval.")),
                     react_1.default.createElement("p", null,
-                        "Schrijf een functie die nagaat of een woord op een gegeven positie",
+                        "Schrijf een functie die nagaat of een woord op een gegeven positie ",
                         react_1.default.createElement("em", null, "horizontaal"),
                         " in het kruiswoordraadsel past. De volgende regels gelden:"),
                     react_1.default.createElement("ul", null,
