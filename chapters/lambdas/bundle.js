@@ -585,7 +585,9 @@ async function createChapter(student) {
         primesExercise(),
         findImposter(),
         zipExercise(),
-        allDifferentExercise(),
+        allDifferent(),
+        isSumPossible(),
+        isSumPossible2(),
         isbn10Exercise(),
     ]);
     // Range, Wheel of Fortune
@@ -1073,188 +1075,115 @@ async function createChapter(student) {
             }
         };
     }
-    // async function isSumPossible2Exercise() : Promise<ATF.ISection>
-    // {
-    //     const referenceFunction = Solutions.isSumPossible2;
-    //     const { functionName, signature, parameterNames: [ ns, targetSum ] } = ATF.Functional.parseFunction(referenceFunction);
-    //     type Ps = ParameterTypes<typeof referenceFunction>;
-    //     type R = ReturnType<typeof referenceFunction>;
-    //     type T = (...args : Ps) => R;
-    //     const testedImplementation = student.typedFetch<T>(functionName);
-    //     return new class extends CodingExerciseSection<Ps, R>
-    //     {
-    //         solutionPack = referenceFunction;
-    //         verifySolutions = verifySolutions;
-    //         testedImplementation = testedImplementation;
-    //         difficulty = 2;
-    //         createExercise(testedImplementation: Maybe<(...args : Ps) => R>) : ATF.Exercise.IExercise
-    //         {
-    //             return new class extends ReturnValueExercise<Ps, R>
-    //             {
-    //                 referenceImplementation = referenceFunction;
-    //                 testedImplementation = testedImplementation;
-    //                 *generateTestCaseInputs()
-    //                 {
-    //                     yield testCaseInput( [], 0 );
-    //                     yield testCaseInput( [1, 2], 1 );
-    //                     yield testCaseInput( [1, 2], 2 );
-    //                     yield testCaseInput( [1, 2], 3 );
-    //                     yield testCaseInput( [1, 2], 4 );
-    //                     yield testCaseInput( [1, 2], 5 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 14 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 15 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 23 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 24 );
-    //                     function testCaseInput(...parameterValues : Ps)
-    //                     {
-    //                         return { parameterValues, metadata: {} };
-    //                     }
-    //                 }
-    //             };
-    //         }
-    //         description = (
-    //             <React.Fragment>
-    //                 <p>
-    //                     Schrijf een functie {code(signature)} die nagaat of je door exact twee
-    //                     getallen uit {code(ns)} op te tellen je {code(targetSum)} kunt verkrijgen.
-    //                     Hetzelfde getal mag herhaaldelijk gebruikt worden.
-    //                 </p>
-    //                 <p>
-    //                     Je zal hier gebruik moeten maken van het equivalent van geneste lussen:
-    //                     je zal een {code(`any`)} moeten gebruiken met een lambda
-    //                     met een tweede {code(`any`)} in.
-    //                 </p>
-    //             </React.Fragment>
-    //         );
-    //         get hint()
-    //         {
-    //             return (
-    //                 <React.Fragment>
-    //                     <p>
-    //                         De som is mogelijk indien
-    //                     </p>
-    //                     <ul>
-    //                         <li>
-    //                             er een {code(`n1`)} van {code(`ns`)} bestaat waarvoor geldt dat
-    //                         </li>
-    //                         <li>
-    //                             er een {code(`n2`)} van {code(`ns`)} bestaat waarvoor geldt dat
-    //                         </li>
-    //                         <li>
-    //                             {code(`n1 + n2 === ${targetSum}`)}
-    //                         </li>
-    //                     </ul>
-    //                 </React.Fragment>
-    //             );
-    //         }
-    //     };
-    // }
-    // async function isSumPossible3Exercise() : Promise<ATF.ISection>
-    // {
-    //     const referenceFunction = Solutions.isSumPossible3;
-    //     const { functionName, signature, parameterNames: [ ns, targetSum ] } = ATF.Functional.parseFunction(referenceFunction);
-    //     type Ps = ParameterTypes<typeof referenceFunction>;
-    //     type R = ReturnType<typeof referenceFunction>;
-    //     type T = (...args : Ps) => R;
-    //     const testedImplementation = student.typedFetch<T>(functionName);
-    //     return new class extends CodingExerciseSection<Ps, R>
-    //     {
-    //         solutionPack = referenceFunction;
-    //         verifySolutions = verifySolutions;
-    //         testedImplementation = testedImplementation;
-    //         difficulty = 2;
-    //         createExercise(testedImplementation: Maybe<(...args : Ps) => R>) : ATF.Exercise.IExercise
-    //         {
-    //             return new class extends ReturnValueExercise<Ps, R>
-    //             {
-    //                 referenceImplementation = referenceFunction;
-    //                 testedImplementation = testedImplementation;
-    //                 *generateTestCaseInputs()
-    //                 {
-    //                     yield testCaseInput( [], 0 );
-    //                     yield testCaseInput( [1, 2], 1 );
-    //                     yield testCaseInput( [1, 2], 2 );
-    //                     yield testCaseInput( [1, 2], 3 );
-    //                     yield testCaseInput( [1, 2], 4 );
-    //                     yield testCaseInput( [1, 2], 5 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 19 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 20 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 23 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 24 );
-    //                     yield testCaseInput( [1, 5, 9, 18], 25 );
-    //                     function testCaseInput(...parameterValues : Ps)
-    //                     {
-    //                         return { parameterValues, metadata: {} };
-    //                     }
-    //                 }
-    //             };
-    //         }
-    //         description = (
-    //             <React.Fragment>
-    //                 <p>
-    //                     Schrijf een functie {code(signature)} die nagaat of je door exact drie
-    //                     getallen uit {code(ns)} op te tellen je {code(targetSum)} kunt verkrijgen.
-    //                     Hetzelfde getal mag herhaaldelijk gebruikt worden.
-    //                 </p>
-    //             </React.Fragment>
-    //         );
-    //     };
-    // }
-    //     async function isSumPossibleExercise() : Promise<ATF.ISection>
-    //     {
-    //         const referenceFunction = Solutions.isSumPossible;
-    //         const { functionName, signature, parameterNames: [ ns, targetSum ] } = ATF.Functional.parseFunction(referenceFunction);
-    //         type Ps = ParameterTypes<typeof referenceFunction>;
-    //         type R = ReturnType<typeof referenceFunction>;
-    //         type T = (...args : Ps) => R;
-    //         const testedImplementation = student.typedFetch<T>(functionName);
-    //         return new class extends CodingExerciseSection<Ps, R>
-    //         {
-    //             solutionPack = referenceFunction;
-    //             verifySolutions = verifySolutions;
-    //             testedImplementation = testedImplementation;
-    //             difficulty = 3;
-    //             createExercise(testedImplementation: Maybe<(...args : Ps) => R>) : ATF.Exercise.IExercise
-    //             {
-    //                 return new class extends ReturnValueExercise<Ps, R>
-    //                 {
-    //                     referenceImplementation = referenceFunction;
-    //                     testedImplementation = testedImplementation;
-    //                     *generateTestCaseInputs()
-    //                     {
-    //                         yield testCaseInput( [], 0 );
-    //                         yield testCaseInput( [2], 2 );
-    //                         yield testCaseInput( [2], 10 );
-    //                         yield testCaseInput( [2], 11 );
-    //                         yield testCaseInput( [2, 5], 11 );
-    //                         yield testCaseInput( [7, 11, 13], 6 );
-    //                         yield testCaseInput( [7, 11, 13], 18 );
-    //                         yield testCaseInput( [7, 11, 13], 7 + 11 + 13 );
-    //                         yield testCaseInput( [7, 11, 13], 12 );
-    //                         yield testCaseInput( [7, 11, 13], 30 );
-    //                         yield testCaseInput( [7, 11, 13], 100 );
-    //                         yield testCaseInput( [15, 31, 73, 155], 190 );
-    //                         yield testCaseInput( [15, 31, 73, 155], 191 );
-    // 1
-    //                         function testCaseInput(...parameterValues : Ps)
-    //                         {
-    //                             return { parameterValues, metadata: {} };
-    //                         }
-    //                     }
-    //                 };
-    //             }
-    //             description = (
-    //                 <React.Fragment>
-    //                     <p>
-    //                         Schrijf een functie {code(signature)} die nagaat of je door een willekeurig aantal
-    //                         getallen uit {code(ns)} op te tellen je {code(targetSum)} kunt verkrijgen.
-    //                         Hetzelfde getal mag herhaaldelijk gebruikt worden. Alle getallen in {code(ns)} zijn
-    //                         gegarandeerd groter dan 0.
-    //                     </p>
-    //                 </React.Fragment>
-    //             );
-    //         };
-    //     }
+    async function isSumPossible() {
+        const referenceFunction = Solutions.isSumPossible;
+        const { functionName, signature, parameterNames: [ns, targetSum] } = ATF.Functional.parseFunction(referenceFunction);
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends CodingExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.solutionPack = referenceFunction;
+                this.verifySolutions = true;
+                this.testedImplementation = testedImplementation;
+                this.difficulty = 4;
+                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(signature),
+                        " die nagaat of je door een willekeurig aantal getallen uit ",
+                        code(ns),
+                        " op te tellen je ",
+                        code(targetSum),
+                        " kunt verkrijgen. Hetzelfde getal mag herhaaldelijk gebruikt worden. Alle getallen in ",
+                        code(ns),
+                        " zijn gegarandeerd groter dan 0.")));
+            }
+            createExercise(testedImplementation) {
+                return new class extends ReturnValueExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.referenceImplementation = referenceFunction;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    *generateTestCaseInputs() {
+                        yield testCaseInput([], 0);
+                        yield testCaseInput([2], 2);
+                        yield testCaseInput([2], 10);
+                        yield testCaseInput([2], 11);
+                        yield testCaseInput([2, 5], 11);
+                        yield testCaseInput([7, 11, 13], 6);
+                        yield testCaseInput([7, 11, 13], 18);
+                        yield testCaseInput([7, 11, 13], 7 + 11 + 13);
+                        yield testCaseInput([7, 11, 13], 12);
+                        yield testCaseInput([7, 11, 13], 30);
+                        yield testCaseInput([7, 11, 13], 100);
+                        yield testCaseInput([15, 31, 73, 155], 190);
+                        yield testCaseInput([15, 31, 73, 155], 191);
+                        1;
+                        function testCaseInput(...parameterValues) {
+                            return { parameterValues, metadata: {} };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function isSumPossible2() {
+        const referenceFunction = Solutions.isSumPossible2;
+        const { functionName, signature, parameterNames: [ns, targetSum] } = ATF.Functional.parseFunction(referenceFunction);
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends CodingExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.solutionPack = referenceFunction;
+                this.verifySolutions = true;
+                this.testedImplementation = testedImplementation;
+                this.difficulty = 4;
+                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(signature),
+                        " die nagaat of je door een willekeurig aantal getallen uit ",
+                        code(ns),
+                        " op te tellen je ",
+                        code(targetSum),
+                        " kunt verkrijgen. Een element uit ",
+                        code(ns),
+                        " mag slechts \u00E9\u00E9n gebruikt worden. Alle getallen in ",
+                        code(ns),
+                        " zijn gegarandeerd groter dan 0.")));
+            }
+            createExercise(testedImplementation) {
+                return new class extends ReturnValueExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.referenceImplementation = referenceFunction;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    *generateTestCaseInputs() {
+                        yield testCaseInput([], 0);
+                        yield testCaseInput([2], 2);
+                        yield testCaseInput([2], 10);
+                        yield testCaseInput([2, 2, 2, 2], 10);
+                        yield testCaseInput([2, 2, 2, 2, 2], 10);
+                        yield testCaseInput([2], 11);
+                        yield testCaseInput([2, 5], 11);
+                        yield testCaseInput([7, 11, 13], 6);
+                        yield testCaseInput([7, 11, 13], 18);
+                        yield testCaseInput([7, 11, 13], 7 + 11 + 13);
+                        yield testCaseInput([7, 11, 13], 12);
+                        yield testCaseInput([7, 11, 13], 30);
+                        yield testCaseInput([15, 31, 73, 155], 31 + 155);
+                        yield testCaseInput([15, 31, 73, 155], 190);
+                        1;
+                        function testCaseInput(...parameterValues) {
+                            return { parameterValues, metadata: {} };
+                        }
+                    }
+                };
+            }
+        };
+    }
     async function countOccurrencesExercise() {
         const referenceFunction = Solutions.countOccurrences;
         const { functionName, signature, parameterNames: [xs, value] } = ATF.Functional.parseFunction(referenceFunction);
@@ -2087,7 +2016,7 @@ async function createChapter(student) {
             }
         };
     }
-    async function allDifferentExercise() {
+    async function allDifferent() {
         const referenceFunction = Solutions.allDifferent;
         const { functionName, signature, parameterNames: [xs] } = ATF.Functional.parseFunction(referenceFunction);
         const testedImplementation = student.typedFetch(functionName);
@@ -3589,7 +3518,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isbn10 = exports.allDifferent = exports.zip = exports.primes = exports.isPrime = exports.divisors = exports.maximum = exports.findTriple = exports.longestString = exports.flipAll2 = exports.flipAll = exports.toSeconds2 = exports.toSeconds = exports.findLastPositive = exports.findFirstPositive = exports.findImposter = exports.allEqualTo = exports.someZero = exports.somePositive = exports.allZero = exports.allOdd2 = exports.allNegative2 = exports.allPositive2 = exports.inflation = exports.ranking = exports.isUpperBound = exports.allEqual = exports.isLowerBound = exports.isSubset = exports.contains2 = exports.contains = exports.countOccurrences = void 0;
+exports.isbn10 = exports.allDifferent = exports.zip = exports.primes = exports.isPrime = exports.divisors = exports.maximum = exports.findTriple = exports.longestString = exports.flipAll2 = exports.flipAll = exports.toSeconds2 = exports.toSeconds = exports.findLastPositive = exports.findFirstPositive = exports.findImposter = exports.allEqualTo = exports.someZero = exports.somePositive = exports.allZero = exports.allOdd2 = exports.allNegative2 = exports.allPositive2 = exports.inflation = exports.ranking = exports.isUpperBound = exports.allEqual = exports.isLowerBound = exports.isSubset = exports.contains2 = exports.contains = exports.countOccurrences = exports.isSumPossible2 = exports.isSumPossible = void 0;
 const algo_testing_framework_1 = __webpack_require__(0);
 function range(from, to) {
     const result = [];
@@ -3601,18 +3530,68 @@ function range(from, to) {
 function isDivisibleBy(x, y) {
     return x % y === 0;
 }
-// export const isSumPossible = ((any) => packSingleSolution(function isSumPossible(ns : number[], target : number) : boolean
-// {
-//     return target >= 0 && (target === 0 || ns.some(n => isSumPossible(ns, target-n)));
-// }))(any);
-// export const isSumPossible2 = ((any) => packSingleSolution(function isSumPossible2(ns : number[], target : number) : boolean
-// {
-//     return ns.some(n1 => ns.some(n2 => n1 + n2 === target));
-// }))(any);
-// export const isSumPossible3 = ((any) => packSingleSolution(function isSumPossible3(ns : number[], target : number) : boolean
-// {
-//     return ns.some(n1 => ns.some(n2 => ns.some(n3 => n1 + n2 + n3 === target)));
-// }))(any);
+exports.isSumPossible = (() => {
+    const long = function isSumPossible(ns, target) {
+        if (target < 0) {
+            return false;
+        }
+        if (target === 0) {
+            return true;
+        }
+        return ns.some(n => isSumPossible(ns, target - n));
+    };
+    const short = function isSumPossible(ns, target) {
+        return target >= 0 && (target === 0 || ns.some(n => isSumPossible(ns, target - n)));
+    };
+    const referenceImplementation = long;
+    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = 'uitgeschreven';
+            this.implementation = long;
+        }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = 'kort';
+            this.implementation = short;
+        }
+    });
+})();
+exports.isSumPossible2 = (() => {
+    const long = function isSumPossible2(ns, target) {
+        if (target === 0) {
+            return true;
+        }
+        return range(0, ns.length).some(i => isSumPossible2(ns.slice(i + 1), target - ns[i]));
+    };
+    const short = function isSumPossible2(ns, target) {
+        return target === 0 || range(0, ns.length).some(i => isSumPossible2(ns.slice(i + 1), target - ns[i]));
+    };
+    function range(from, to) {
+        const result = [];
+        for (let i = from; i < to; ++i) {
+            result.push(i);
+        }
+        return result;
+    }
+    const referenceImplementation = long;
+    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = 'uitgeschreven';
+            this.implementation = long;
+        }
+        get dependencies() { return [range]; }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = 'kort';
+            this.implementation = short;
+        }
+        get dependencies() { return [range]; }
+    });
+})();
 exports.countOccurrences = (() => {
     const oneliner = function countOccurrences(xs, value) {
         return xs.filter(x => x === value).length;

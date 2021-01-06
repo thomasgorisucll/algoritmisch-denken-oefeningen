@@ -589,47 +589,71 @@ exports.createEmptyPit = algo_testing_framework_1.packSingleSolution(function cr
     return result;
 });
 exports.rotateCW = ((width, height, createGrid) => {
-    const withIteration = function rotateCW(shape) {
-        const w = width(shape);
-        const h = height(shape);
-        const result = createGrid(h, w);
-        for (let y = 0; y !== h; ++y) {
-            for (let x = 0; x !== w; ++x) {
-                result[x][y] = shape[h - y - 1][x];
+    const withFormula = function rotateCW(shape) {
+        const shapeWidth = width(shape);
+        const shapeHeight = height(shape);
+        const rotatedWidth = shapeHeight;
+        const rotatedHeight = shapeWidth;
+        const result = createGrid(shapeHeight, shapeWidth);
+        for (let rowIndex = 0; rowIndex !== rotatedHeight; ++rowIndex) {
+            for (let columnIndex = 0; columnIndex !== rotatedWidth; ++columnIndex) {
+                result[rowIndex][columnIndex] = shape[rotatedWidth - columnIndex - 1][rowIndex];
             }
         }
         return result;
     };
-    function initializeArray(n, at) {
-        let result = new Array(n);
-        for (let i = 0; i !== n; ++i) {
-            result[i] = at(i);
+    const byRow = function rotateCW(shape) {
+        const shapeWidth = width(shape);
+        const shapeHeight = height(shape);
+        const rotatedWidth = shapeHeight;
+        const rotatedHeight = shapeWidth;
+        const result = [];
+        for (let rowIndex = 0; rowIndex !== rotatedHeight; ++rowIndex) {
+            result.push(nthColumn(shape, rowIndex));
+        }
+        return result;
+    };
+    function nthColumn(grid, columnIndex) {
+        const result = [];
+        for (let rowIndex = 0; rowIndex !== height(grid); ++rowIndex) {
+            result.push(grid[rowIndex][columnIndex]);
         }
         return result;
     }
-    function reverse(xs) {
-        return initializeArray(xs.length, i => xs[xs.length - i - 1]);
+    function initializeArray(n, at) {
+        const result = [];
+        for (let i = 0; i !== n; ++i) {
+            result.push(at(i));
+        }
+        return result;
     }
     function column(grid, columnIndex) {
         return grid.map(row => row[columnIndex]);
     }
     const withLambdas = function rotateCW(grid) {
-        return initializeArray(width(grid), columnIndex => reverse(column(grid, columnIndex)));
+        return initializeArray(width(grid), columnIndex => column(grid, columnIndex).reverse());
     };
-    const refimpl = withIteration;
+    const refimpl = withFormula;
     return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = 'via formule';
+            this.implementation = withFormula;
+        }
+    }, new class extends algo_testing_framework_1.Solution {
+        constructor() {
+            super(...arguments);
+            this.label = 'rij per rij';
+            this.implementation = byRow;
+        }
+        get dependencies() { return [nthColumn]; }
+    }, new class extends algo_testing_framework_1.Solution {
         constructor() {
             super(...arguments);
             this.label = "lambda's";
             this.implementation = withLambdas;
         }
-        get dependencies() { return [initializeArray, reverse, column]; }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'iteratief';
-            this.implementation = withIteration;
-        }
+        get dependencies() { return [initializeArray, column]; }
     });
 })(exports.width, exports.height, exports.createEmptyPit);
 exports.isRowFull = ((width) => {
