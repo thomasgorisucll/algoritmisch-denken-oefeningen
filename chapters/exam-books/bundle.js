@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -458,13 +458,268 @@ object-assign
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2);
-__webpack_require__(7);
-module.exports = __webpack_require__(8);
+"use strict";
+
+
+if (true) {
+  module.exports = __webpack_require__(7);
+} else {}
 
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HeaderBox = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const Container = algo_testing_framework_1.styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: #CCF;
+    margin: 2px;
+    border: 1px solid black;
+`;
+const Header = algo_testing_framework_1.styled.div `
+    background: #44F;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 75%;
+    padding: 0.25em 2em;
+    text-align: center;
+`;
+class HeaderBox extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(Container, { className: this.props.className },
+            react_1.default.createElement(Header, null, this.props.caption),
+            this.props.children));
+    }
+}
+exports.HeaderBox = HeaderBox;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Horizontal = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const Container = algo_testing_framework_1.styled.div `
+    display: flex;
+    flex-direction: row;
+    justify-content: ${props => props.center ? 'center' : 'flex-start'};
+    flex-wrap: wrap;
+    align-items: stretch;
+    height: 100%;
+`;
+class Horizontal extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(Container, { className: this.props.className, center: this.props.center }, this.props.children));
+    }
+}
+exports.Horizontal = Horizontal;
+Horizontal.defaultProps = {
+    center: false
+};
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./node_modules/maybe/dist/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/maybe/dist/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap\r\n/******/ \t// The module cache\r\n/******/ \tvar installedModules = {};\r\n/******/\r\n/******/ \t// The require function\r\n/******/ \tfunction __webpack_require__(moduleId) {\r\n/******/\r\n/******/ \t\t// Check if module is in cache\r\n/******/ \t\tif(installedModules[moduleId]) {\r\n/******/ \t\t\treturn installedModules[moduleId].exports;\r\n/******/ \t\t}\r\n/******/ \t\t// Create a new module (and put it into the cache)\r\n/******/ \t\tvar module = installedModules[moduleId] = {\r\n/******/ \t\t\ti: moduleId,\r\n/******/ \t\t\tl: false,\r\n/******/ \t\t\texports: {}\r\n/******/ \t\t};\r\n/******/\r\n/******/ \t\t// Execute the module function\r\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\r\n/******/\r\n/******/ \t\t// Flag the module as loaded\r\n/******/ \t\tmodule.l = true;\r\n/******/\r\n/******/ \t\t// Return the exports of the module\r\n/******/ \t\treturn module.exports;\r\n/******/ \t}\r\n/******/\r\n/******/\r\n/******/ \t// expose the modules object (__webpack_modules__)\r\n/******/ \t__webpack_require__.m = modules;\r\n/******/\r\n/******/ \t// expose the module cache\r\n/******/ \t__webpack_require__.c = installedModules;\r\n/******/\r\n/******/ \t// define getter function for harmony exports\r\n/******/ \t__webpack_require__.d = function(exports, name, getter) {\r\n/******/ \t\tif(!__webpack_require__.o(exports, name)) {\r\n/******/ \t\t\tObject.defineProperty(exports, name, { enumerable: true, get: getter });\r\n/******/ \t\t}\r\n/******/ \t};\r\n/******/\r\n/******/ \t// define __esModule on exports\r\n/******/ \t__webpack_require__.r = function(exports) {\r\n/******/ \t\tif(typeof Symbol !== 'undefined' && Symbol.toStringTag) {\r\n/******/ \t\t\tObject.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });\r\n/******/ \t\t}\r\n/******/ \t\tObject.defineProperty(exports, '__esModule', { value: true });\r\n/******/ \t};\r\n/******/\r\n/******/ \t// create a fake namespace object\r\n/******/ \t// mode & 1: value is a module id, require it\r\n/******/ \t// mode & 2: merge all properties of value into the ns\r\n/******/ \t// mode & 4: return value when already ns object\r\n/******/ \t// mode & 8|1: behave like require\r\n/******/ \t__webpack_require__.t = function(value, mode) {\r\n/******/ \t\tif(mode & 1) value = __webpack_require__(value);\r\n/******/ \t\tif(mode & 8) return value;\r\n/******/ \t\tif((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;\r\n/******/ \t\tvar ns = Object.create(null);\r\n/******/ \t\t__webpack_require__.r(ns);\r\n/******/ \t\tObject.defineProperty(ns, 'default', { enumerable: true, value: value });\r\n/******/ \t\tif(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));\r\n/******/ \t\treturn ns;\r\n/******/ \t};\r\n/******/\r\n/******/ \t// getDefaultExport function for compatibility with non-harmony modules\r\n/******/ \t__webpack_require__.n = function(module) {\r\n/******/ \t\tvar getter = module && module.__esModule ?\r\n/******/ \t\t\tfunction getDefault() { return module['default']; } :\r\n/******/ \t\t\tfunction getModuleExports() { return module; };\r\n/******/ \t\t__webpack_require__.d(getter, 'a', getter);\r\n/******/ \t\treturn getter;\r\n/******/ \t};\r\n/******/\r\n/******/ \t// Object.prototype.hasOwnProperty.call\r\n/******/ \t__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };\r\n/******/\r\n/******/ \t// __webpack_public_path__\r\n/******/ \t__webpack_require__.p = \"\";\r\n/******/\r\n/******/\r\n/******/ \t// Load entry module and return exports\r\n/******/ \treturn __webpack_require__(__webpack_require__.s = \"./src/index.ts\");\r\n/******/ })\r\n/************************************************************************/\r\n/******/ ({\r\n\r\n/***/ \"./src/index.ts\":\r\n/*!**********************!*\\\r\n  !*** ./src/index.ts ***!\r\n  \\**********************/\r\n/*! no static exports found */\r\n/***/ (function(module, exports, __webpack_require__) {\r\n\r\n\"use strict\";\r\neval(\"\\r\\nfunction __export(m) {\\r\\n    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];\\r\\n}\\r\\nObject.defineProperty(exports, \\\"__esModule\\\", { value: true });\\r\\n__export(__webpack_require__(/*! ./maybe */ \\\"./src/maybe.ts\\\"));\\r\\n\\n\\n//# sourceURL=webpack:///./src/index.ts?\");\r\n\r\n/***/ }),\r\n\r\n/***/ \"./src/maybe.ts\":\r\n/*!**********************!*\\\r\n  !*** ./src/maybe.ts ***!\r\n  \\**********************/\r\n/*! no static exports found */\r\n/***/ (function(module, exports, __webpack_require__) {\r\n\r\n\"use strict\";\r\neval(\"\\r\\nvar __extends = (this && this.__extends) || (function () {\\r\\n    var extendStatics = Object.setPrototypeOf ||\\r\\n        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\\r\\n        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\\r\\n    return function (d, b) {\\r\\n        extendStatics(d, b);\\r\\n        function __() { this.constructor = d; }\\r\\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\\r\\n    };\\r\\n})();\\r\\nObject.defineProperty(exports, \\\"__esModule\\\", { value: true });\\r\\nvar Maybe = /** @class */ (function () {\\r\\n    function Maybe() {\\r\\n    }\\r\\n    Maybe.just = function (x) {\\r\\n        return new Just(x);\\r\\n    };\\r\\n    Maybe.nothing = function () {\\r\\n        return new Nothing();\\r\\n    };\\r\\n    return Maybe;\\r\\n}());\\r\\nexports.Maybe = Maybe;\\r\\nvar Just = /** @class */ (function (_super) {\\r\\n    __extends(Just, _super);\\r\\n    function Just(value) {\\r\\n        var _this = _super.call(this) || this;\\r\\n        _this.value = value;\\r\\n        return _this;\\r\\n    }\\r\\n    Just.prototype.bind = function (f) {\\r\\n        return f(this.value);\\r\\n    };\\r\\n    Just.prototype.lift = function (f) {\\r\\n        return Maybe.just(f(this.value));\\r\\n    };\\r\\n    Just.prototype.caseOf = function (cases) {\\r\\n        return cases.just(this.value);\\r\\n    };\\r\\n    Just.prototype.isJust = function () {\\r\\n        return true;\\r\\n    };\\r\\n    Just.prototype.useDefault = function (_) {\\r\\n        return this;\\r\\n    };\\r\\n    return Just;\\r\\n}(Maybe));\\r\\nexports.Just = Just;\\r\\nvar Nothing = /** @class */ (function (_super) {\\r\\n    __extends(Nothing, _super);\\r\\n    function Nothing() {\\r\\n        return _super !== null && _super.apply(this, arguments) || this;\\r\\n    }\\r\\n    Nothing.prototype.bind = function (_) {\\r\\n        return Maybe.nothing();\\r\\n    };\\r\\n    Nothing.prototype.lift = function (_) {\\r\\n        return Maybe.nothing();\\r\\n    };\\r\\n    Nothing.prototype.caseOf = function (cases) {\\r\\n        return cases.nothing();\\r\\n    };\\r\\n    Nothing.prototype.isJust = function () {\\r\\n        return false;\\r\\n    };\\r\\n    Nothing.prototype.useDefault = function (t) {\\r\\n        return Maybe.just(t);\\r\\n    };\\r\\n    return Nothing;\\r\\n}(Maybe));\\r\\nexports.Nothing = Nothing;\\r\\n\\n\\n//# sourceURL=webpack:///./src/maybe.ts?\");\r\n\r\n/***/ })\r\n\r\n/******/ })));\n\n//# sourceURL=webpack:///./node_modules/maybe/dist/index.js?");
+
+/***/ }),
+
+/***/ "./src/algorithms.ts":
+/*!***************************!*\
+  !*** ./src/algorithms.ts ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst maybe_1 = __webpack_require__(/*! maybe */ \"./node_modules/maybe/dist/index.js\");\r\nfunction count(xs, predicate) {\r\n    let result = 0;\r\n    for (let x of xs) {\r\n        if (predicate(x)) {\r\n            result++;\r\n        }\r\n    }\r\n    return result;\r\n}\r\nexports.count = count;\r\nfunction range(from, to) {\r\n    if (from >= to) {\r\n        return new Array(0);\r\n    }\r\n    else {\r\n        const result = new Array(to - from);\r\n        for (let i = 0; i !== result.length; ++i) {\r\n            result[i] = from + i;\r\n        }\r\n        return result;\r\n    }\r\n}\r\nexports.range = range;\r\nfunction* generateRange(from, to) {\r\n    for (let i = from; i < to; ++i) {\r\n        yield i;\r\n    }\r\n}\r\nexports.generateRange = generateRange;\r\nfunction allEqual(xs, equality) {\r\n    const eq = equality || defaultEquality;\r\n    for (let i = 1; i < xs.length; ++i) {\r\n        if (!eq(xs[0], xs[i])) {\r\n            return false;\r\n        }\r\n    }\r\n    return true;\r\n}\r\nexports.allEqual = allEqual;\r\nfunction filter(xs, predicate) {\r\n    const result = [];\r\n    for (let x of xs) {\r\n        if (predicate(x)) {\r\n            result.push(x);\r\n        }\r\n    }\r\n    return result;\r\n}\r\nexports.filter = filter;\r\nfunction all(xs, predicate) {\r\n    for (let x of xs) {\r\n        if (!predicate(x)) {\r\n            return false;\r\n        }\r\n    }\r\n    return true;\r\n}\r\nexports.all = all;\r\nfunction any(xs, predicate) {\r\n    for (let x of xs) {\r\n        if (predicate(x)) {\r\n            return true;\r\n        }\r\n    }\r\n    return false;\r\n}\r\nexports.any = any;\r\nfunction find(xs, predicate) {\r\n    for (let x of xs) {\r\n        if (predicate(x)) {\r\n            return maybe_1.Maybe.just(x);\r\n        }\r\n    }\r\n    return maybe_1.Maybe.nothing();\r\n}\r\nexports.find = find;\r\nfunction minimumBy(xs, f) {\r\n    let bestScore = Number.POSITIVE_INFINITY;\r\n    let best = maybe_1.Maybe.nothing();\r\n    for (let x of xs) {\r\n        const score = f(x);\r\n        if (score < bestScore) {\r\n            bestScore = score;\r\n            best = maybe_1.Maybe.just(x);\r\n        }\r\n    }\r\n    return best;\r\n}\r\nexports.minimumBy = minimumBy;\r\nfunction maximumBy(xs, f) {\r\n    let bestScore = Number.NEGATIVE_INFINITY;\r\n    let best = maybe_1.Maybe.nothing();\r\n    for (let x of xs) {\r\n        const score = f(x);\r\n        if (score > bestScore) {\r\n            bestScore = score;\r\n            best = maybe_1.Maybe.just(x);\r\n        }\r\n    }\r\n    return best;\r\n}\r\nexports.maximumBy = maximumBy;\r\nfunction createArray(length, initializer) {\r\n    const result = new Array(length);\r\n    for (let i = 0; i !== length; ++i) {\r\n        result[i] = initializer(i);\r\n    }\r\n    return result;\r\n}\r\nexports.createArray = createArray;\r\nfunction repeat(n, x) {\r\n    return createArray(n, _ => x);\r\n}\r\nexports.repeat = repeat;\r\nfunction indices(xs) {\r\n    return range(0, xs.length);\r\n}\r\nexports.indices = indices;\r\nfunction isPermutation(xs, ys, equality) {\r\n    const eq = equality || defaultEquality;\r\n    if (xs.length !== ys.length) {\r\n        return false;\r\n    }\r\n    else {\r\n        const used = repeat(xs.length, false);\r\n        for (const x of xs) {\r\n            let found = false;\r\n            let i = 0;\r\n            while (!found && i < ys.length) {\r\n                if (!used[i] && eq(x, ys[i])) {\r\n                    used[i] = true;\r\n                    found = true;\r\n                }\r\n                ++i;\r\n            }\r\n            if (!found) {\r\n                return false;\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n}\r\nexports.isPermutation = isPermutation;\r\nfunction defaultEquality(x, y) {\r\n    return x === y;\r\n}\r\nfunction sum(ns) {\r\n    let total = 0;\r\n    for (let n of ns) {\r\n        total += n;\r\n    }\r\n    return total;\r\n}\r\nexports.sum = sum;\r\nfunction map(xs, f) {\r\n    return createArray(xs.length, i => f(xs[i]));\r\n}\r\nexports.map = map;\r\nfunction contains(xs, y) {\r\n    return any(xs, x => x === y);\r\n}\r\nexports.contains = contains;\r\nfunction firstIndexOf(xs, predicate) {\r\n    for (let i = 0; i !== xs.length; ++i) {\r\n        const x = xs[i];\r\n        if (predicate(x)) {\r\n            return maybe_1.Maybe.just(i);\r\n        }\r\n    }\r\n    return maybe_1.Maybe.nothing();\r\n}\r\nexports.firstIndexOf = firstIndexOf;\r\nfunction lastIndexOf(xs, predicate) {\r\n    for (let i = xs.length - 1; i >= 0; --i) {\r\n        const x = xs[i];\r\n        if (predicate(x)) {\r\n            return maybe_1.Maybe.just(i);\r\n        }\r\n    }\r\n    return maybe_1.Maybe.nothing();\r\n}\r\nexports.lastIndexOf = lastIndexOf;\r\n\n\n//# sourceURL=webpack:///./src/algorithms.ts?");
+
+/***/ }),
+
+/***/ "./src/direction.ts":
+/*!**************************!*\
+  !*** ./src/direction.ts ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nclass Direction {\r\n    constructor(dx, dy) {\r\n        this.dx = dx;\r\n        this.dy = dy;\r\n    }\r\n    rotateCW() {\r\n        return new Direction(this.dy, -this.dx);\r\n    }\r\n    rotateCCW() {\r\n        return new Direction(-this.dy, this.dx);\r\n    }\r\n    get angleInDegrees() {\r\n        return Math.atan2(this.dy, this.dx) * 180 / Math.PI;\r\n    }\r\n}\r\nexports.Direction = Direction;\r\n\n\n//# sourceURL=webpack:///./src/direction.ts?");
+
+/***/ }),
+
+/***/ "./src/grid.ts":
+/*!*********************!*\
+  !*** ./src/grid.ts ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst position_1 = __webpack_require__(/*! ./position */ \"./src/position.ts\");\r\nconst algorithms_1 = __webpack_require__(/*! ./algorithms */ \"./src/algorithms.ts\");\r\nconst direction_1 = __webpack_require__(/*! ./direction */ \"./src/direction.ts\");\r\nclass Grid {\r\n    row(rowIndex) {\r\n        if (rowIndex >= this.height) {\r\n            throw new Error(`rowIndex out of range`);\r\n        }\r\n        else {\r\n            return algorithms_1.range(0, this.width).map(columnIndex => this.at(new position_1.Position(columnIndex, rowIndex)));\r\n        }\r\n    }\r\n    column(columnIndex) {\r\n        if (columnIndex >= this.width) {\r\n            throw new Error(`columnIndex out of range`);\r\n        }\r\n        else {\r\n            return algorithms_1.range(0, this.height).map(rowIndex => this.at(new position_1.Position(columnIndex, rowIndex)));\r\n        }\r\n    }\r\n    *generatePositions() {\r\n        for (let y = 0; y !== this.height; ++y) {\r\n            for (let x = 0; x !== this.width; ++x) {\r\n                const position = new position_1.Position(x, y);\r\n                yield position;\r\n            }\r\n        }\r\n    }\r\n    get positions() {\r\n        return this.generatePositions();\r\n    }\r\n    isInside(position) {\r\n        return 0 <= position.x && position.x < this.width && 0 <= position.y && position.y < this.height;\r\n    }\r\n    toColumnArray() {\r\n        return algorithms_1.range(0, this.width).map(x => this.column(x));\r\n    }\r\n    toRowArray() {\r\n        return algorithms_1.range(0, this.height).map(y => this.row(y));\r\n    }\r\n    findPositions(predicate) {\r\n        return algorithms_1.filter(this.positions, (p) => predicate(this.at(p)));\r\n    }\r\n    map(f) {\r\n        return new ConcreteGrid(this.width, this.height, p => f(this.at(p)));\r\n    }\r\n    vmap(f) {\r\n        return new VirtualGrid(this.width, this.height, p => f(this.at(p)));\r\n    }\r\n    equal(grid, comparer) {\r\n        if (this.width !== grid.width || this.height !== grid.height) {\r\n            return false;\r\n        }\r\n        else {\r\n            return algorithms_1.all(this.positions, p => comparer(this.at(p), grid.at(p)));\r\n        }\r\n    }\r\n    around4(position) {\r\n        return algorithms_1.filter(position.around4, p => this.isInside(p));\r\n    }\r\n    around8(position) {\r\n        return algorithms_1.filter(position.around8, p => this.isInside(p));\r\n    }\r\n    iterator(position, direction) {\r\n        return new GridIterator(this, position, direction);\r\n    }\r\n    rowIterator(rowIndex) {\r\n        return this.iterator(new position_1.Position(0, rowIndex), new direction_1.Direction(1, 0));\r\n    }\r\n    columnIterator(columnIndex) {\r\n        return this.iterator(new position_1.Position(columnIndex, 0), new direction_1.Direction(0, 1));\r\n    }\r\n}\r\nexports.Grid = Grid;\r\nclass ConcreteGrid extends Grid {\r\n    constructor(width, height, initializer) {\r\n        super();\r\n        this.width = width;\r\n        this.height = height;\r\n        this.items = new Array(height);\r\n        for (let y = 0; y !== height; ++y) {\r\n            this.items[y] = new Array(width);\r\n            for (let x = 0; x !== width; ++x) {\r\n                const position = new position_1.Position(x, y);\r\n                this.items[y][x] = initializer(position);\r\n            }\r\n        }\r\n    }\r\n    at(position) {\r\n        if (!this.isInside(position)) {\r\n            throw new Error(`Invalid position ${position.toString()}`);\r\n        }\r\n        else {\r\n            return this.items[position.y][position.x];\r\n        }\r\n    }\r\n}\r\nclass VirtualGrid extends Grid {\r\n    constructor(width, height, fetch) {\r\n        super();\r\n        this.width = width;\r\n        this.height = height;\r\n        this.fetch = fetch;\r\n    }\r\n    at(position) {\r\n        if (!this.isInside(position)) {\r\n            throw new Error(`Invalid position ${position.toString()}`);\r\n        }\r\n        else {\r\n            return this.fetch(position);\r\n        }\r\n    }\r\n}\r\nclass GridIterator {\r\n    constructor(grid, _position, direction) {\r\n        this.grid = grid;\r\n        this._position = _position;\r\n        this.direction = direction;\r\n    }\r\n    get endReached() {\r\n        return this.grid.isInside(this._position);\r\n    }\r\n    get pointee() {\r\n        return this.grid.at(this._position);\r\n    }\r\n    next() {\r\n        this._position = this._position.add(this.direction);\r\n    }\r\n    get position() {\r\n        return this._position;\r\n    }\r\n}\r\nfunction createGrid(width, height, initializer) {\r\n    return new ConcreteGrid(width, height, initializer);\r\n}\r\nexports.createGrid = createGrid;\r\n\n\n//# sourceURL=webpack:///./src/grid.ts?");
+
+/***/ }),
+
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nfunction __export(m) {\r\n    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];\r\n}\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n__export(__webpack_require__(/*! ./algorithms */ \"./src/algorithms.ts\"));\r\n__export(__webpack_require__(/*! ./direction */ \"./src/direction.ts\"));\r\n__export(__webpack_require__(/*! ./position */ \"./src/position.ts\"));\r\n__export(__webpack_require__(/*! ./grid */ \"./src/grid.ts\"));\r\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+
+/***/ }),
+
+/***/ "./src/position.ts":
+/*!*************************!*\
+  !*** ./src/position.ts ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nclass Position {\r\n    constructor(x, y) {\r\n        this.x = x;\r\n        this.y = y;\r\n    }\r\n    add(direction) {\r\n        return new Position(this.x + direction.dx, this.y + direction.dy);\r\n    }\r\n    get around4() {\r\n        const result = new Array(4);\r\n        result[0] = new Position(this.x - 1, this.y);\r\n        result[1] = new Position(this.x + 1, this.y);\r\n        result[2] = new Position(this.x, this.y - 1);\r\n        result[3] = new Position(this.x, this.y + 1);\r\n        return result;\r\n    }\r\n    get around8() {\r\n        const result = new Array(8);\r\n        result[0] = new Position(this.x + 1, this.y);\r\n        result[1] = new Position(this.x + 1, this.y + 1);\r\n        result[2] = new Position(this.x, this.y + 1);\r\n        result[3] = new Position(this.x - 1, this.y + 1);\r\n        result[4] = new Position(this.x - 1, this.y);\r\n        result[5] = new Position(this.x - 1, this.y - 1);\r\n        result[6] = new Position(this.x, this.y - 1);\r\n        result[7] = new Position(this.x + 1, this.y - 1);\r\n        return result;\r\n    }\r\n    touches4(p) {\r\n        const dx = Math.abs(this.x - p.x);\r\n        const dy = Math.abs(this.y - p.y);\r\n        return (dx === 1 && dy === 0) || (dx === 0 && dy === 1);\r\n    }\r\n    touches8(p) {\r\n        const dx = Math.abs(this.x - p.x);\r\n        const dy = Math.abs(this.y - p.y);\r\n        return (dx === 0 || dx === 1) && (dy === 0 || dy === 1) && (dx !== 0 || dy !== 0);\r\n    }\r\n}\r\nexports.Position = Position;\r\n\n\n//# sourceURL=webpack:///./src/position.ts?");
+
+/***/ })
+
+/******/ })));
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(6);
+__webpack_require__(25);
+module.exports = __webpack_require__(26);
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -492,49 +747,95 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(1));
 const ATF = __importStar(__webpack_require__(0));
+const exercise_section_1 = __webpack_require__(9);
+const maybe_1 = __webpack_require__(10);
+const assertion_test_case_1 = __webpack_require__(11);
 const algo_testing_framework_1 = __webpack_require__(0);
-const react_1 = __importDefault(__webpack_require__(3));
-const Solutions = __importStar(__webpack_require__(6));
+const banner_1 = __webpack_require__(12);
+const array_viewer_1 = __webpack_require__(13);
+const testcase_header_1 = __webpack_require__(14);
+const records_viewer_1 = __webpack_require__(21);
+const grid_viewer_1 = __webpack_require__(22);
+const example_box_1 = __webpack_require__(23);
+__webpack_require__(24);
 const code = ATF.Formatters.Jsx.code;
 const str = ATF.Formatters.String.convertToString;
-const Interpretation = ATF.Components.Forms.FunctionBased;
-const ExampleTable = algo_testing_framework_1.styled.table `
-    border-collapse: collapse;
-    width: ${p => `${p.widthPercentage}%`};
+const { HeaderBox, ObjectViewer, FunctionSummary, Parameter, ReturnValue } = ATF.Components;
+class CodingExercise extends ATF.Exercise.Coding.TestCaseBased.Exercise {
+}
+const PageViewer = algo_testing_framework_1.styled(grid_viewer_1.GridViewer) `
+    & td {
+        border: 1px solid black;
+        text-align: center;
+        width: 1em;
+        height: 1em;
+    }
+`;
+const CenteredObjectViewer = algo_testing_framework_1.styled(ObjectViewer) `
     margin: 1em auto;
 `;
-const ExampleRow = algo_testing_framework_1.styled.tr ``;
-const ExampleHeader = algo_testing_framework_1.styled.th `
-    border-bottom: 2px solid black;
-    background: #AAA;
+const CenteredArrayViewer = algo_testing_framework_1.styled(array_viewer_1.ArrayViewer) `
+    margin: 1em auto;
 `;
-const ExampleCell = algo_testing_framework_1.styled.td `
-    text-align: center;
-    height: 1.5em;
+const CenteredPageViewer = algo_testing_framework_1.styled(PageViewer) `
+    margin: 1em auto;
 `;
-class CodingExerciseSection extends ATF.Sections.CodingExerciseSection {
+function format(x) {
+    return code(ATF.Formatters.String.convertToString(x));
 }
-class ReturnValuExercise extends ATF.Exercise.Coding.TestCaseBased.ReferenceBased.ReturnValue.Exercise {
+const authors = {
+    dick: 'Philip K. Dick',
+    sanderson: 'Brandon Sanderson',
+    tolkien: 'J.R.R. Tolkien',
+    dickens: 'Charles Dickens',
+    fitzgerald: 'F. Scott Fitzgerald',
+    atwood: 'Margaret Atwood',
+    follett: 'Ken Follett'
+};
+const library = {
+    dick1: { title: "A Scanner Darkly", publicationYear: 1977, author: authors.dick },
+    dick2: { title: "Ubik", publicationYear: 1969, author: authors.dick },
+    dick3: { title: "Do Androids Dream of Electric Sheep?", publicationYear: 1968, author: authors.dick },
+    dick4: { title: "Valis", publicationYear: 1981, author: authors.dick },
+    sanderson1: { title: "The Emperor's Soul", publicationYear: 2012, author: authors.sanderson },
+    sanderson2: { title: "The Final Empire", publicationYear: 2006, author: authors.sanderson },
+    sanderson3: { title: "The Well of Ascension", publicationYear: 2007, author: authors.sanderson },
+    sanderson4: { title: "The Hero of Ages", publicationYear: 2008, author: authors.sanderson },
+    sanderson5: { title: "Warbreaker", publicationYear: 2009, author: authors.sanderson },
+    tolkien1: { title: "The Fellowship of the Ring", publicationYear: 1954, author: authors.tolkien },
+    tolkien2: { title: "The Two Towers", publicationYear: 1954, author: authors.tolkien },
+    tolkien3: { title: "The Return of the King", publicationYear: 1955, author: authors.tolkien },
+    dickens1: { title: "A Tale of Two Cities", publicationYear: 1859, author: authors.dickens },
+    dickens2: { title: "Oliver Twist", publicationYear: 1838, author: authors.dickens },
+    fitzgerald: { title: "The Great Gatsby", publicationYear: 1925, author: authors.fitzgerald },
+    atwood: { title: "The Handmaid's Tale", publicationYear: 1985, author: authors.atwood },
+    follett1: { title: "The Pillars of the Earth", publicationYear: 1989, author: authors.follett },
+};
+function objectMap(object, f) {
+    return Object.keys(object).reduce((acc, key) => ({ ...acc, [key]: f(object[key]) }), {});
+}
+function libraryProjection(f) {
+    return objectMap(library, f);
 }
 async function createChapter(student) {
-    const title = '2D Arrays';
+    const title = 'Books';
     const sections = await Promise.all([
         introduction(),
-        longestExercise(),
-        flattenExercise(),
-        zipExercise(),
-        orderedPairsExercise(),
-        unorderedPairsExercise(),
-        prefixesExercise(),
-        pascalExercise(),
-        // concatExercise(),
-        intersectionExercise(),
+        titles(),
+        titlesBetween(),
+        bookCountBetween(),
+        yearsActive(),
+        bookCountByAuthor(),
+        // search(),
+        capitalizeTitle(),
+        distribute(),
+        // splitInLines(),
+        center(),
+        mask(),
     ]);
     return { title, sections };
-    async function finishLineExercise() {
-        return new ATF.FinishLineSection();
-    }
     async function introduction() {
         return new class extends ATF.Explanations {
             constructor() {
@@ -544,495 +845,1098 @@ async function createChapter(student) {
                 this.header = react_1.default.createElement(react_1.default.Fragment, null, "Inleiding");
             }
             get explanations() {
+                const exampleBook = { title: library.tolkien1.title, author: library.tolkien1.author, publicationYear: library.tolkien1.publicationYear };
                 return (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement(ATF.Components.DescriptionBox, null,
-                        react_1.default.createElement("p", null, "Arrays kunnen allerlei soorten elementen bevatten: men kan er bijvoorbeeld getallen, booleans en strings in bewaren. Arrays kunnen echter ook andere arrays bevatten. Als dit het geval is, hebben we te maken met een meerdimensionale arrays."),
-                        react_1.default.createElement(ExampleTable, { widthPercentage: 60 },
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleHeader, null, "Voorbeeld"),
-                                react_1.default.createElement(ExampleHeader, null, "Dimensies")),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(str([1, 2]))),
-                                react_1.default.createElement(ExampleCell, null, "Eendimensionaal")),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(str([[1, 2], [3, 4]]))),
-                                react_1.default.createElement(ExampleCell, null, "Tweedimensionaal")),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(str([[[1, 2], [3, 4]], [[5, 6], [7, 8]]]))),
-                                react_1.default.createElement(ExampleCell, null, "Driedimensionaal"))),
+                        react_1.default.createElement("h1", null, "Boeken"),
+                        react_1.default.createElement("p", null, "Deze reeks oefeningen heeft betrekking op boeken. Een boek wordt gekenmerkt door"),
+                        react_1.default.createElement("ul", null,
+                            react_1.default.createElement("li", null, "Een titel (string)."),
+                            react_1.default.createElement("li", null, "Een auteur (string)."),
+                            react_1.default.createElement("li", null, "Een jaar van uitgave (geheel getal).")),
                         react_1.default.createElement("p", null,
-                            "In essentie is er niets speciaals aan meerdimensionale arrays. Stel dat ",
-                            code(`xs`),
-                            " gelijk is aan ",
-                            code(str([[1, 2, 3], [4, 5, 6]])),
-                            ", dan geldt"),
-                        react_1.default.createElement(ExampleTable, { widthPercentage: 40 },
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleHeader, null, "Voorbeeld"),
-                                react_1.default.createElement(ExampleHeader, null, "Resultaat")),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(`xs.length`)),
-                                react_1.default.createElement(ExampleCell, null, code(str(2)))),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(`xs[0]`)),
-                                react_1.default.createElement(ExampleCell, null, code(str([1, 2, 3])))),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(`xs[1]`)),
-                                react_1.default.createElement(ExampleCell, null, code(str([4, 5, 6])))),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(`xs[0][0]`)),
-                                react_1.default.createElement(ExampleCell, null, code(str(1)))),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(`xs[0][1]`)),
-                                react_1.default.createElement(ExampleCell, null, code(str(2)))),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(`xs[1][0]`)),
-                                react_1.default.createElement(ExampleCell, null, code(str(4)))),
-                            react_1.default.createElement(ExampleRow, null,
-                                react_1.default.createElement(ExampleCell, null, code(`xs[1][2]`)),
-                                react_1.default.createElement(ExampleCell, null, code(str(6))))),
-                        react_1.default.createElement("p", null, "Merk op hoewel dit hoofdstuk relatief weinig oefeningen bevat, dit niet betekent dat meerdimensionale arrays onbelangrijk zijn in deze cursus. Het tegengestelde is eerder waar: er zijn nog veel andere hoofdstukken die tal van oefeningen bevatten op 2D-arrays."))));
+                            "Deze velden worden samengebundeld in een object, bijvoorbeeld ",
+                            code(str(exampleBook)),
+                            ". Objecten zullen in de tests doorgaans voorgesteld worden in tabelvorm:"),
+                        react_1.default.createElement(CenteredObjectViewer, { object: exampleBook }),
+                        react_1.default.createElement("p", null,
+                            "Om de leesbaarheid te bevorderen, zullen we in de oefeningen enkel de relevante velden gebruiken. Bijvoorbeeld, wanneer de auteur van geen belang is om de oefening te kunnen oplossen, zullen we het ",
+                            code(`author`),
+                            "-veld achterwege laten."))));
             }
         };
     }
-    async function flattenExercise() {
-        const referenceImplementation = Solutions.flatten;
-        const { functionName, signature, parameterNames: [xss] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
+    async function capitalizeTitle() {
+        const prototype = function capitalizeTitle(title) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [grid, position] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
             constructor() {
                 super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
                 this.difficulty = 2;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: title, type: 'string' }, "Een string die een boektitel voorstelt."),
+                        react_1.default.createElement(ReturnValue, { type: 'string' }, "De boektitel waarbij elk woord met een hoofdletter begint en de overige letters kleine letters zijn.")),
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
-                        code(signature),
-                        " die gegegeven een array van arrays ",
-                        code(xss),
-                        " alle elementen ervan kopieert naar een \u00E9\u00E9ndimensionale array. Bijvoorbeeld, ",
-                        code(`${functionName}([[1, 2], [3, 4, 5], [6]])`),
-                        " moet ",
-                        code(`[1,2,3,4,5,6]`),
-                        " opleveren.")));
+                        code(functionName),
+                        " die gegeven een titel elk woord in deze titel laat beginnen met een hoofdletter. De overige letters van het woord moeten kleine letters worden. Woorden worden gescheiden door spaties.")));
             }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
+            createExercise() {
+                return new class extends CodingExercise {
                     constructor() {
                         super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
                         this.testedImplementation = testedImplementation;
                     }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput([]);
-                        yield testCaseInput([[1]]);
-                        yield testCaseInput([[1], [2]]);
-                        yield testCaseInput([[1], [2], [3]]);
-                        yield testCaseInput([[1, 2], [], [3]]);
-                        yield testCaseInput([[1], [1], [1]]);
-                        yield testCaseInput([[1, 2, 3], [1, 2, 3], [1, 2, 3]]);
-                        yield testCaseInput([[5, 4], [3], [2, 1], []]);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
+                    get maximumScore() { return 3; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', "Ulysses", "Ulysses");
+                        yield generateTestCase('', "Ulysses", "ulysses");
+                        yield generateTestCase('', "Ulysses", "ULYSSES");
+                        yield generateTestCase('', "Ulysses", "UlYSsEs");
+                        yield generateTestCase('', "The Lord Of The Rings", "the lord of the rings");
+                        yield generateTestCase('', "House Of Leaves", "HOUSE OF LEAVES");
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [vtitle] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: title }, code(str(vtitle)))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    return ATF.Assertions.sequence([returnValueAssertion]);
+                                }
+                            };
                         }
                     }
                 };
             }
         };
     }
-    async function zipExercise() {
-        const referenceImplementation = Solutions.zip;
-        const { functionName, signature, parameterNames: [xs, ys] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
-                this.difficulty = 2;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie ",
-                        code(signature),
-                        " die gegeven twee arrays ",
-                        code(xs),
-                        " en ",
-                        code(ys),
-                        " een nieuwe array teruggeeft waarvan de elementen koppels zijn (= arrays van lengte 2). Het koppel op de i-de positie moet het i-de element van ",
-                        code(xs),
-                        " en het i-de element van ",
-                        code(ys),
-                        " bevatten, in die volgorde."),
-                    react_1.default.createElement("p", null, "Het kan voorkomen dat de gegeven arrays verschillende lengtes hebben. In dit geval moet werkt de kortste array beperkend: de resulterende array moet evenveel koppels bevatten als er elementen zijn in de kortste array.")));
-            }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput([], []);
-                        yield testCaseInput([1], ['a']);
-                        yield testCaseInput([1, 2], ['a', 'b']);
-                        yield testCaseInput([1, 2, 3], ['a', 'b', 'c']);
-                        yield testCaseInput([1, 2, 3], ['a', 'b']);
-                        yield testCaseInput([1, 2, 3], ['a']);
-                        yield testCaseInput([1, 2, 3], []);
-                        yield testCaseInput([1, 2], ['a', 'b', 'c']);
-                        yield testCaseInput([1], ['a', 'b', 'c']);
-                        yield testCaseInput([], ['a', 'b', 'c']);
-                        yield testCaseInput([5, 1, 2, 7], ['x', 'f', 'a']);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
-                        }
-                    }
-                };
-            }
+    async function distribute() {
+        const prototype = function distribute(xs, n) {
+            throw new Error(`Dummy implementation`);
         };
-    }
-    async function longestExercise() {
-        const referenceImplementation = Solutions.longest;
-        const { functionName, signature, parameterNames: [xss] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [xs, n] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
             constructor() {
                 super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
-                this.difficulty = 1;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie ",
-                        code(signature),
-                        " die gegeven een array van arrays, de langste array uit ",
-                        code(xss),
-                        " oplevert. Indien er meerdere langste arrays zijn, moet degene die het eerst voorkomt teruggegeven worden. Indien ",
-                        code(xss),
-                        " leeg is, moet dit resulteren in de lege array.")));
-            }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput([]);
-                        yield testCaseInput([[1]]);
-                        yield testCaseInput([[1], [1, 2]]);
-                        yield testCaseInput([[1], [1, 2], [3, 4]]);
-                        yield testCaseInput([[1, 1, 1], [1, 2], [3, 4]]);
-                        yield testCaseInput([[], []]);
-                        yield testCaseInput([[4, 4, 4], [3, 3]]);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function orderedPairsExercise() {
-        const referenceImplementation = Solutions.orderedPairs;
-        const { functionName, signature, parameterNames: [xs] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
-                this.difficulty = 2;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie ",
-                        code(signature),
-                        " die alle mogelijke paren ",
-                        code(`[a, b]`),
-                        " teruggeeft waarbij ",
-                        code(`a`),
-                        " en ",
-                        code(`b`),
-                        " elementen zijn van ",
-                        code(xs),
-                        ".")));
-            }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput([]);
-                        yield testCaseInput([1]);
-                        yield testCaseInput([1, 2]);
-                        yield testCaseInput([1, 2, 3]);
-                        yield testCaseInput([1, 2, 3, 4]);
-                        yield testCaseInput([4, 3, 2, 1]);
-                        yield testCaseInput(['a', 'b', 'c', 'd']);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function unorderedPairsExercise() {
-        const referenceImplementation = Solutions.unorderedPairs;
-        const { functionName, signature, parameterNames: [xs] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
-                this.difficulty = 2;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie ",
-                        code(signature),
-                        " die alle mogelijke paren ",
-                        code(`[a, b]`),
-                        " teruggeeft waarbij ",
-                        code(`a`),
-                        " en ",
-                        code(`b`),
-                        " elementen zijn van ",
-                        code(xs),
-                        " en ",
-                        code(`a`),
-                        " voor ",
-                        code(`b`),
-                        " voorkomt in ",
-                        code(xs),
-                        ".")));
-            }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput([]);
-                        yield testCaseInput([1]);
-                        yield testCaseInput([1, 2]);
-                        yield testCaseInput([1, 2, 3]);
-                        yield testCaseInput([1, 2, 3, 4]);
-                        yield testCaseInput([4, 3, 2, 1]);
-                        yield testCaseInput(['a', 'b', 'c', 'd']);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function prefixesExercise() {
-        const referenceImplementation = Solutions.prefixes;
-        const { functionName, signature, parameterNames: [xs] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
-                this.difficulty = 2;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie ",
-                        code(signature),
-                        " die alle prefixes van de gegeven array ",
-                        code(xs),
-                        " genereert. Met prefix bedoelen we een array bestaande uit de N eerste elementen van ",
-                        code(xs),
-                        ". Zo zijn ",
-                        code(`[]`),
-                        ", ",
-                        code(`[1]`),
-                        ", ",
-                        code(`[1,2,3]`),
-                        " prefixes van ",
-                        code(`[1,2,3,4,5]`),
-                        ".")));
-            }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput([]);
-                        yield testCaseInput([1]);
-                        yield testCaseInput([1, 2]);
-                        yield testCaseInput([1, 2, 3]);
-                        yield testCaseInput([1, 2, 3, 4]);
-                        yield testCaseInput([1, 2, 3, 4, 5]);
-                        yield testCaseInput(['a', 'b', 'c', 'd', 'e']);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
-                        }
-                    }
-                    createReturnValueAssertion(expectedReturnValue) {
-                        return ATF.Assertions.permutation(expectedReturnValue);
-                    }
-                };
-            }
-        };
-    }
-    async function pascalExercise() {
-        const referenceImplementation = Solutions.pascal;
-        const { functionName, signature, parameterNames: [n] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
                 this.difficulty = 3;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: xs, type: 'any[]' }, "Een array van waarden."),
+                        react_1.default.createElement(Parameter, { name: n, type: 'number' }, "Een strikt positief geheel getal (\u2265 1)."),
+                        react_1.default.createElement(ReturnValue, { type: 'any[][]' }, "Een array van arrays van waarden.")),
+                    react_1.default.createElement("p", null, "Toen de universiteit gesplitst werd in KUL en UCL moesten de boeken uit de universitaire bibliotheek gelijkmatig verdeeld worden. Dit gebeurde door afwisselend het ene boek aan de KUL en het andere aan de UCL toe te kennen tot alle boeken een eigenaar hadden. Dit principe veralgemenen we: verdeel N elementen over K ontvangers."),
+                    react_1.default.createElement(example_box_1.ExampleBox, null,
+                        react_1.default.createElement("p", null, "Stel dat we 10 snoepjes moeten verdelen over 3 kinderen, dan gaan we als volgt te werk:"),
+                        react_1.default.createElement("ol", null,
+                            react_1.default.createElement("li", null, "Het eerste kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het tweede kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het derde kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het eerste kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het tweede kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het derde kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het eerste kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het tweede kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het derde kindje krijgt een snoepje."),
+                            react_1.default.createElement("li", null, "Het eerste kindje krijgt een snoepje.")),
+                        react_1.default.createElement("p", null, "Het eerste kindje eindigt dus met een extra snoepje t.o.v. de andere.")),
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
-                        code(signature),
-                        " die de eerste ",
+                        code(functionName),
+                        " die de elementen uit ",
+                        code(xs),
+                        " verdeelt over ",
                         code(n),
-                        " rijen van de ",
-                        react_1.default.createElement("a", { href: "https://nl.wikipedia.org/wiki/Driehoek_van_Pascal" }, "driehoek van Pascal"),
-                        " genereert.")));
+                        " arrays. Het resultaat moet dus een array van ",
+                        code(n),
+                        " arrays zijn.")));
             }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
+            createExercise() {
+                return new class extends CodingExercise {
                     constructor() {
                         super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
                         this.testedImplementation = testedImplementation;
                     }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput(1);
-                        yield testCaseInput(2);
-                        yield testCaseInput(3);
-                        yield testCaseInput(4);
-                        yield testCaseInput(5);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
+                    get maximumScore() { return 4; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('10 snoepjes, 3 kinderen', [[...'adgj'], [...'beh'], [...'cfi']], [...'abcdefghij'], 3);
+                        yield generateTestCase('1 snoepje te verdelen over 1 kind', [['a']], [...'a'], 1);
+                        yield generateTestCase('2 snoepjes te verdelen over 1 kind', [['a', 'b']], [...'ab'], 1);
+                        yield generateTestCase('2 snoepjes te verdelen over 2 kinderen', [['a'], ['b']], [...'ab'], 2);
+                        yield generateTestCase('3 snoepjes, 1 kind', [['a', 'b', 'c']], [...'abc'], 1);
+                        yield generateTestCase('3 snoepjes, 2 kinderen: eerste kind krijgt extra snoepje', [['a', 'c'], ['b']], [...'abc'], 2);
+                        yield generateTestCase('4 snoepjes, 1 kind', [['a', 'b', 'c', 'd']], [...'abcd'], 1);
+                        yield generateTestCase('4 snoepjes, 2 kinderen', [['a', 'c'], ['b', 'd']], [...'abcd'], 2);
+                        yield generateTestCase('4 snoepjes, 3 kinderen', [['a', 'd'], ['b'], ['c']], [...'abcd'], 3);
+                        yield generateTestCase('', [[...'abcdefghij']], [...'abcdefghij'], 1);
+                        yield generateTestCase('', [[...'acegi'], [...'bdfhj']], [...'abcdefghij'], 2);
+                        yield generateTestCase('', [[]], [], 1);
+                        yield generateTestCase('', [[], []], [], 2);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [vxs, vn] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: xs },
+                                                    react_1.default.createElement(array_viewer_1.ArrayViewer, { array: vxs })),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: n }, code(str(vn)))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(array_viewer_1.ArrayViewer, { array: expectedReturnValue }))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, xs, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
                         }
-                    }
-                    createReturnValueAssertion(expectedReturnValue) {
-                        return ATF.Assertions.permutation(expectedReturnValue);
                     }
                 };
             }
         };
     }
-    async function concatExercise() {
-        const referenceImplementation = Solutions.concat;
-        const { functionName, signature, parameterNames: [xss] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
+    async function splitInLines() {
+        const prototype = function splitInLines(string, width) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [string, width] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
             constructor() {
                 super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
                 this.difficulty = 2;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie ",
-                        code(signature),
-                        " die alle arrays in ",
-                        code(xss),
-                        " samenvoegt tot \u00E9\u00E9n enkele array.")));
+                this.testedImplementation = testedImplementation;
             }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: string, type: 'string' }, "Een string."),
+                        react_1.default.createElement(Parameter, { name: width, type: 'number' }, "Een strikt positief geheel getal (\u2265 1)."),
+                        react_1.default.createElement(ReturnValue, { type: 'string[]' }, "TODO")),
+                    react_1.default.createElement("p", null, "TODO")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
                     constructor() {
                         super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
                         this.testedImplementation = testedImplementation;
                     }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput([]);
-                        yield testCaseInput([[]]);
-                        yield testCaseInput([[], []]);
-                        yield testCaseInput([[1]]);
-                        yield testCaseInput([[1], [2]]);
-                        yield testCaseInput([[1], [1]]);
-                        yield testCaseInput([[1], [2], [3]]);
-                        yield testCaseInput([[1, 2], [3, 4], [5, 6]]);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
+                    get maximumScore() { return 3; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', ['a'], 'a', 5);
+                        yield generateTestCase('', ['ab'], 'ab', 5);
+                        yield generateTestCase('', ['abc'], 'abc', 5);
+                        yield generateTestCase('', ['abc abc'], 'abc abc', 10);
+                        yield generateTestCase('', ['abc', 'abc'], 'abc abc', 5);
+                        yield generateTestCase('', ['abc d', 'abc'], 'abc d abc', 5);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [vstring, vwidth] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: string }, code(str(vstring))),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: width }, code(str(vwidth)))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    return ATF.Assertions.sequence([returnValueAssertion]);
+                                }
+                            };
                         }
-                    }
-                    createReturnValueAssertion(expectedReturnValue) {
-                        return ATF.Assertions.permutation(expectedReturnValue);
                     }
                 };
             }
         };
     }
-    async function intersectionExercise() {
-        const referenceImplementation = Solutions.intersection;
-        const { functionName, signature, parameterNames: [xss] } = ATF.Functional.parseFunction(referenceImplementation);
-        const testedImplementation = student.fetch(functionName);
-        return new class extends CodingExerciseSection {
+    async function center() {
+        const prototype = function center(pageWidth, lines) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [pageWidth, lines] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
             constructor() {
                 super(...arguments);
-                this.solutionPack = referenceImplementation;
-                this.verifySolutions = true;
-                this.testedImplementation = testedImplementation;
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
                 this.difficulty = 3;
-                this.description = (react_1.default.createElement(react_1.default.Fragment, null,
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                const exampleLines = ['a', 'bb', 'ccc'];
+                const examplePage = [
+                    [...'  a  '],
+                    [...' bb  '],
+                    [...' ccc '],
+                ];
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: pageWidth, type: 'number' }, "Positief geheel getal dat de breedte van een pagina voorstelt."),
+                        react_1.default.createElement(Parameter, { name: lines, type: 'string[]' }, "Het regels tekst die horizontaal op de pagina moeten gecentreerd worden."),
+                        react_1.default.createElement(ReturnValue, { type: 'string[][]' }, "Een array van rijen waarbij elke rij strings bevat van exact \u00E9\u00E9n teken lang.")),
                     react_1.default.createElement("p", null,
                         "Schrijf een functie ",
-                        code(signature),
-                        " die, gegeven een array van arrays ",
-                        code(xss),
-                        ", de elementen teruggeeft die voorkomen in elk van deze arrays.")));
+                        code(functionName),
+                        " die gegeven regels tekst op een pagina centreert. Bouw hiervoor een rooster (2D array) op met breedte ",
+                        code(pageWidth),
+                        " en hoogte ",
+                        code(`lines.length`),
+                        ". Elk element in dit rooster moet een string zijn van exact \u00E9\u00E9n teken lang. Indien er niets hoort te staan in een bepaald vakje moet je dit voorstellen d.m.v. een enkele spatie ",
+                        code(str(" ")),
+                        "."),
+                    react_1.default.createElement("p", null,
+                        "Het centreren van een regel kan gebeuren a.h.v. deze formule: ",
+                        code(`Math.floor((${pageWidth} - lines[i].length) / 2)`),
+                        ". Dit geeft het aantal spaties dat je links moet invoegen."),
+                    react_1.default.createElement(example_box_1.ExampleBox, null,
+                        react_1.default.createElement("p", null,
+                            "Stel je krijgt als ",
+                            code(pageWidth),
+                            " 5 en als regels"),
+                        react_1.default.createElement(CenteredArrayViewer, { array: exampleLines }),
+                        react_1.default.createElement("p", null, "Maak een 2D array aan gevuld met spaties:"),
+                        react_1.default.createElement(CenteredPageViewer, { width: 5, height: 3, render: () => code(str(' ')) }),
+                        react_1.default.createElement("ul", null,
+                            react_1.default.createElement("li", null,
+                                "De eerste regel telt \u00E9\u00E9n teken. We rekenen ",
+                                code(`Math.floor((5 - 1) / 2)`),
+                                " uit, wat ",
+                                code(`2`),
+                                " oplevert. Op de eerste rij dienen we bijgevolg eerst 2 spaties laten staan om daarna de tekens uit de eerste regel over te kopi\u00EBren naar het rooster."),
+                            react_1.default.createElement("li", null,
+                                "De tweede regel telt twee teken. We rekenen ",
+                                code(`Math.floor((5 - 2) / 2)`),
+                                " uit, wat ",
+                                code(`1`),
+                                " oplevert. Op de tweede rij laten we 1 spatie staan waarna we de letters ",
+                                code(exampleLines[1]),
+                                " plaatsen."),
+                            react_1.default.createElement("li", null, "Analoog voor de derde regel.")),
+                        react_1.default.createElement("p", null, "Dit resulteert in"),
+                        react_1.default.createElement(CenteredPageViewer, { width: 5, height: 3, render: (row, col) => code(str(examplePage[row][col])) }),
+                        react_1.default.createElement("p", null, "Of, zonder de syntactische balast van strings:"),
+                        react_1.default.createElement(CenteredPageViewer, { width: 5, height: 3, render: (row, col) => code(examplePage[row][col]) }))));
             }
-            createExercise(testedImplementation) {
-                return new class extends ReturnValuExercise {
+            createExercise() {
+                return new class extends CodingExercise {
                     constructor() {
                         super(...arguments);
-                        this.referenceImplementation = referenceImplementation;
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
                         this.testedImplementation = testedImplementation;
                     }
-                    *generateTestCaseInputs() {
-                        yield testCaseInput([]);
-                        yield testCaseInput([[]]);
-                        yield testCaseInput([[], []]);
-                        yield testCaseInput([[1]]);
-                        yield testCaseInput([[1], [2]]);
-                        yield testCaseInput([[1], [1]]);
-                        yield testCaseInput([[1, 2], [2, 1]]);
-                        yield testCaseInput([[1, 2, 3], [2, 1]]);
-                        yield testCaseInput([[1, 2], [2, 1, 3]]);
-                        yield testCaseInput([[1, 2, 3, 4, 5], [1, 3, 5], [2, 4]]);
-                        yield testCaseInput([[1, 2, 3, 4, 5], [2, 3, 5], [2, 4, 6]]);
-                        yield testCaseInput([[1, 2, 3, 4, 5], [2, 3, 5, 4], [2, 4, 6]]);
-                        yield testCaseInput([[0], [false]]);
-                        function testCaseInput(...parameterValues) {
-                            return { parameterValues, metadata: {} };
+                    get maximumScore() { return 4; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', [[...'a']], 1, ["a"]);
+                        yield generateTestCase('', [[...'abc']], 3, ["abc"]);
+                        yield generateTestCase('', [[...' a ']], 3, ["a"]);
+                        yield generateTestCase('', [[...' abc ']], 5, ["abc"]);
+                        yield generateTestCase('', [[...'abc x']], 5, ["abc x"]);
+                        yield generateTestCase('', [[...' abc x ']], 7, ["abc x"]);
+                        yield generateTestCase('', [[...'abc ']], 4, ["abc"]);
+                        yield generateTestCase('', [[...' abc '], [...' xyz '], [...'  m  ']], 5, ["abc", "xyz", "m"]);
+                        yield generateTestCase('', [[...'    a     '], [...'    bb    '], [...'   ccc    '], [...'   dddd   '], [...'  eeeee   ']], 10, ["a", "bb", "ccc", "dddd", "eeeee"]);
+                        yield generateTestCase('', [[...'    a     '], [...'    bb    '], [...'   ccc    '], [...'   dddd   '], [...'  ee ee   ']], 10, ["a", "bb", "ccc", "dddd", "ee ee"]);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [vpw, vls] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    const width = vpw;
+                                    const height = vls.length;
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: pageWidth }, code(str(vpw))),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: lines },
+                                                    react_1.default.createElement(array_viewer_1.ArrayViewer, { array: vls }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(PageViewer, { width: width, height: height, render: render }))))));
+                                    function render(row, column) {
+                                        const elt = expectedReturnValue[row][column];
+                                        return react_1.default.createElement(react_1.default.Fragment, null, elt);
+                                    }
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(1, lines, ATF.Assertions.unmodified(parameters[1]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
                         }
                     }
-                    createReturnValueAssertion(expectedReturnValue) {
-                        return ATF.Assertions.permutation(expectedReturnValue);
+                };
+            }
+        };
+    }
+    async function yearsActive() {
+        const prototype = function yearsActive(books) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [books] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: books, type: 'object[]' },
+                            "Een array boekobjecten met velden ",
+                            code('title'),
+                            " en ",
+                            code('publicationYear'),
+                            "."),
+                        react_1.default.createElement(ReturnValue, { type: 'number' }, "Een positief geheel getal dat het aantal jaar aangeeft tussen de oudste en de recentste publicatie.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die uitrekent hoeveel jaar de gegeven bibliografie bestrijkt. Bijvoorbeeld, stel dat het eerste boek in 2000 werd uitgegeven en het laatste in 2010, dan bestrijkt de bibliografie 11 jaar."),
+                    react_1.default.createElement("p", null,
+                        "Merk op dat de boeken in ",
+                        code(books),
+                        " niet noodzakelijk in chronologische volgorde staan opgesomd.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 2; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', 1, [{ title: 'The Great Gatsby', publicationYear: 1925 }]);
+                        yield generateTestCase('', 18, [
+                            { title: 'Ulysses', publicationYear: 1922 },
+                            { title: "Finnegan's Wake", publicationYear: 1939 },
+                        ]);
+                        yield generateTestCase('', 18, [
+                            { title: "Finnegan's Wake", publicationYear: 1939 },
+                            { title: 'Ulysses', publicationYear: 1922 },
+                        ]);
+                        yield generateTestCase('', 2019 - 1974 + 1, [
+                            { title: 'Carrie', publicationYear: 1974 },
+                            { title: "The Shining", publicationYear: 1977 },
+                            { title: "Cujo", publicationYear: 1981 },
+                            { title: "Christine", publicationYear: 1983 },
+                            { title: "Misery", publicationYear: 1987 },
+                            { title: "The Stand", publicationYear: 1990 },
+                            { title: "The Green Mile", publicationYear: 1996 },
+                            { title: "The Institute", publicationYear: 2019 },
+                        ]);
+                        yield generateTestCase('', 2019 - 1974 + 1, [
+                            { title: "Christine", publicationYear: 1983 },
+                            { title: "The Shining", publicationYear: 1977 },
+                            { title: "Cujo", publicationYear: 1981 },
+                            { title: "The Stand", publicationYear: 1990 },
+                            { title: "The Institute", publicationYear: 2019 },
+                            { title: "Misery", publicationYear: 1987 },
+                            { title: 'Carrie', publicationYear: 1974 },
+                            { title: "The Green Mile", publicationYear: 1996 },
+                        ]);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [bs] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: books },
+                                                    react_1.default.createElement(records_viewer_1.RecordsViewer, { columns: ['title', 'publicationYear'], records: bs }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, books, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function search() {
+        const prototype = function search(books, keywords) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [books, keywords] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: books, type: 'object[]' },
+                            "Een array boekobjecten met keys ",
+                            code(`title`),
+                            " en ",
+                            code(`author`),
+                            "."),
+                        react_1.default.createElement(Parameter, { name: keywords, type: 'string[]' }, "Een array strings."),
+                        react_1.default.createElement(ReturnValue, { type: 'object[]' },
+                            "Een array boekobjecten met keys ",
+                            code(`title`),
+                            " en ",
+                            code(`author`),
+                            "waarbij alle ",
+                            code(keywords),
+                            " voorkomen in de ",
+                            code(`title`),
+                            ".")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die de boeken selecteert waarvan in de titel alle ",
+                        code(keywords),
+                        " voorkomen. Het zoeken van ",
+                        code(keywords),
+                        " in boektitels dient hoofdletterONgevoelig te gebeuren!")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 3; }
+                    *generateTestCases() {
+                        const me = this;
+                        const book = libraryProjection(({ title, author }) => ({ title, author }));
+                        yield generateTestCase('', [book.fitzgerald], [book.fitzgerald], []);
+                        yield generateTestCase('', [book.fitzgerald], [book.fitzgerald], ["Great"]);
+                        yield generateTestCase('', [book.fitzgerald], [book.fitzgerald], ["great"]);
+                        yield generateTestCase('', [book.fitzgerald], [book.fitzgerald], ["GREAT"]);
+                        yield generateTestCase('', [book.fitzgerald], [book.fitzgerald], ["GREAT"]);
+                        yield generateTestCase('', [book.atwood, book.dickens1], [book.atwood, book.dickens1], ["tale"]);
+                        yield generateTestCase('', [book.atwood], [book.atwood, book.dickens1], ["tale", "cities"]);
+                        yield generateTestCase('', [book.dickens1], [book.atwood, book.dickens1], ["tale", "hand"]);
+                        yield generateTestCase('', [book.fitzgerald, book.atwood], [book.fitzgerald, book.atwood], ["the"]);
+                        yield generateTestCase('', [book.fitzgerald, book.atwood], [book.fitzgerald, book.atwood, book.dick1], ["the"]);
+                        yield generateTestCase('', [book.fitzgerald, book.atwood, book.follett1, book.sanderson1, book.tolkien1], [book.fitzgerald, book.atwood, book.follett1, book.dick1, book.sanderson1, book.tolkien1, book.dickens1], ["the"]);
+                        yield generateTestCase('', [book.follett1, book.tolkien1, book.dickens1], [book.fitzgerald, book.atwood, book.follett1, book.dick1, book.sanderson1, book.tolkien1, book.dickens1], ["of"]);
+                        yield generateTestCase('', [book.follett1, book.tolkien1, book.dickens1], [book.fitzgerald, book.atwood, book.follett1, book.dick1, book.sanderson1, book.tolkien1, book.dickens1], ["OF"]);
+                        yield generateTestCase('', [book.follett1, book.tolkien1], [book.fitzgerald, book.atwood, book.follett1, book.dick1, book.sanderson1, book.tolkien1, book.dickens1], ["the", "of"]);
+                        yield generateTestCase('', [book.tolkien1], [book.fitzgerald, book.atwood, book.follett1, book.dick1, book.sanderson1, book.tolkien1, book.dickens1], ["THE", "of"]);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [bs, ks] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: books },
+                                                    react_1.default.createElement(records_viewer_1.RecordsViewer, { columns: ['author', 'title'], records: bs })),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: keywords },
+                                                    react_1.default.createElement(array_viewer_1.ArrayViewer, { array: ks }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(records_viewer_1.RecordsViewer, { columns: ['author', 'title'], records: expectedReturnValue }))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    return ATF.Assertions.sequence([returnValueAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function bookCountByAuthor() {
+        const prototype = function bookCountByAuthor(books) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [books, keywords] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: books, type: 'object[]' },
+                            "Een array boekobjecten met keys ",
+                            code(`title`),
+                            " en ",
+                            code(`author`),
+                            "."),
+                        react_1.default.createElement(ReturnValue, { type: 'object' },
+                            "Een object waarvan de keys overeenkomen met de auteurs uit ",
+                            code(books),
+                            " en de overeenkomstige value gelijk is aan het aantal boeken van de auteur.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die telt hoeveel boeken elke auteur geschreven heeft. Het resultaat moet teruggegeven worden als een object dat elke auteur associeert met het aantal boeken dat deze geschreven heeft.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 3; }
+                    *generateTestCases() {
+                        const me = this;
+                        const book = libraryProjection(({ title, author }) => ({ title, author }));
+                        yield generateTestCase('', { [authors.dick]: 1 }, [
+                            book.dick1
+                        ]);
+                        yield generateTestCase('', { [authors.sanderson]: 1 }, [
+                            book.sanderson1,
+                        ]);
+                        yield generateTestCase('', { [authors.dick]: 2 }, [
+                            book.dick1,
+                            book.dick2,
+                        ]);
+                        yield generateTestCase('', { [authors.dick]: 1, [authors.sanderson]: 1 }, [
+                            book.dick1,
+                            book.sanderson2,
+                        ]);
+                        yield generateTestCase('', { [authors.dick]: 1, [authors.sanderson]: 1, [authors.tolkien]: 1 }, [
+                            book.dick1,
+                            book.sanderson2,
+                            book.tolkien1,
+                        ]);
+                        yield generateTestCase('', { [authors.dick]: 2, [authors.sanderson]: 1, [authors.tolkien]: 1 }, [
+                            book.dick1,
+                            book.dick2,
+                            book.sanderson2,
+                            book.tolkien1,
+                        ]);
+                        yield generateTestCase('', { [authors.dick]: 3, [authors.sanderson]: 1, [authors.tolkien]: 1 }, [
+                            book.dick1,
+                            book.dick2,
+                            book.dick3,
+                            book.sanderson2,
+                            book.tolkien1,
+                        ]);
+                        yield generateTestCase('', { [authors.dick]: 3, [authors.sanderson]: 1, [authors.tolkien]: 1 }, [
+                            book.sanderson2,
+                            book.dick2,
+                            book.dick3,
+                            book.tolkien1,
+                            book.dick1,
+                        ]);
+                        yield generateTestCase('', { [authors.dick]: 3, [authors.sanderson]: 5, [authors.tolkien]: 1 }, [
+                            book.sanderson2,
+                            book.sanderson1,
+                            book.sanderson3,
+                            book.sanderson4,
+                            book.dick2,
+                            book.dick3,
+                            book.tolkien1,
+                            book.sanderson5,
+                            book.dick1,
+                        ]);
+                        yield generateTestCase('', { [authors.dick]: 3, [authors.sanderson]: 5, [authors.tolkien]: 3 }, [
+                            book.sanderson2,
+                            book.sanderson1,
+                            book.tolkien3,
+                            book.sanderson3,
+                            book.sanderson4,
+                            book.dick2,
+                            book.dick3,
+                            book.tolkien2,
+                            book.sanderson5,
+                            book.tolkien1,
+                            book.dick1,
+                        ]);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [bs] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: books },
+                                                    react_1.default.createElement(records_viewer_1.RecordsViewer, { columns: ['title', 'author'], records: bs }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(ObjectViewer, { object: expectedReturnValue }))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, books, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function bookCountBetween() {
+        const prototype = function bookCountBetween(books, startYear, endYear) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [books, startYear, endYear] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: books, type: 'object[]' },
+                            "Een array boekobjecten met keys ",
+                            code(`title`),
+                            " en ",
+                            code(`publicationYear`),
+                            "."),
+                        react_1.default.createElement(Parameter, { name: startYear, type: 'number' }, "Een positief geheel getal dat een jaartal voorstelt."),
+                        react_1.default.createElement(Parameter, { name: endYear, type: 'number' }, "Een positief geheel getal dat een jaartal voorstelt."),
+                        react_1.default.createElement(ReturnValue, { type: 'number' },
+                            "Het aantal boeken geschreven tussen ",
+                            code(startYear),
+                            " en ",
+                            code(endYear),
+                            ".")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die telt hoeveel boeken er tussen de jaren ",
+                        code(startYear),
+                        " en ",
+                        code(endYear),
+                        " gepubliceerd werden. Boeken die in ",
+                        code(startYear),
+                        " en ",
+                        code(endYear),
+                        " zelf werden uitgegeven moeten worden meegeteld.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 2; }
+                    *generateTestCases() {
+                        const me = this;
+                        const bs = libraryProjection(({ title, publicationYear }) => ({ title, publicationYear }));
+                        yield generateTestCase('', 1, [bs.sanderson1], 2010, 2020);
+                        yield generateTestCase('', 0, [bs.sanderson1], 2000, 2010);
+                        yield generateTestCase('', 1, [bs.sanderson1, bs.sanderson2], 2010, 2020);
+                        yield generateTestCase('', 2, [bs.sanderson1, bs.sanderson2], 2000, 2020);
+                        yield generateTestCase('', 3, [bs.dick1, bs.dick2, bs.dick3, bs.dick4], 1960, 1980);
+                        yield generateTestCase('', 4, [bs.dick1, bs.dick2, bs.dick3, bs.dick4], 1960, 1981);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [bs, sy, ey] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: books },
+                                                    react_1.default.createElement(records_viewer_1.RecordsViewer, { columns: ['title', 'publicationYear'], records: bs })),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: startYear }, code(str(sy))),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: endYear }, code(str(ey)))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, books, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function titlesBetween() {
+        const prototype = function titlesBetween(books, startYear, endYear) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [books, startYear, endYear] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 1;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: books, type: 'object[]' },
+                            "Een array boekobjecten met keys ",
+                            code(`title`),
+                            " en ",
+                            code(`publicationYear`),
+                            "."),
+                        react_1.default.createElement(Parameter, { name: startYear, type: 'number' }, "Een positief geheel getal dat een jaartal voorstelt."),
+                        react_1.default.createElement(Parameter, { name: endYear, type: 'number' }, "Een positief geheel getal dat een jaartal voorstelt."),
+                        react_1.default.createElement(ReturnValue, { type: 'string[]' }, "Array van boektitels.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die de titels van de boeken in ",
+                        code(books),
+                        " teruggeeft die werden gepubliceerd tussen ",
+                        code(startYear),
+                        " en ",
+                        code(endYear),
+                        "."),
+                    react_1.default.createElement("ul", null,
+                        react_1.default.createElement("li", null,
+                            "Boeken die in ",
+                            code(startYear),
+                            " en ",
+                            code(endYear),
+                            " zelf werden uitgegeven maken deel uit van het resultaat."),
+                        react_1.default.createElement("li", null,
+                            "De resulterende titels moeten in dezelfde volgorde voorkomen als in ",
+                            code(books),
+                            "."))));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 1; }
+                    *generateTestCases() {
+                        const me = this;
+                        const bs = libraryProjection(({ title, publicationYear }) => ({ title, publicationYear }));
+                        yield generateTestCase('', [bs.sanderson1.title], [bs.sanderson1], 2010, 2020);
+                        yield generateTestCase('', [bs.sanderson1.title], [bs.sanderson1, bs.sanderson2], 2010, 2020);
+                        yield generateTestCase('', [bs.sanderson1.title, bs.sanderson2.title], [bs.sanderson1, bs.sanderson2], 2000, 2020);
+                        yield generateTestCase('', [bs.sanderson2.title, bs.sanderson1.title], [bs.sanderson2, bs.sanderson1], 2000, 2020);
+                        yield generateTestCase('', [bs.sanderson2.title], [bs.sanderson1, bs.sanderson2], 2000, 2010);
+                        yield generateTestCase('', [bs.sanderson1.title], [bs.sanderson1, bs.sanderson2, bs.sanderson3], 2010, 2020);
+                        yield generateTestCase('', [bs.sanderson1.title, bs.sanderson2.title, bs.sanderson3.title], [bs.sanderson1, bs.sanderson2, bs.sanderson3], 2000, 2020);
+                        yield generateTestCase('', [bs.sanderson2.title, bs.sanderson3.title], [bs.sanderson1, bs.sanderson2, bs.sanderson3], 2000, 2010);
+                        if (true) {
+                            yield generateTestCase('', [bs.sanderson2.title, bs.sanderson3.title, bs.sanderson4.title], [bs.sanderson1, bs.sanderson2, bs.sanderson3, bs.sanderson4], 2000, 2010);
+                            yield generateTestCase('', [bs.sanderson2.title, bs.sanderson4.title, bs.sanderson3.title], [bs.sanderson1, bs.sanderson2, bs.sanderson4, bs.sanderson3], 2000, 2010);
+                            yield generateTestCase('', [], [], 2000, 2001);
+                        }
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [bs, sy, ey] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: books },
+                                                    react_1.default.createElement(records_viewer_1.RecordsViewer, { columns: ['title', 'publicationYear'], records: bs })),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: startYear }, code(str(sy))),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: endYear }, code(str(ey)))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(array_viewer_1.ArrayViewer, { array: expectedReturnValue }))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, books, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function mask() {
+        const prototype = function mask(string) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [string] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: string, type: 'string' }, "String."),
+                        react_1.default.createElement(ReturnValue, { type: 'string' },
+                            "Dezelfde string waarbij elk teken behalve spaties vervangen werd door ",
+                            code('*'),
+                            ".")),
+                    react_1.default.createElement(banner_1.Banner, null, "Recursieve Vraag"),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een ",
+                        react_1.default.createElement("em", null, "recursieve"),
+                        " functie ",
+                        code(functionName),
+                        " die gegeven een string elk teken vervangt door een asterisk (",
+                        code(`*`),
+                        "). Spaties moeten echter behouden worden.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 2; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', "*", "a");
+                        yield generateTestCase('', " ", " ");
+                        yield generateTestCase('', "* *", "a b");
+                        yield generateTestCase('', "* * ***", "a b cde");
+                        yield generateTestCase('', " * *", " a b");
+                        yield generateTestCase('', "* * ", "a b ");
+                        yield generateTestCase('', " * * ** ** ***  ", " a b cd ef ghi  ");
+                        if (true) {
+                            yield generateTestCase('', "** * ** ", "xy b xy ");
+                            yield generateTestCase('', "  * * ** ** ***  ", "  a b cd ef ghi  ");
+                            yield generateTestCase('', "  * * ** **  ***  ", "  a b cd ef  ghi  ");
+                        }
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [s] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: string }, code(str(s)))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    return ATF.Assertions.sequence([returnValueAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function titles() {
+        const prototype = function titles(books) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [books, startYear, endYear] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 1;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: books, type: 'object[]' },
+                            "Een array boekobjecten met keys ",
+                            code(`title`),
+                            " en ",
+                            code(`publicationYear`),
+                            "."),
+                        react_1.default.createElement(ReturnValue, { type: 'string[]' }, "Array van boektitels.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die de titels van de boeken teruggeeft als een array strings. De titels moeten in dezelfde volgorde teruggegeven worden als waarin ze voorkomen in ",
+                        code(books),
+                        ".")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 1; }
+                    *generateTestCases() {
+                        const me = this;
+                        const bs = libraryProjection(({ title, publicationYear }) => ({ title, publicationYear }));
+                        yield generateTestCase('', [], []);
+                        yield generateTestCase('', [bs.sanderson1.title], [bs.sanderson1]);
+                        yield generateTestCase('', [bs.sanderson1.title, bs.sanderson2.title], [bs.sanderson1, bs.sanderson2]);
+                        yield generateTestCase('', [bs.sanderson2.title, bs.sanderson1.title], [bs.sanderson2, bs.sanderson1]);
+                        yield generateTestCase('', [bs.sanderson2.title, bs.sanderson1.title, bs.sanderson3.title], [bs.sanderson2, bs.sanderson1, bs.sanderson3]);
+                        if (true) {
+                            yield generateTestCase('', [bs.sanderson2.title, bs.sanderson1.title, bs.sanderson3.title, bs.sanderson4.title], [bs.sanderson2, bs.sanderson1, bs.sanderson3, bs.sanderson4]);
+                            yield generateTestCase('', [bs.sanderson2.title, bs.sanderson4.title, bs.sanderson1.title, bs.sanderson3.title], [bs.sanderson2, bs.sanderson4, bs.sanderson1, bs.sanderson3]);
+                        }
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [bs] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: books },
+                                                    react_1.default.createElement(records_viewer_1.RecordsViewer, { columns: ['title', 'publicationYear'], records: bs }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(array_viewer_1.ArrayViewer, { array: expectedReturnValue }))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, books, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
                     }
                 };
             }
@@ -1047,19 +1951,7 @@ start();
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (true) {
-  module.exports = __webpack_require__(4);
-} else {}
-
-
-/***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1072,7 +1964,7 @@ if (true) {
  * LICENSE file in the root directory of this source tree.
  */
 
-var l=__webpack_require__(5),n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.forward_ref"):60112,y=n?Symbol.for("react.suspense"):60113,z=n?Symbol.for("react.memo"):60115,A=n?Symbol.for("react.lazy"):
+var l=__webpack_require__(8),n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.forward_ref"):60112,y=n?Symbol.for("react.suspense"):60113,z=n?Symbol.for("react.memo"):60115,A=n?Symbol.for("react.lazy"):
 60116,B="function"===typeof Symbol&&Symbol.iterator;function C(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}
 var D={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},E={};function F(a,b,c){this.props=a;this.context=b;this.refs=E;this.updater=c||D}F.prototype.isReactComponent={};F.prototype.setState=function(a,b){if("object"!==typeof a&&"function"!==typeof a&&null!=a)throw Error(C(85));this.updater.enqueueSetState(this,a,b,"setState")};F.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function G(){}G.prototype=F.prototype;function H(a,b,c){this.props=a;this.context=b;this.refs=E;this.updater=c||D}var I=H.prototype=new G;I.constructor=H;l(I,F.prototype);I.isPureReactComponent=!0;var J={current:null},K=Object.prototype.hasOwnProperty,L={key:!0,ref:!0,__self:!0,__source:!0};
@@ -1091,7 +1983,7 @@ exports.useLayoutEffect=function(a,b){return Z().useLayoutEffect(a,b)};exports.u
 
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1188,406 +2080,735 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 6 */
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExerciseSection = void 0;
+const ATF = __importStar(__webpack_require__(0));
+class ExerciseSection extends ATF.Sections.BasicCodingExerciseSection {
+    constructor() {
+        super(...arguments);
+        this.verifySolutions = true;
+    }
+}
+exports.ExerciseSection = ExerciseSection;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nfunction __export(m) {\r\n    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];\r\n}\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n__export(__webpack_require__(/*! ./maybe */ \"./src/maybe.ts\"));\r\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+
+/***/ }),
+
+/***/ "./src/maybe.ts":
+/*!**********************!*\
+  !*** ./src/maybe.ts ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    }\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Maybe = /** @class */ (function () {\r\n    function Maybe() {\r\n    }\r\n    Maybe.just = function (x) {\r\n        return new Just(x);\r\n    };\r\n    Maybe.nothing = function () {\r\n        return new Nothing();\r\n    };\r\n    return Maybe;\r\n}());\r\nexports.Maybe = Maybe;\r\nfunction absorbUndefined(x) {\r\n    return x.bind(function (y) { return typeof y === 'undefined' ? Maybe.nothing() : Maybe.just(y); });\r\n}\r\nexports.absorbUndefined = absorbUndefined;\r\nfunction getProperty(obj, key) {\r\n    if (key in obj) {\r\n        var value = obj[key];\r\n        return Maybe.just(value);\r\n    }\r\n    else {\r\n        return Maybe.nothing();\r\n    }\r\n}\r\nexports.getProperty = getProperty;\r\nfunction maybePartial(obj) {\r\n    return new Proxy(obj, {\r\n        get: function (obj, property) {\r\n            if (property in obj) {\r\n                return Maybe.just(obj[property]);\r\n            }\r\n            else {\r\n                return Maybe.nothing();\r\n            }\r\n        }\r\n    });\r\n}\r\nexports.maybePartial = maybePartial;\r\nvar Just = /** @class */ (function (_super) {\r\n    __extends(Just, _super);\r\n    function Just(value) {\r\n        var _this = _super.call(this) || this;\r\n        _this.value = value;\r\n        return _this;\r\n    }\r\n    Just.prototype.bind = function (f) {\r\n        return f(this.value);\r\n    };\r\n    Just.prototype.lift = function (f) {\r\n        return Maybe.just(f(this.value));\r\n    };\r\n    Just.prototype.caseOf = function (cases) {\r\n        return cases.just(this.value);\r\n    };\r\n    Just.prototype.isJust = function () {\r\n        return true;\r\n    };\r\n    Just.prototype.useDefault = function (_) {\r\n        return this;\r\n    };\r\n    return Just;\r\n}(Maybe));\r\nexports.Just = Just;\r\nvar Nothing = /** @class */ (function (_super) {\r\n    __extends(Nothing, _super);\r\n    function Nothing() {\r\n        return _super !== null && _super.apply(this, arguments) || this;\r\n    }\r\n    Nothing.prototype.bind = function (_) {\r\n        return Maybe.nothing();\r\n    };\r\n    Nothing.prototype.lift = function (_) {\r\n        return Maybe.nothing();\r\n    };\r\n    Nothing.prototype.caseOf = function (cases) {\r\n        return cases.nothing();\r\n    };\r\n    Nothing.prototype.isJust = function () {\r\n        return false;\r\n    };\r\n    Nothing.prototype.useDefault = function (t) {\r\n        return Maybe.just(t);\r\n    };\r\n    return Nothing;\r\n}(Maybe));\r\nexports.Nothing = Nothing;\r\n/**\r\n * Takes an object with Maybe properties. If every property is Just,\r\n * an object with Maybes replaced by their values is returned.\r\n * If one property is Nothing, undefined is returned.\r\n * Non-maybe properties are simply copied.\r\n *\r\n * @param obj Object to unpartialize.\r\n */\r\nfunction raiseMaybe(obj) {\r\n    var result = {};\r\n    for (var _i = 0, _a = Object.keys(obj); _i < _a.length; _i++) {\r\n        var key = _a[_i];\r\n        var typedKey = key;\r\n        var propertyValue = obj[typedKey];\r\n        if (propertyValue.isJust()) {\r\n            // It's a Just: retrieve value and put it in result\r\n            result[typedKey] = propertyValue.value;\r\n        }\r\n        else {\r\n            // We found a Nothing, abort operation\r\n            return Maybe.nothing();\r\n        }\r\n    }\r\n    return Maybe.just(result);\r\n}\r\nexports.raiseMaybe = raiseMaybe;\r\n\n\n//# sourceURL=webpack:///./src/maybe.ts?");
+
+/***/ })
+
+/******/ })));
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AssertionTestCase = void 0;
+const ATF = __importStar(__webpack_require__(0));
+class AssertionTestCase extends ATF.Exercises.Coding.CollapsibleTestCase {
+    constructor() {
+        super();
+        this.assertionResult = new ATF.Lazy(() => this.assertion.check(this.functionCallResults));
+    }
+    get content() {
+        const content = this.assertionResult.value.content;
+        if (!content) {
+            throw new Error(`Bug in tests: assertion has no content`);
+        }
+        else {
+            return content;
+        }
+    }
+    get outcome() {
+        return this.assertionResult.value.outcome;
+    }
+}
+exports.AssertionTestCase = AssertionTestCase;
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Banner = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const BannerDiv = algo_testing_framework_1.styled.div `
+    margin: 1em auto;
+    width: 90%;
+    background: #AAF;
+    box-shadow: 5px 5px #CCC;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    font-variant: all-small-caps;
+    padding: 0.5em;
+    user-select: none;
+`;
+class Banner extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(BannerDiv, null, this.props.children));
+    }
+}
+exports.Banner = Banner;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ArrayViewer = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const ATF = __importStar(__webpack_require__(0));
+const js_algorithms_1 = __webpack_require__(4);
+const algo_testing_framework_1 = __webpack_require__(0);
+const ArrayTable = algo_testing_framework_1.styled.table `
+    border-collapse: collapse;
+
+    td {
+        border: 1px solid black;
+    }
+
+    td.index {
+        min-width: 2em;
+        text-align: center;
+        background: #999;
+    }
+
+    td.value {
+        min-width: 2em;
+        text-align: center;
+        padding: 5px;
+    }
+`;
+const Empty = algo_testing_framework_1.styled.div `
+    font-family: 'Courier New', Courier, monospace;
+`;
+function defaultRenderer(x) {
+    return ATF.Formatters.Jsx.code(ATF.Formatters.String.convertToString(x));
+}
+class ArrayViewer extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        if (this.props.array.length === 0) {
+            return this.renderEmptyArray();
+        }
+        else {
+            return this.renderNonEmptyArray();
+        }
+    }
+    renderEmptyArray() {
+        return react_1.default.createElement(Empty, null, "[]");
+    }
+    getIndexRange() {
+        const start = this.props.startIndex;
+        const end = this.props.endIndex || this.props.array.length;
+        return js_algorithms_1.range(start, end);
+    }
+    renderNonEmptyArray() {
+        const rows = this.getIndexRange().map(index => {
+            const elt = this.props.array[index];
+            const jsx = (this.props.render || defaultRenderer)(elt);
+            return (react_1.default.createElement("tr", { key: index },
+                react_1.default.createElement("td", { className: "index" }, index),
+                react_1.default.createElement("td", { className: "value" }, jsx)));
+        });
+        return (react_1.default.createElement(ArrayTable, { className: this.props.className },
+            react_1.default.createElement("tbody", null, rows)));
+    }
+}
+exports.ArrayViewer = ArrayViewer;
+ArrayViewer.defaultProps = {
+    render: defaultRenderer,
+    startIndex: 0
+};
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.intersection = exports.concat = exports.pascal = exports.prefixes = exports.unorderedPairs = exports.orderedPairs = exports.longest = exports.flatten = exports.zip = void 0;
-const algo_testing_framework_1 = __webpack_require__(0);
-exports.zip = (() => {
-    const withRecursion = function zip(xs, ys) {
-        if (xs.length === 0 || ys.length === 0) {
-            return [];
-        }
-        else {
-            const [x, ...restXs] = xs;
-            const [y, ...restYs] = ys;
-            return [[x, y], ...zip(restXs, restYs)];
-        }
-    };
-    const withIteration = function zip(xs, ys) {
-        const length = Math.min(xs.length, ys.length);
-        const result = new Array(length);
-        for (let i = 0; i !== length; ++i) {
-            result[i] = [xs[i], ys[i]];
-        }
-        return result;
-    };
-    const referenceImplementation = withRecursion;
-    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'recursief';
-            this.implementation = withRecursion;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'iteratief';
-            this.implementation = withIteration;
-        }
-    });
-})();
-// function zip(xs : any[], ys : any) : [any, any][]
-// {
-//     if ( xs.length === 0 )
-//     {
-//         return [];
-//     }
-//     else
-//     {
-//         const [x, ...restXs] = xs;
-//         const [y, ...restYs] = ys;
-//         return [ [x, y], ...zip(restXs, restYs) ];
-//     }
-// }
-function nest(init, f, n) {
-    if (n === 0) {
-        return [];
-    }
-    else {
-        return [init, ...nest(f(init), f, n - 1)];
-    }
-}
-exports.flatten = (() => {
-    const withSpread = function flatten(xss) {
-        let result = [];
-        for (let xs of xss) {
-            result = [...result, ...xs];
-        }
-        return result;
-    };
-    const manual = function flatten(xss) {
-        let totalLength = 0;
-        for (let xs of xss) {
-            totalLength += xs.length;
-        }
-        const result = new Array(totalLength);
-        let i = 0;
-        for (let xs of xss) {
-            for (let x of xs) {
-                result[i] = x;
-                i++;
-            }
-        }
-        return result;
-    };
-    const referenceImplementation = withSpread;
-    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'spread';
-            this.implementation = withSpread;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'manueel';
-            this.implementation = manual;
-        }
-    });
-})();
-exports.longest = (() => {
-    class S extends algo_testing_framework_1.Solution {
-    }
-    ;
-    return algo_testing_framework_1.packSolutions(new class extends S {
-        constructor() {
-            super(...arguments);
-            this.label = 'for-of';
-            this.implementation = function longest(xss) {
-                let result = [];
-                for (let xs of xss) {
-                    if (xs.length > result.length) {
-                        result = xs;
-                    }
-                }
-                return result;
-            };
-        }
-    });
-})();
-exports.orderedPairs = (() => {
-    class S extends algo_testing_framework_1.Solution {
-    }
-    ;
-    return algo_testing_framework_1.packSolutions(new class extends S {
-        constructor() {
-            super(...arguments);
-            this.label = 'efficiënt';
-            this.implementation = function orderedPairs(xs) {
-                const result = new Array(xs.length ** 2);
-                let index = 0;
-                for (let i = 0; i !== xs.length; ++i) {
-                    for (let j = 0; j !== xs.length; ++j) {
-                        result[index] = [xs[i], xs[j]];
-                        index++;
-                    }
-                }
-                return result;
-            };
-        }
-    }, new class extends S {
-        constructor() {
-            super(...arguments);
-            this.label = 'push';
-            this.implementation = function orderedPairs(xs) {
-                const result = [];
-                for (let i = 0; i !== xs.length; ++i) {
-                    for (let j = 0; j !== xs.length; ++j) {
-                        result.push([xs[i], xs[j]]);
-                    }
-                }
-                return result;
-            };
-        }
-    });
-})();
-exports.unorderedPairs = (() => {
-    class S extends algo_testing_framework_1.Solution {
-    }
-    ;
-    return algo_testing_framework_1.packSolutions(new class extends S {
-        constructor() {
-            super(...arguments);
-            this.label = 'push';
-            this.implementation = function unorderedPairs(xs) {
-                const result = [];
-                for (let i = 0; i !== xs.length; ++i) {
-                    for (let j = i + 1; j !== xs.length; ++j) {
-                        result.push([xs[i], xs[j]]);
-                    }
-                }
-                return result;
-            };
-        }
-    });
-})();
-exports.prefixes = (() => {
-    const withRecursion = function prefixes(xs) {
-        if (xs.length === 0) {
-            return [[]];
-        }
-        else {
-            return [...prefixes(xs.slice(0, xs.length - 1)), xs];
-        }
-    };
-    const withIteration = function prefixes(xs) {
-        const result = new Array(xs.length + 1);
-        for (let i = 0; i !== result.length; ++i) {
-            result[i] = xs.slice(0, i);
-        }
-        return result;
-    };
-    const referenceImplementation = withRecursion;
-    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'iteratief';
-            this.implementation = withIteration;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'recursief';
-            this.implementation = withRecursion;
-        }
-    });
-})();
-exports.pascal = ((nest, zip) => {
-    const withRecursion = function pascal(n) {
-        return generate([[1]], n - 1);
-        function generate(acc, n) {
-            if (n === 0) {
-                return acc;
-            }
-            else {
-                const next = nextRow(acc[acc.length - 1]);
-                return generate([...acc, next], n - 1);
-            }
-        }
-        function nextRow(ns) {
-            return sum([0, ...ns], [...ns, 0]);
-        }
-        function sum(ks, ns) {
-            if (ks.length === 0) {
-                return [];
-            }
-            else {
-                const [k, ...restKs] = ks;
-                const [n, ...restNs] = ns;
-                return [k + n, ...sum(restKs, restNs)];
-            }
-        }
-    };
-    const withIteration = function pascal(n) {
-        const result = new Array(n);
-        result[0] = [1];
-        for (let i = 1; i < n; ++i) {
-            result[i] = nextRow(result[i - 1]);
-        }
-        return result;
-        function nextRow(ns) {
-            const result = new Array(ns.length + 1);
-            ns = [0, ...ns, 0];
-            for (let i = 0; i !== result.length; ++i) {
-                result[i] = ns[i] + ns[i + 1];
-            }
-            return result;
-        }
-    };
-    const withLambdas = function pascal(n) {
-        return nest([1], next, n);
-        function next(ns) {
-            return zip([0, ...ns], [...ns, 0]).map(([x, y]) => x + y);
-        }
-    };
-    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'iteratief';
-            this.implementation = withIteration;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'recursief';
-            this.implementation = withRecursion;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = "lambda's";
-            this.implementation = withLambdas;
-        }
-        get dependencies() { return [nest, zip]; }
-    });
-})(nest, exports.zip);
-exports.concat = (() => {
-    const withRecursion = function concat(xss) {
-        if (xss.length === 0) {
-            return [];
-        }
-        else {
-            const [first, ...rest] = xss;
-            return [...first, ...concat(rest)];
-        }
-    };
-    const withIteration = function concat(xss) {
-        let result = [];
-        for (const xs of xss) {
-            result = [...result, ...xs];
-        }
-        return result;
-    };
-    const withLambdas = function concat(xss) {
-        return xss.reduce((acc, xs) => [...acc, ...xs], []);
-    };
-    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'iteratief';
-            this.implementation = withIteration;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'recursief';
-            this.implementation = withRecursion;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = "lambda's";
-            this.implementation = withLambdas;
-        }
-    });
-})();
-exports.intersection = (() => {
-    const withRecursion = function intersection(xss) {
-        if (xss.length === 0) {
-            return [];
-        }
-        else if (xss.length === 1) {
-            return xss[0];
-        }
-        else {
-            const [first, second, ...rest] = xss;
-            return intersection([intersectionOfTwo(first, second), ...rest]);
-        }
-        function intersectionOfTwo(xs, ys) {
-            if (xs.length === 0) {
-                return [];
-            }
-            else {
-                const [first, ...rest] = xs;
-                if (ys.includes(first)) {
-                    return [first, ...intersectionOfTwo(rest, ys)];
-                }
-                else {
-                    return intersectionOfTwo(rest, ys);
-                }
-            }
-        }
-    };
-    const withIteration = function intersection(xss) {
-        if (xss.length === 0) {
-            return [];
-        }
-        else {
-            const result = [];
-            const [first, ...rest] = xss;
-            for (const x of first) {
-                if (containedInEachOfRest(x)) {
-                    result.push(x);
-                }
-            }
-            return result;
-            function containedInEachOfRest(x) {
-                for (const xs of rest) {
-                    if (!xs.includes(x)) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        }
-    };
-    const withLambdas = function intersection(xss) {
-        if (xss.length === 0) {
-            return [];
-        }
-        else {
-            const [first, ...rest] = xss;
-            return first.filter(x => rest.every(xs => xs.includes(x)));
-        }
-    };
-    return algo_testing_framework_1.packSolutions(new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'iteratief';
-            this.implementation = withIteration;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = 'recursief';
-            this.implementation = withRecursion;
-        }
-    }, new class extends algo_testing_framework_1.Solution {
-        constructor() {
-            super(...arguments);
-            this.label = "lambda's";
-            this.implementation = withLambdas;
-        }
-    });
-})();
+var testcase_header_1 = __webpack_require__(15);
+Object.defineProperty(exports, "TestcaseHeader", { enumerable: true, get: function () { return testcase_header_1.TestcaseHeader; } });
+var caption_1 = __webpack_require__(16);
+Object.defineProperty(exports, "Caption", { enumerable: true, get: function () { return caption_1.Caption; } });
+var argument_1 = __webpack_require__(17);
+Object.defineProperty(exports, "Argument", { enumerable: true, get: function () { return argument_1.Argument; } });
+var arguments_1 = __webpack_require__(18);
+Object.defineProperty(exports, "Inputs", { enumerable: true, get: function () { return arguments_1.Arguments; } });
+var expected_1 = __webpack_require__(19);
+Object.defineProperty(exports, "Expected", { enumerable: true, get: function () { return expected_1.Expected; } });
+var return_value_1 = __webpack_require__(20);
+Object.defineProperty(exports, "ReturnValue", { enumerable: true, get: function () { return return_value_1.ReturnValue; } });
+var horizontal_1 = __webpack_require__(3);
+Object.defineProperty(exports, "Horizontal", { enumerable: true, get: function () { return horizontal_1.Horizontal; } });
 
 
 /***/ }),
-/* 7 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TestcaseHeader = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const Container = algo_testing_framework_1.styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+`;
+class TestcaseHeader extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(Container, { className: this.props.className }, this.props.children));
+    }
+}
+exports.TestcaseHeader = TestcaseHeader;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Caption = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const Container = algo_testing_framework_1.styled.div `
+    font-variant: small-caps;
+    border-bottom: 2px solid black;
+    margin-bottom: 0.2em;
+    color: white;
+    background: black;
+    padding: 2px 0.5em;
+`;
+class Caption extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(Container, { className: this.props.className }, this.props.children));
+    }
+}
+exports.Caption = Caption;
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Argument = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const header_box_1 = __webpack_require__(2);
+const Centered = algo_testing_framework_1.styled.div `
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0.25em;
+`;
+class Argument extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(header_box_1.HeaderBox, { className: this.props.className, caption: this.props.name },
+            react_1.default.createElement(Centered, null, this.props.children)));
+    }
+}
+exports.Argument = Argument;
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Arguments = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const header_box_1 = __webpack_require__(2);
+const horizontal_1 = __webpack_require__(3);
+class Arguments extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(header_box_1.HeaderBox, { className: this.props.className, caption: "Arguments" },
+            react_1.default.createElement(horizontal_1.Horizontal, { center: true }, this.props.children)));
+    }
+}
+exports.Arguments = Arguments;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Expected = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const header_box_1 = __webpack_require__(2);
+const horizontal_1 = __webpack_require__(3);
+const StyledHeaderBox = algo_testing_framework_1.styled(header_box_1.HeaderBox) `
+    margin-left: 1em;
+`;
+class Expected extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(StyledHeaderBox, { className: this.props.className, caption: "Expected" },
+            react_1.default.createElement(horizontal_1.Horizontal, { center: true }, this.props.children)));
+    }
+}
+exports.Expected = Expected;
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReturnValue = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const header_box_1 = __webpack_require__(2);
+const Centered = algo_testing_framework_1.styled.div `
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0.25em;
+`;
+class ReturnValue extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(header_box_1.HeaderBox, { className: this.props.className, caption: "result" },
+            react_1.default.createElement(Centered, null, this.props.children)));
+    }
+}
+exports.ReturnValue = ReturnValue;
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RecordsViewer = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const ATF = __importStar(__webpack_require__(0));
+const algo_testing_framework_1 = __webpack_require__(0);
+function str(x) {
+    return ATF.Formatters.Jsx.code(ATF.Formatters.String.convertToString(x));
+}
+const Table = algo_testing_framework_1.styled.table `
+    border-collapse: collapse;
+`;
+const Headers = algo_testing_framework_1.styled.tr `
+`;
+const Header = algo_testing_framework_1.styled.th `
+  background: black;
+  color: white;
+  font-variant: small-caps;
+  padding: 0.5em 1em;
+`;
+const Row = algo_testing_framework_1.styled.tr `
+`;
+const Cell = algo_testing_framework_1.styled.td `
+  text-align: center;
+  border: 1px solid black;
+  padding: 0.5em 1em;
+`;
+const Index = algo_testing_framework_1.styled(Cell) `
+    background: #444;
+`;
+const Value = algo_testing_framework_1.styled(Cell) `
+`;
+class RecordsViewer extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(Table, null,
+            react_1.default.createElement("tbody", null,
+                this.renderHeaders(),
+                this.renderRows())));
+    }
+    renderRows() {
+        return this.props.records.map((object, index) => this.renderRow(index, object));
+    }
+    renderRow(index, object) {
+        const columns = [
+            react_1.default.createElement(Index, null, index),
+            ...(this.props.columns.map((column, index) => this.renderValue(object[column], index)))
+        ];
+        return (react_1.default.createElement(Row, { key: index }, columns));
+    }
+    renderValue(value, index) {
+        return (react_1.default.createElement(Value, { key: index }, str(value)));
+    }
+    renderHeaders() {
+        const headers = [
+            react_1.default.createElement(Header, { key: `index` }, "#"),
+            ...(this.props.columns.map((header, index) => react_1.default.createElement(Header, { key: index }, header)))
+        ];
+        return (react_1.default.createElement(Headers, null, headers));
+    }
+}
+exports.RecordsViewer = RecordsViewer;
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GridViewer = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const js_algorithms_1 = __webpack_require__(4);
+const algo_testing_framework_1 = __webpack_require__(0);
+const Table = algo_testing_framework_1.styled.table `
+    border-collapse: collapse;
+`;
+const TableCell = algo_testing_framework_1.styled.td `
+
+`;
+class GridViewer extends react_1.default.Component {
+    constructor() {
+        super(...arguments);
+        this.renderRows = () => js_algorithms_1.range(0, this.props.height).map(this.renderRow);
+        this.renderRow = (row) => (react_1.default.createElement("tr", { key: row }, js_algorithms_1.range(0, this.props.width).map(col => this.renderCell(row, col))));
+        this.renderCell = (row, col) => (react_1.default.createElement("td", { key: col }, this.props.render(row, col)));
+    }
+    render() {
+        return (react_1.default.createElement(Table, { className: this.props.className },
+            react_1.default.createElement("tbody", null, this.renderRows())));
+    }
+}
+exports.GridViewer = GridViewer;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExampleBox = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const ATF = __importStar(__webpack_require__(0));
+const HeaderBox = ATF.Components.HeaderBox;
+class ExampleBox extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(HeaderBox, { header: "Voorbeeld" }, this.props.children));
+    }
+}
+exports.ExampleBox = ExampleBox;
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "solutions.js");
+
+/***/ }),
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1595,7 +2816,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "tests.html");
 
 /***/ }),
-/* 8 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
