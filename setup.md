@@ -18,7 +18,7 @@ Indien deze nog niet geïnstalleerd zijn, volg de instructies op [deze site](htt
 
 ## GitHub Classroom
 
-* Ga naar [GitHub Classroom](https://classroom.github.com/a/YT4zM8bn).
+* Ga naar GitHub Classroom. De link vind je op Toledo.
 * Aanvaard de assignment.
 * Wacht tot GitHub klaar is met je repository te initialiseren. Beide progress bars moeten op 100% staan.
 * Noteer de getoonde URL. Deze is van de vorm `https://github.com/ucll-algoritmisch-denken-2021/oefeningen-LOGIN` waarbij LOGIN je GitHub-login is.
