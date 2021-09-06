@@ -30,7 +30,7 @@ function mitosis(xs, from, to)
     const me = xs[from];
     const he = otherPlayer(me);
 
-    xs[to] = me;;
+    xs[to] = me;
 
     if ( xs[to - 1] === he ) xs[to - 1] = me;
     if ( xs[to + 1] === he ) xs[to + 1] = me;

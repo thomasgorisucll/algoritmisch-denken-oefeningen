@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -462,7 +462,7 @@ object-assign
 
 
 if (true) {
-  module.exports = __webpack_require__(7);
+  module.exports = __webpack_require__(9);
 } else {}
 
 
@@ -484,12 +484,12 @@ const Container = algo_testing_framework_1.styled.div `
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    background: #999;
+    background: #CCF;
     margin: 2px;
     border: 1px solid black;
 `;
 const Header = algo_testing_framework_1.styled.div `
-    background: black;
+    background: #44F;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: 75%;
@@ -511,6 +511,139 @@ exports.HeaderBox = HeaderBox;
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ArrayViewer = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const ATF = __importStar(__webpack_require__(0));
+const js_algorithms_1 = __webpack_require__(5);
+const algo_testing_framework_1 = __webpack_require__(0);
+const ArrayTable = algo_testing_framework_1.styled.table `
+    border-collapse: collapse;
+
+    td {
+        border: 1px solid black;
+    }
+
+    td.index {
+        min-width: 2em;
+        text-align: center;
+        background: #999;
+    }
+
+    td.value {
+        min-width: 2em;
+        text-align: center;
+        padding: 5px;
+    }
+`;
+const Empty = algo_testing_framework_1.styled.div `
+    font-family: 'Courier New', Courier, monospace;
+`;
+function defaultRenderer(x) {
+    return ATF.Formatters.Jsx.code(ATF.Formatters.String.convertToString(x));
+}
+class ArrayViewer extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        if (this.props.array.length === 0) {
+            return this.renderEmptyArray();
+        }
+        else {
+            return this.renderNonEmptyArray();
+        }
+    }
+    renderEmptyArray() {
+        return react_1.default.createElement(Empty, null, "[]");
+    }
+    getIndexRange() {
+        const start = this.props.startIndex;
+        const end = this.props.endIndex || this.props.array.length;
+        return js_algorithms_1.range(start, end);
+    }
+    renderNonEmptyArray() {
+        const rows = this.getIndexRange().map(index => {
+            const elt = this.props.array[index];
+            const jsx = (this.props.render || defaultRenderer)(elt);
+            return (react_1.default.createElement("tr", { key: index },
+                react_1.default.createElement("td", { className: "index" }, index),
+                react_1.default.createElement("td", { className: "value" }, jsx)));
+        });
+        return (react_1.default.createElement(ArrayTable, { className: this.props.className },
+            react_1.default.createElement("tbody", null, rows)));
+    }
+}
+exports.ArrayViewer = ArrayViewer;
+ArrayViewer.defaultProps = {
+    render: defaultRenderer,
+    startIndex: 0
+};
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Horizontal = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
+const Container = algo_testing_framework_1.styled.div `
+    display: flex;
+    flex-direction: row;
+    justify-content: ${props => props.center ? 'center' : 'flex-start'};
+    flex-wrap: wrap;
+    align-items: stretch;
+    height: 100%;
+`;
+class Horizontal extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (react_1.default.createElement(Container, { className: this.props.className, center: this.props.center }, this.props.children));
+    }
+}
+exports.Horizontal = Horizontal;
+Horizontal.defaultProps = {
+    center: false
+};
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports) {
 
 (function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
@@ -675,50 +808,78 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\ncl
 /******/ })));
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Horizontal = void 0;
+exports.MovieViewer = void 0;
+const ATF = __importStar(__webpack_require__(0));
 const react_1 = __importDefault(__webpack_require__(1));
-const algo_testing_framework_1 = __webpack_require__(0);
-const Container = algo_testing_framework_1.styled.div `
-    display: flex;
-    flex-direction: row;
-    justify-content: ${props => props.center ? 'center' : 'flex-start'};
-    align-items: stretch;
-    height: 100%;
-`;
-class Horizontal extends react_1.default.Component {
-    constructor(props) {
-        super(props);
+const array_viewer_1 = __webpack_require__(3);
+const { ObjectViewer } = ATF.Components;
+const code = ATF.Formatters.Jsx.code;
+function format(x) {
+    return code(ATF.Formatters.String.convertToString(x));
+}
+function MovieViewer(props) {
+    let submovie;
+    if (props.fields) {
+        submovie = {};
+        props.fields.forEach(element => {
+            submovie[element] = props.movie[element];
+        });
     }
-    render() {
-        return (react_1.default.createElement(Container, { className: this.props.className, center: this.props.center }, this.props.children));
+    else {
+        submovie = props.movie;
+    }
+    return (react_1.default.createElement(ObjectViewer, { object: submovie, renderer: render }));
+    function render(key, value) {
+        if (key === 'actors') {
+            return (react_1.default.createElement(array_viewer_1.ArrayViewer, { array: value }));
+        }
+        else {
+            return format(value);
+        }
     }
 }
-exports.Horizontal = Horizontal;
-Horizontal.defaultProps = {
-    center: false
-};
+exports.MovieViewer = MovieViewer;
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(6);
-__webpack_require__(25);
-module.exports = __webpack_require__(26);
+__webpack_require__(8);
+__webpack_require__(26);
+module.exports = __webpack_require__(27);
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -748,102 +909,50 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(__webpack_require__(1));
 const ATF = __importStar(__webpack_require__(0));
-const exercise_section_1 = __webpack_require__(9);
-const maybe_1 = __webpack_require__(10);
-const assertion_test_case_1 = __webpack_require__(11);
+const exercise_section_1 = __webpack_require__(11);
+const maybe_1 = __webpack_require__(12);
+const assertion_test_case_1 = __webpack_require__(13);
 const algo_testing_framework_1 = __webpack_require__(0);
-const renderers_1 = __webpack_require__(12);
-const banner_1 = __webpack_require__(13);
-const array_viewer_1 = __webpack_require__(14);
-const crossword_viewer_1 = __webpack_require__(15);
-const js_algorithms_1 = __webpack_require__(3);
-const testcase_header_1 = __webpack_require__(17);
-__webpack_require__(24);
+const banner_1 = __webpack_require__(14);
+const array_viewer_1 = __webpack_require__(3);
+const testcase_header_1 = __webpack_require__(15);
+const grid_viewer_1 = __webpack_require__(22);
+const center_1 = __webpack_require__(23);
+const data_1 = __webpack_require__(24);
+const movie_viewer_1 = __webpack_require__(6);
+const movies_viewer_1 = __webpack_require__(25);
 const code = ATF.Formatters.Jsx.code;
 const str = ATF.Formatters.String.convertToString;
+const dirs = data_1.directors;
 const { HeaderBox, ObjectViewer, FunctionSummary, Parameter, ReturnValue } = ATF.Components;
 class CodingExercise extends ATF.Exercise.Coding.TestCaseBased.Exercise {
 }
-const CenteredTable = algo_testing_framework_1.styled.table `
-    margin: 1em auto;
-`;
-const CenteredTd = algo_testing_framework_1.styled.td `
-    text-align: center;
-`;
-const CenteredObjectViewer = algo_testing_framework_1.styled(ObjectViewer) `
-    margin: 1em auto;
-`;
-const Centered = algo_testing_framework_1.styled.div `
-    display: flex;
-    justify-content: center;
-`;
-const CrosswordContainer = algo_testing_framework_1.styled.div `
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`;
-const DirectionLabel = algo_testing_framework_1.styled.div `
-    font-variant: small-caps;
-    border-bottom: 2px solid black;
-    margin-top: 0.5em;
-`;
-const DescriptionContainer = algo_testing_framework_1.styled.div `
-    margin: 1em;
-    min-width: 20em;
-`;
-const DescriptionTable = algo_testing_framework_1.styled.table `
-
-`;
-const Number = algo_testing_framework_1.styled.td `
-    font-weight: bold;
-    margin-right: 1em;
-`;
-const Description = algo_testing_framework_1.styled.td `
-`;
-const Change = algo_testing_framework_1.styled.span `
-    font-weight: bold;
-    color: #D00;
+const PageViewer = algo_testing_framework_1.styled(grid_viewer_1.GridViewer) `
+    & td {
+        border: 1px solid black;
+        text-align: center;
+        width: 1em;
+        height: 1em;
+    }
 `;
 function format(x) {
     return code(ATF.Formatters.String.convertToString(x));
 }
-function transpose(xss) {
-    const width = xss[0].length;
-    const height = xss.length;
-    return js_algorithms_1.range(0, width).map(x => js_algorithms_1.range(0, height).map(y => xss[y].charAt(x)).join(''));
-}
-function parseCrosswords(str, indexPositions = []) {
-    const width = str[0].length;
-    const height = str.length;
-    return { width, height, at };
-    function at(row, col) {
-        const char = str[row].charAt(col);
-        if (char !== '*') {
-            const contents = char === '.' ? '' : char;
-            const index = indexPositions.findIndex(([x, y]) => x === col && y === row);
-            return crossword_viewer_1.whiteCell(contents, index === -1 ? undefined : index + 1);
-        }
-        else {
-            return crossword_viewer_1.blackCell();
-        }
-    }
-}
 async function createChapter(student) {
-    const title = 'Crosswords';
+    const title = 'Movies';
     const sections = await Promise.all([
         introduction(),
-        representation(),
-        clear(),
-        createGrid(),
-        acceptsLetter(),
-        needsIndex(),
-        indexPosition(),
-        fits1(),
-        fits2(),
-        fits3(),
-        fits4(),
-        eraseAt(),
+        actorCount(),
+        formatTime(),
+        moviesWithActor(),
+        directors(),
+        actorsExercise(),
+        moviesByActor(),
+        // longestMovie(),
+        actorWithMostMovies(),
+        totalMinutesDirected(),
+        extractTitle(),
+        categorize(),
     ]);
     return { title, sections };
     async function introduction() {
@@ -851,147 +960,42 @@ async function createChapter(student) {
             constructor() {
                 super(...arguments);
                 this.id = 'intro';
-                this.caption = "Intro";
+                this.caption = "Inleiding";
                 this.header = react_1.default.createElement(react_1.default.Fragment, null, "Inleiding");
             }
             get explanations() {
+                const exampleMovie = data_1.library.magnolia;
                 return (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement(ATF.Components.DescriptionBox, null,
-                        react_1.default.createElement("p", null, "Tijdens deze reeks oefeningen zullen we werken met kruiswoordraadsels. Dit zijn roosters waarvan in elk vakje een letter hoort en zo woorden vormen. Sommige vakjes zijn zwartgekleurd, wat aangeeft dat op die positie geen letter hoort. Initieel is het rooster leeg:"),
-                        react_1.default.createElement(Centered, null, sampleCrosswords()),
-                        react_1.default.createElement("p", null, "Voor elk in te vullen woord wordt er een omschrijving gegeven:"),
-                        react_1.default.createElement(Centered, null,
-                            react_1.default.createElement(CrosswordContainer, null,
-                                sampleCrosswords(),
-                                react_1.default.createElement(DescriptionContainer, null,
-                                    react_1.default.createElement(DirectionLabel, null, "Horizontaal"),
-                                    react_1.default.createElement(DescriptionTable, null,
-                                        react_1.default.createElement("tbody", null,
-                                            react_1.default.createElement("tr", null,
-                                                react_1.default.createElement(Number, null, "1"),
-                                                react_1.default.createElement(Description, null, "Geen hond")),
-                                            react_1.default.createElement("tr", null,
-                                                react_1.default.createElement(Number, null, "4"),
-                                                react_1.default.createElement(Description, null, "Culinair beroep")),
-                                            react_1.default.createElement("tr", null,
-                                                react_1.default.createElement(Number, null, "5"),
-                                                react_1.default.createElement(Description, null, "Nationaliteit")),
-                                            react_1.default.createElement("tr", null,
-                                                react_1.default.createElement(Number, null, "6"),
-                                                react_1.default.createElement(Description, null, "Geen pingu\u00EFn")))),
-                                    react_1.default.createElement(DirectionLabel, null, "Verticaal"),
-                                    react_1.default.createElement(DescriptionTable, null,
-                                        react_1.default.createElement("tbody", null,
-                                            react_1.default.createElement("tr", null,
-                                                react_1.default.createElement(Number, null, "1"),
-                                                react_1.default.createElement(Description, null, "Materiaal")),
-                                            react_1.default.createElement("tr", null,
-                                                react_1.default.createElement(Number, null, "2"),
-                                                react_1.default.createElement(Description, null, "Bedankt")),
-                                            react_1.default.createElement("tr", null,
-                                                react_1.default.createElement(Number, null, "3"),
-                                                react_1.default.createElement(Description, null, "Bijberoep")),
-                                            react_1.default.createElement("tr", null,
-                                                react_1.default.createElement(Number, null, "5"),
-                                                react_1.default.createElement(Description, null, "Dans"))))))),
-                        react_1.default.createElement("p", null, "Merk op dat elk vakje waarin een woord begint (zij het horizontaal of verticaal) een getalletje bevat. We noemen dit de index. Deze wordt gebruikt om aan te geven bij welk woord elke omschrijving hoort."),
-                        react_1.default.createElement("p", null, "De oplossing van bovenstaand kruiswoordraadsel is:"),
-                        react_1.default.createElement(Centered, null, sampleCrosswordsSolution()))));
-                function sampleCrosswords() {
-                    const { width, height, at } = parseCrosswords([
-                        '...*.',
-                        '.*.*.',
-                        '.*...',
-                        '.***.',
-                        '.*...',
-                        '...**',
-                    ], [
-                        [0, 0],
-                        [2, 0],
-                        [4, 0],
-                        [2, 2],
-                        [2, 4],
-                        [0, 5]
-                    ]);
-                    return (react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at }));
-                }
-                function sampleCrosswordsSolution() {
-                    const { width, height, at } = parseCrosswords([
-                        'KAT*I',
-                        'A*A*M',
-                        'R*KOK',
-                        'T***E',
-                        'O*IER',
-                        'NON**',
-                    ], [
-                        [0, 0],
-                        [2, 0],
-                        [4, 0],
-                        [2, 2],
-                        [2, 4],
-                        [0, 5]
-                    ]);
-                    return (react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at }));
-                }
-            }
-        };
-    }
-    async function representation() {
-        return new class extends ATF.Explanations {
-            constructor() {
-                super(...arguments);
-                this.id = 'representation';
-                this.caption = "Voorstelling";
-                this.header = react_1.default.createElement(react_1.default.Fragment, null, "Voorstelling");
-            }
-            get explanations() {
-                const data = [
-                    'KAT*.',
-                    '.*A*.',
-                    '.*K..',
-                    '.***.',
-                    '.*IE.',
-                    'NON**',
-                ];
-                return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(ATF.Components.DescriptionBox, null,
-                        react_1.default.createElement("h1", null, "Rooster"),
-                        react_1.default.createElement("p", null, "Het rooster stellen we voor d.m.v. een array van strings, waarbij elke string met een rij overeenkomt."),
+                        react_1.default.createElement("h1", null, "Films"),
+                        react_1.default.createElement("p", null, "Deze reeks oefeningen heeft betrekking op films. Een film wordt gekenmerkt door"),
                         react_1.default.createElement("ul", null,
-                            react_1.default.createElement("li", null,
-                                "Een zwart vakje wordt voorgesteld door het teken ",
-                                code(`*`),
-                                "."),
-                            react_1.default.createElement("li", null,
-                                "Een leeg wit vakje wordt voorgesteld door het teken ",
-                                code(`.`),
-                                "."),
-                            react_1.default.createElement("li", null, "Een wit vakje met een letter wordt voorgesteld door die letter.")),
-                        react_1.default.createElement("p", null, "Bijvoorbeeld,"),
-                        react_1.default.createElement(Centered, null, sampleCrosswords()),
-                        react_1.default.createElement("p", null, "wordt voorgesteld door"),
-                        renderers_1.renderSourceCode(str(data)),
-                        react_1.default.createElement("p", null, "Merk op dat indices niet ge\u00EBncodeerd worden in deze voorstelling."))));
-                function sampleCrosswords() {
-                    const { width, height, at } = parseCrosswords(data, [
-                        [0, 0],
-                        [2, 0],
-                        [4, 0],
-                        [2, 2],
-                        [2, 4],
-                        [0, 5]
-                    ]);
-                    return (react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at }));
-                }
+                            react_1.default.createElement("li", null, "Een titel (string)."),
+                            react_1.default.createElement("li", null, "Een regisseur (Engels: director, type string)."),
+                            react_1.default.createElement("li", null, "Een lijst acteurs (array van strings)."),
+                            react_1.default.createElement("li", null, "Een duur (Engels: runtime, getal).")),
+                        react_1.default.createElement("p", null,
+                            "Deze velden worden samengebundeld in een object, bijvoorbeeld ",
+                            code(str(exampleMovie)),
+                            ". Objecten zullen in de tests doorgaans voorgesteld worden in tabelvorm:"),
+                        react_1.default.createElement(center_1.Center, null,
+                            react_1.default.createElement(movie_viewer_1.MovieViewer, { movie: exampleMovie })),
+                        react_1.default.createElement("p", null,
+                            "Om de leesbaarheid te bevorderen, zullen we in de oefeningen enkel de relevante velden gebruiken. Bijvoorbeeld, wanneer de duur van geen belang is om de oefening te kunnen oplossen, zullen we het ",
+                            code(`runtime`),
+                            "-veld achterwege laten."))));
             }
         };
     }
-    async function acceptsLetter() {
-        const prototype = function acceptsLetter(grid, position) {
+    async function actorCount() {
+        function project({ title, actors }) {
+            return { title, actors };
+        }
+        const prototype = function actorCount(movie) {
             throw new Error(`Dummy implementation`);
         };
         const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [grid, position] } = prototypeFunctionInformation;
+        const { functionName, signature, parameterNames: [movie] } = prototypeFunctionInformation;
         const testedImplementation = student.typedFetch(functionName);
         return new class extends exercise_section_1.ExerciseSection {
             constructor() {
@@ -1003,22 +1007,12 @@ async function createChapter(student) {
             get description() {
                 return (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: grid, type: "string[]" }, "Een array van strings die een kruiswoordraadsel voorstelt."),
-                        react_1.default.createElement(Parameter, { name: position, type: '{x, y}' },
-                            "Een ",
-                            code(`{x, y}`),
-                            " object dat een positie aangeeft. De positie ",
-                            code(str({ x: 0, y: 0 })),
-                            " komt overeen met het vakje linksboven."),
-                        react_1.default.createElement(ReturnValue, { type: 'boolean' },
-                            code(str(true)),
-                            " indien er op de gegeven positie een letter past, zoniet ",
-                            code(str(false)),
-                            ".")),
-                    react_1.default.createElement("p", null, "Schrijf een functie die nagaat of een gegeven vakje een letter mag bevatten:"),
-                    react_1.default.createElement("ul", null,
-                        react_1.default.createElement("li", null, "De positie moet binnen het kruiswoordraadsel vallen."),
-                        react_1.default.createElement("li", null, "Het vakje op die positie mag niet zwart zijn. Het mag dus wel leeg of een letter bevatten."))));
+                        react_1.default.createElement(Parameter, { name: movie, type: 'object' }, "Een object dat een film voorstelt."),
+                        react_1.default.createElement(ReturnValue, { type: 'number' }, "Aantal acteurs die meespelen in de gegeven film.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die het aantal acteurs die meespelen in de gegeven film teruggeeft.")));
             }
             createExercise() {
                 return new class extends CodingExercise {
@@ -1030,243 +1024,11 @@ async function createChapter(student) {
                     get maximumScore() { return 1; }
                     *generateTestCases() {
                         const me = this;
-                        yield generateTestCase(true, [
-                            '.'
-                        ], { x: 0, y: 0 });
-                        yield generateTestCase(false, [
-                            '*'
-                        ], { x: 0, y: 0 });
-                        for (const [x, y] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
-                            yield generateTestCase(false, [
-                                '.'
-                            ], { x, y });
-                        }
-                        for (const x of [0, 1, 2, 3]) {
-                            for (const y of [0, 1, 2, 3]) {
-                                yield generateTestCase((x + y) % 2 === 0, [
-                                    '.*.*',
-                                    '*.*.',
-                                    '.*.*',
-                                    '*.*.',
-                                ], { x, y });
-                            }
-                        }
-                        function generateTestCase(expectedReturnValue, ...parameters) {
-                            return new class extends assertion_test_case_1.AssertionTestCase {
-                                constructor() {
-                                    super(...arguments);
-                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
-                                }
-                                get header() {
-                                    const [gridValue, positionValue] = parameters;
-                                    const { functionName } = me.prototypeFunctionInformation;
-                                    const { width, height, at } = parseCrosswords(gridValue);
-                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
-                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
-                                            react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: grid },
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: position },
-                                                    react_1.default.createElement(ObjectViewer, { object: positionValue }))),
-                                            react_1.default.createElement(testcase_header_1.Expected, null,
-                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
-                                }
-                                get assertion() {
-                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameter1Assertion = ATF.Assertions.typedParameter(0, grid, ATF.Assertions.unmodified(parameters[0]));
-                                    const parameter2Assertion = ATF.Assertions.typedParameter(1, grid, ATF.Assertions.unmodified(parameters[1]));
-                                    return ATF.Assertions.sequence([returnValueAssertion, parameter1Assertion, parameter2Assertion]);
-                                }
-                            };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function needsIndex() {
-        const prototype = function needsIndex(grid, position) {
-            throw new Error(`Dummy implementation`);
-        };
-        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [grid, position] } = prototypeFunctionInformation;
-        const testedImplementation = student.typedFetch(functionName);
-        return new class extends exercise_section_1.ExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.prototypeFunctionInformation = prototypeFunctionInformation;
-                this.difficulty = 2;
-                this.testedImplementation = testedImplementation;
-            }
-            get description() {
-                return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: grid, type: 'string[]' }, "Een array van strings die een kruiswoordraadsel voorstelt."),
-                        react_1.default.createElement(Parameter, { name: position, type: '{x, y}' },
-                            "Een ",
-                            code(`{x, y}`),
-                            " object dat een positie aangeeft. De positie ",
-                            code(str({ x: 0, y: 0 })),
-                            " komt overeen met het vakje linksboven."),
-                        react_1.default.createElement(ReturnValue, { type: 'boolean' },
-                            code(str(true)),
-                            " indien op ",
-                            code(position),
-                            " een index hoort, zoniet ",
-                            code(str(false)),
-                            ".")),
-                    react_1.default.createElement("p", null, "Schrijf een functie die nagaat of een vakje een index hoort te hebben. Dit betekent dat er horizontaal of verticaal in dit vakje een woord kan beginnen. De volgende regels gelden:"),
-                    react_1.default.createElement("ul", null,
-                        react_1.default.createElement("li", null,
-                            "Het vakje op ",
-                            code(position),
-                            " moet een letter kunnen bevatten."),
-                        react_1.default.createElement("li", null,
-                            "Voor een horizontaal woord mag het vakje links van ",
-                            code(position),
-                            " (als het niet buiten het kruiswoordraadsel valt althans) geen letter kunnen bevatten."),
-                        react_1.default.createElement("li", null,
-                            "Analoog voor een verticaal woord: het vakje boven ",
-                            code(position),
-                            " mag geen letter kunnen bevatten."),
-                        react_1.default.createElement("li", null,
-                            "Een woord moet minstens 2 letters lang zijn, wat betekent dat het vakje rechts of onder ",
-                            code(position),
-                            " een letter moet kunnen bevatten.")),
-                    react_1.default.createElement(HeaderBox, { header: "Hint" },
-                        react_1.default.createElement("p", null,
-                            "Gegeven een ",
-                            code(`{x, y}`),
-                            " positie moet je de posities er links, rechts, boven en onder van kunnen uitrekenen. Je kan als je wil hier aparte functies (bv. ",
-                            code(`leftOf`),
-                            ", ",
-                            code(`rightOf`),
-                            ", ",
-                            code(`above`),
-                            " en ",
-                            code(`below`),
-                            ") voor defini\u00EBren. Vergeet niet dat je deze kan uittesten op de console. Zo ben je zeker dat dat stuk van de benodigde functionaliteit al werkt en kan je er met gerust hart op voortbouwen."),
-                        react_1.default.createElement("p", null,
-                            "Nadien moet je beseffen dat je de meeste functionaliteit al ge\u00EFmplementeerd hebt in ",
-                            code(`acceptsLetter`),
-                            ". Je zal deze functie meermaals moeten oproepen met de juiste positie en de resultaten combineren met de juiste logische operatoren."))));
-            }
-            createExercise() {
-                return new class extends CodingExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.prototypeFunctionInformation = prototypeFunctionInformation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    get maximumScore() { return 3; }
-                    *generateTestCases() {
-                        const me = this;
-                        yield generateTestCase('Begin van horizontaal drieletterwoord', true, [
-                            '...'
-                        ], { x: 0, y: 0 });
-                        yield generateTestCase('Geen index in het midden van een woord', false, [
-                            '...'
-                        ], { x: 1, y: 0 });
-                        yield generateTestCase('Woord moet minstens twee lang zijn', false, [
-                            '.*.'
-                        ], { x: 0, y: 0 });
-                        yield generateTestCase('Woord moet minstens twee lang zijn', false, [
-                            '.*'
-                        ], { x: 0, y: 0 });
-                        yield generateTestCase('Woord kan niet beginnen op zwart vakje', false, [
-                            '.*..'
-                        ], { x: 1, y: 0 });
-                        yield generateTestCase('Begin van verticaal drieletterwoord', true, [
-                            '.',
-                            '.',
-                            '.',
-                        ], { x: 0, y: 0 });
-                        yield generateTestCase('Geen index in het midden van een woord', false, [
-                            '.',
-                            '.',
-                            '.',
-                        ], { x: 0, y: 1 });
-                        yield generateTestCase('Woord moet minstens twee letters lang zijn', false, [
-                            '.',
-                            '*',
-                            '.'
-                        ], { x: 0, y: 0 });
-                        yield generateTestCase('Woord moet minstens twee letters lang zijn', false, [
-                            '.',
-                            '*',
-                        ], { x: 0, y: 0 });
-                        yield generateTestCase('Woord kan niet beginnen op zwart vakje', false, [
-                            '.',
-                            '*',
-                            '.',
-                            '.',
-                        ], { x: 0, y: 1 });
-                        yield generateTestCase('', true, [
-                            '....',
-                            '....',
-                            '....',
-                            '....',
-                        ], { x: 0, y: 0 });
-                        yield generateTestCase('', true, [
-                            '....',
-                            '....',
-                            '....',
-                            '....',
-                        ], { x: 1, y: 0 });
-                        yield generateTestCase('', true, [
-                            '....',
-                            '....',
-                            '....',
-                            '....',
-                        ], { x: 0, y: 1 });
-                        yield generateTestCase('', false, [
-                            '....',
-                            '....',
-                            '....',
-                            '....',
-                        ], { x: 1, y: 1 });
-                        yield generateTestCase('', true, [
-                            '....',
-                            '*...',
-                            '....',
-                            '....',
-                        ], { x: 1, y: 1 });
-                        yield generateTestCase('', true, [
-                            '.*..',
-                            '....',
-                            '....',
-                            '....',
-                        ], { x: 1, y: 1 });
-                        yield generateTestCase('', false, [
-                            '....',
-                            '*.*.',
-                            '....',
-                            '....',
-                        ], { x: 1, y: 1 });
-                        yield generateTestCase('', false, [
-                            '.*..',
-                            '....',
-                            '.*..',
-                            '....',
-                        ], { x: 1, y: 1 });
-                        yield generateTestCase('', true, [
-                            '....',
-                            '....',
-                            '....',
-                            '....',
-                        ], { x: 3, y: 0 });
-                        yield generateTestCase('', false, [
-                            '....',
-                            '....',
-                            '....',
-                            '....',
-                        ], { x: 3, y: 1 });
-                        yield generateTestCase('', true, [
-                            '...*',
-                            '....',
-                            '....',
-                            '....',
-                        ], { x: 3, y: 1 });
+                        yield generateTestCase('', data_1.library.koyaanisqatsi.actors.length, project(data_1.library.koyaanisqatsi));
+                        yield generateTestCase('', data_1.library.oldboy.actors.length, project(data_1.library.oldboy));
+                        yield generateTestCase('', data_1.library.magnolia.actors.length, project(data_1.library.magnolia));
+                        yield generateTestCase('', data_1.library.fistful.actors.length, project(data_1.library.fistful));
+                        yield generateTestCase('', data_1.library.dollarsmore.actors.length, project(data_1.library.dollarsmore));
                         function generateTestCase(captionText, expectedReturnValue, ...parameters) {
                             return new class extends assertion_test_case_1.AssertionTestCase {
                                 constructor() {
@@ -1274,179 +1036,21 @@ async function createChapter(student) {
                                     this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
                                 }
                                 get header() {
-                                    const [gridValue, positionValue] = parameters;
+                                    const [moviev] = parameters;
                                     const { functionName } = me.prototypeFunctionInformation;
-                                    const { width, height, at } = parseCrosswords(gridValue);
                                     const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
                                     return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
                                         caption,
                                         react_1.default.createElement(testcase_header_1.Horizontal, null,
                                             react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: grid },
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: position },
-                                                    react_1.default.createElement(ObjectViewer, { object: positionValue }))),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movie },
+                                                    react_1.default.createElement(movie_viewer_1.MovieViewer, { movie: moviev }))),
                                             react_1.default.createElement(testcase_header_1.Expected, null,
                                                 react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
                                 }
                                 get assertion() {
                                     const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameter1Assertion = ATF.Assertions.typedParameter(0, grid, ATF.Assertions.unmodified(parameters[0]));
-                                    const parameter2Assertion = ATF.Assertions.typedParameter(1, grid, ATF.Assertions.unmodified(parameters[1]));
-                                    return ATF.Assertions.sequence([returnValueAssertion, parameter1Assertion, parameter2Assertion]);
-                                }
-                            };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function indexPosition() {
-        const prototype = function indexPosition(grid, index) {
-            throw new Error(`Dummy implementation`);
-        };
-        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [grid, index] } = prototypeFunctionInformation;
-        const testedImplementation = student.typedFetch(functionName);
-        return new class extends exercise_section_1.ExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.prototypeFunctionInformation = prototypeFunctionInformation;
-                this.difficulty = 2;
-                this.testedImplementation = testedImplementation;
-            }
-            get description() {
-                const indices = [
-                    [0, 0],
-                    [2, 0],
-                    [4, 0],
-                    [2, 2],
-                    [2, 4],
-                    [0, 5]
-                ];
-                return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: grid, type: 'string[]' }, "Een array van strings die een kruiswoordraadsel voorstelt."),
-                        react_1.default.createElement(Parameter, { name: index, type: 'number' }, "Een geldige index (minimum 1, valt niet buiten het kruiswoordraadsel)."),
-                        react_1.default.createElement(ReturnValue, { type: '{x, y}' },
-                            "Een ",
-                            code(`{x, y}`),
-                            " object dat de positie voorstelt van het vakje met index ",
-                            code(index),
-                            ".")),
-                    react_1.default.createElement("p", null, "Beschouw het kruiswoordraadsels hieronder:"),
-                    react_1.default.createElement(Centered, null, sampleCrosswords()),
-                    react_1.default.createElement("p", null, "Elke index heeft een unieke positie:"),
-                    react_1.default.createElement(Centered, null,
-                        react_1.default.createElement(array_viewer_1.ArrayViewer, { startIndex: 1, array: [[0, 0], ...indices].map(([x, y]) => ({ x, y })) })),
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie die gegeven een index de overeenkomstige positie teruggeeft. Bijvoorbeeld, indien we index ",
-                        code(str(5)),
-                        " meegeven, moet de functie ",
-                        code(str({ x: 2, y: 4 })),
-                        " teruggeven."),
-                    react_1.default.createElement("p", null,
-                        "Indien er geen vakje is met de gegeven index, moet ",
-                        code(`invalid`),
-                        " teruggegeven worden."),
-                    react_1.default.createElement(HeaderBox, { header: "Hint" },
-                        react_1.default.createElement("p", null,
-                            "Je zal het rooster moeten afgaan (van links naar rechts en van boven naar onder) en zoeken naar het ",
-                            code(index),
-                            "-ste vakje waar ",
-                            code(`needsIndex`),
-                            " ",
-                            code(str(true)),
-                            " voor teruggeeft."))));
-                function sampleCrosswords() {
-                    const { width, height, at } = parseCrosswords([
-                        '...*.',
-                        '.*.*.',
-                        '.*...',
-                        '.***.',
-                        '.*...',
-                        '...**',
-                    ], indices);
-                    return (react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at }));
-                }
-            }
-            createExercise() {
-                return new class extends CodingExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.prototypeFunctionInformation = prototypeFunctionInformation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    get maximumScore() { return 3; }
-                    *generateTestCases() {
-                        const me = this;
-                        yield generateTestCase('invalid', [
-                            '.'
-                        ], 1);
-                        yield generateTestCase({ x: 0, y: 0 }, [
-                            '..'
-                        ], 1);
-                        yield generateTestCase('invalid', [
-                            '..'
-                        ], 2);
-                        for (const [i, x, y] of [
-                            [1, 0, 0],
-                            [2, 1, 0],
-                            [3, 2, 0],
-                            [4, 0, 1],
-                            [5, 0, 2],
-                        ]) {
-                            yield generateTestCase({ x, y }, [
-                                '...',
-                                '...',
-                                '...',
-                            ], i);
-                        }
-                        yield generateTestCase('invalid', [
-                            '...',
-                            '...',
-                            '...',
-                        ], 6);
-                        for (const [i, x, y] of [
-                            [1, 0, 0],
-                            [2, 2, 0],
-                            [3, 3, 0],
-                            [4, 4, 0],
-                            [5, 2, 1],
-                            [6, 0, 2],
-                            [7, 1, 2],
-                        ]) {
-                            yield generateTestCase({ x, y }, [
-                                '.....',
-                                '.*...',
-                                '.....',
-                                '.....',
-                            ], i);
-                        }
-                        function generateTestCase(expectedReturnValue, ...parameters) {
-                            return new class extends assertion_test_case_1.AssertionTestCase {
-                                constructor() {
-                                    super(...arguments);
-                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
-                                }
-                                get header() {
-                                    const [gridValue, indexValue] = parameters;
-                                    const { functionName } = me.prototypeFunctionInformation;
-                                    const { width, height, at } = parseCrosswords(gridValue);
-                                    const result = expectedReturnValue !== 'invalid' ? react_1.default.createElement(ObjectViewer, { object: expectedReturnValue }) : code(str(expectedReturnValue));
-                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
-                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
-                                            react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: grid },
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: index }, code(str(indexValue)))),
-                                            react_1.default.createElement(testcase_header_1.Expected, null,
-                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, result)))));
-                                }
-                                get assertion() {
-                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameterAssertion = ATF.Assertions.typedParameter(0, grid, ATF.Assertions.unmodified(parameters[0]));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movie, ATF.Assertions.unmodified(parameters[0]));
                                     return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
                                 }
                             };
@@ -1456,855 +1060,15 @@ async function createChapter(student) {
             }
         };
     }
-    async function clear() {
-        const prototype = function clear(grid) {
-            throw new Error(`Dummy implementation`);
-        };
-        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [grid] } = prototypeFunctionInformation;
-        const testedImplementation = student.typedFetch(functionName);
-        return new class extends exercise_section_1.ExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.prototypeFunctionInformation = prototypeFunctionInformation;
-                this.difficulty = 2;
-                this.testedImplementation = testedImplementation;
-            }
-            get description() {
-                return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: grid, type: 'string[]' }, "Een array van strings die een kruiswoordraadsel voorstelt."),
-                        react_1.default.createElement(ReturnValue, { type: 'string[]' },
-                            "Een versie van ",
-                            code(grid),
-                            " zonder letters.")),
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie die gegeven een mogelijk deels of volledig ingevuld kruiswoordraadsel alle letters eruit verwijderd. Elk vakje met een letter moet dus een leeg wit vakje worden, dewelke voorgesteld worden door een ",
-                        code(`"."`),
-                        ". Zwarte vakjes moeten behouden blijven. Geef het resultaat terug als een nieuwe array van strings."),
-                    react_1.default.createElement(HeaderBox, { header: "Hint" },
-                        react_1.default.createElement("p", null,
-                            "Merk op dat strings onwijzigbaar zijn: je kan dus niet de individuele letters van een string beginnen overschrijven met een ",
-                            code(`"."`),
-                            "."),
-                        react_1.default.createElement("p", null, "We raden je de volgende aanpak aan:"),
-                        react_1.default.createElement("ul", null,
-                            react_1.default.createElement("li", null,
-                                "Zet de strings eerst om naar arrays. Dit gaat met ",
-                                code(`[...string]`),
-                                ". Bijvoorbeeld, ",
-                                code(`[..."abc"]`),
-                                " geeft ",
-                                code(str(['a', 'b', 'c'])),
-                                "."),
-                            react_1.default.createElement("li", null, "Deze array van tekens kan je wel overschrijven. Vervang hierin de letters door puntjes."),
-                            react_1.default.createElement("li", null,
-                                "Voeg de arrays weer samen tot arrays met ",
-                                code(`join`),
-                                ". Bijvoorbeeld, ",
-                                code(`['a', 'b', 'c'].join('')`),
-                                " levert ",
-                                code(`"abc"`),
-                                " op.")),
-                        react_1.default.createElement("p", null, "Als we deze aanpak uitwerken op een concreet kruiswoordraadsel:"),
-                        react_1.default.createElement("ul", null,
-                            react_1.default.createElement("li", null,
-                                "We beginnen bijvoorbeeld met",
-                                renderers_1.renderSourceCode(str(['.*x', 'a*y', '...']))),
-                            react_1.default.createElement("li", null,
-                                "De strings omzetten naar arrays geeft",
-                                renderers_1.renderSourceCode(str([[...'.*x'], [...'a*y'], [...'...']]))),
-                            react_1.default.createElement("li", null,
-                                "We vervangen de letters door puntjes:",
-                                renderers_1.renderSourceCode(str([[...'.*.'], [...'.*.'], [...'...']]))),
-                            react_1.default.createElement("li", null,
-                                "We zetten de arrays terug om naar strings:",
-                                renderers_1.renderSourceCode(str(['.*.', '.*.', '...'])))),
-                        react_1.default.createElement("p", null, "We raden je tevens sterk aan om stapsgewijs te werken: implementeer het omzetten van strings naar arrays en test dan eerst of dit correct werkt in de console eer je begint aan de volgende stap."))));
-            }
-            createExercise() {
-                return new class extends CodingExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.prototypeFunctionInformation = prototypeFunctionInformation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    get maximumScore() { return 3; }
-                    *generateTestCases() {
-                        const me = this;
-                        yield generateTestCase([
-                            '.'
-                        ], [
-                            '.'
-                        ]);
-                        yield generateTestCase([
-                            '*'
-                        ], [
-                            '*'
-                        ]);
-                        yield generateTestCase([
-                            '.'
-                        ], [
-                            'A'
-                        ]);
-                        yield generateTestCase([
-                            '..'
-                        ], [
-                            '..'
-                        ]);
-                        yield generateTestCase([
-                            '*.'
-                        ], [
-                            '*.'
-                        ]);
-                        yield generateTestCase([
-                            '*.'
-                        ], [
-                            '*A'
-                        ]);
-                        yield generateTestCase([
-                            '..'
-                        ], [
-                            'XY'
-                        ]);
-                        yield generateTestCase([
-                            '.',
-                            '.',
-                        ], [
-                            '.',
-                            '.',
-                        ]);
-                        yield generateTestCase([
-                            '*',
-                            '.',
-                        ], [
-                            '*',
-                            '.',
-                        ]);
-                        yield generateTestCase([
-                            '.',
-                            '.',
-                        ], [
-                            '.',
-                            'A',
-                        ]);
-                        yield generateTestCase([
-                            '.',
-                            '.',
-                        ], [
-                            'F',
-                            'L',
-                        ]);
-                        yield generateTestCase([
-                            '..',
-                            '..',
-                        ], [
-                            '..',
-                            '..',
-                        ]);
-                        yield generateTestCase([
-                            '*.',
-                            '.*',
-                        ], [
-                            '*A',
-                            'B*',
-                        ]);
-                        yield generateTestCase([
-                            '.....',
-                            '.*...',
-                            '.*..*',
-                            '.*...',
-                        ], [
-                            'ABCDE',
-                            '.*...',
-                            '.*..*',
-                            '.*XYZ',
-                        ]);
-                        function generateTestCase(expectedReturnValue, ...parameters) {
-                            return new class extends assertion_test_case_1.AssertionTestCase {
-                                constructor() {
-                                    super(...arguments);
-                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
-                                }
-                                get header() {
-                                    const [gridValue] = parameters;
-                                    const { functionName } = me.prototypeFunctionInformation;
-                                    const { width, height, at } = parseCrosswords(gridValue);
-                                    const { width: width2, height: height2, at: at2 } = parseCrosswords(expectedReturnValue);
-                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
-                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
-                                            react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: grid },
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width, height: height, at: at }))),
-                                            react_1.default.createElement(testcase_header_1.Expected, null,
-                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: width2, height: height2, at: at2 }))))));
-                                }
-                                get assertion() {
-                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameterAssertion = ATF.Assertions.typedParameter(0, grid, ATF.Assertions.unmodified(parameters[0]));
-                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
-                                }
-                            };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function createGrid() {
-        const prototype = function createGrid(width, height, blockPositions) {
-            throw new Error(`Dummy implementation`);
-        };
-        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [width, height, blockPositions] } = prototypeFunctionInformation;
-        const testedImplementation = student.typedFetch(functionName);
-        return new class extends exercise_section_1.ExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.prototypeFunctionInformation = prototypeFunctionInformation;
-                this.difficulty = 2;
-                this.testedImplementation = testedImplementation;
-            }
-            get description() {
-                return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: width, type: 'number' }, "De breedte van het te maken kruiswoordraadsel."),
-                        react_1.default.createElement(Parameter, { name: height, type: 'number' }, "De hoogte van het te maken kruiswoordraadsel."),
-                        react_1.default.createElement(Parameter, { name: blockPositions, type: '{x, y}[]' },
-                            "Een array van ",
-                            code(`{x, y}`),
-                            "-objecten die aangeven waar de zwarte vakjes gepositioneerd staan."),
-                        react_1.default.createElement(ReturnValue, { type: 'string[]' },
-                            "Een array van strings dat een kruiswoordraadsel voorstelt met grootte ",
-                            code(width),
-                            "\u00D7",
-                            code(height),
-                            " waarbij op alle vakjes met posities ",
-                            code(blockPositions),
-                            " zwart zijn.")),
-                    react_1.default.createElement("p", null,
-                        "Schrijf een functie die een leeg kruiswoordraadsel aanmaakt waarbij de posities van de zwarte vakjes als een array ",
-                        code(`{x, y}`),
-                        "-position gegeven zijn."),
-                    react_1.default.createElement(HeaderBox, { header: "Hint" },
-                        react_1.default.createElement("p", null,
-                            "We raden je een gelijkaardige aanpak als in de vorige oefening: werk eerst met een array van arrays van tekens, wijzig deze naar believen en voeg de arrays van tekens samen tot strings d.m.v. ",
-                            code(`join`),
-                            "."))));
-            }
-            createExercise() {
-                return new class extends CodingExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.prototypeFunctionInformation = prototypeFunctionInformation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    get maximumScore() { return 3; }
-                    *generateTestCases() {
-                        const me = this;
-                        yield generateTestCase([
-                            '.'
-                        ], 1, 1, []);
-                        yield generateTestCase([
-                            '*'
-                        ], 1, 1, [{ x: 0, y: 0 }]);
-                        yield generateTestCase([
-                            '..'
-                        ], 2, 1, []);
-                        yield generateTestCase([
-                            '.',
-                            '.',
-                        ], 1, 2, []);
-                        yield generateTestCase([
-                            '*.'
-                        ], 2, 1, [{ x: 0, y: 0 }]);
-                        yield generateTestCase([
-                            '.*'
-                        ], 2, 1, [{ x: 1, y: 0 }]);
-                        yield generateTestCase([
-                            '**'
-                        ], 2, 1, [{ x: 0, y: 0 }, { x: 1, y: 0 }]);
-                        yield generateTestCase([
-                            '*',
-                            '.',
-                        ], 1, 2, [{ x: 0, y: 0 }]);
-                        yield generateTestCase([
-                            '.',
-                            '*',
-                        ], 1, 2, [{ x: 0, y: 1 }]);
-                        yield generateTestCase([
-                            '...',
-                            '*..',
-                        ], 3, 2, [{ x: 0, y: 1 }]);
-                        yield generateTestCase([
-                            '...',
-                            '.*.',
-                        ], 3, 2, [{ x: 1, y: 1 }]);
-                        yield generateTestCase([
-                            '..*',
-                            '.*.',
-                        ], 3, 2, [{ x: 1, y: 1 }, { x: 2, y: 0 }]);
-                        yield generateTestCase([
-                            '..*',
-                            '**.',
-                        ], 3, 2, [{ x: 1, y: 1 }, { x: 2, y: 0 }, { x: 0, y: 1 }]);
-                        function generateTestCase(expectedReturnValue, ...parameters) {
-                            return new class extends assertion_test_case_1.AssertionTestCase {
-                                constructor() {
-                                    super(...arguments);
-                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
-                                }
-                                get header() {
-                                    const [w, h, ps] = parameters;
-                                    const { functionName } = me.prototypeFunctionInformation;
-                                    const { width: w2, height: h2, at } = parseCrosswords(expectedReturnValue);
-                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
-                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
-                                            react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: width }, code(str(w))),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: height }, code(str(h))),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: blockPositions },
-                                                    react_1.default.createElement(array_viewer_1.ArrayViewer, { array: ps }))),
-                                            react_1.default.createElement(testcase_header_1.Expected, null,
-                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: w2, height: h2, at: at }))))));
-                                }
-                                get assertion() {
-                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameterAssertion = ATF.Assertions.typedParameter(2, blockPositions, ATF.Assertions.unmodified(parameters[2]));
-                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
-                                }
-                            };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    function* fits1Cases() {
-        yield [
-            '',
-            true,
-            [
-                '..'
-            ],
-            { x: 0, y: 0 }, 'AB'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '...'
-            ],
-            { x: 0, y: 0 }, 'ABC'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '....'
-            ],
-            { x: 0, y: 0 }, 'ABCD'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '....*'
-            ],
-            { x: 0, y: 0 }, 'ABCD'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '*....'
-            ],
-            { x: 1, y: 0 }, 'ABCD'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '...'
-            ],
-            { x: 1, y: 0 }, 'ABC'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '...'
-            ],
-            { x: 2, y: 0 }, 'ABC'
-        ];
-        yield [
-            'Valt buiten het kruiswoordraadsel',
-            false,
-            [
-                '...'
-            ],
-            { x: -1, y: 0 }, 'ABC'
-        ];
-        yield [
-            'Valt buiten het kruiswoordraadsel',
-            false,
-            [
-                '...'
-            ],
-            { x: 3, y: 0 }, 'ABC'
-        ];
-        yield [
-            'Valt buiten het kruiswoordraadsel',
-            false,
-            [
-                '...',
-                '...',
-            ],
-            { x: 0, y: -1 }, 'ABC'
-        ];
-        yield [
-            'Valt buiten het kruiswoordraadsel',
-            false,
-            [
-                '...',
-                '...',
-            ],
-            { x: 0, y: 2 }, 'ABC'
-        ];
-        yield [
-            'Woord te lang',
-            false,
-            [
-                '...'
-            ],
-            { x: 0, y: 0 }, 'ABCD'
-        ];
-        yield [
-            'Woord te kort',
-            false,
-            [
-                '....'
-            ],
-            { x: 0, y: 0 }, 'ABC'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '....',
-                '....',
-            ],
-            { x: 0, y: 0 }, 'XXXX'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '....*',
-                '*....',
-            ],
-            { x: 0, y: 0 }, 'FFFF'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '....*',
-                '*....',
-            ],
-            { x: 1, y: 1 }, 'AAAA'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '*....*',
-                '**....',
-            ],
-            { x: 1, y: 0 }, 'RSTU'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '*....*',
-                '**....',
-            ],
-            { x: 2, y: 1 }, 'AFAF'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '*....*',
-                '**....',
-            ],
-            { x: 0, y: 0 }, 'GQDS'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '*....*',
-                '**....',
-            ],
-            { x: 0, y: 1 }, 'FAZC'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '*....*',
-                '**....',
-            ],
-            { x: 0, y: 2 }, 'FFAA'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '*....*',
-                '**....',
-            ],
-            { x: 0, y: 2 }, 'FFAA'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.*.',
-            ],
-            { x: 0, y: 0 }, 'ABC'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.*.*',
-            ],
-            { x: 0, y: 0 }, 'ABC'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.*...',
-            ],
-            { x: 0, y: 0 }, 'AAAAA'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '..*..',
-            ],
-            { x: 0, y: 0 }, 'AAAAA'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '...*.',
-            ],
-            { x: 0, y: 0 }, 'AAAAA'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '*..*.',
-            ],
-            { x: 1, y: 0 }, 'AAAA'
-        ];
-    }
-    function* fits2Cases() {
-        for (const [caption, expected, puzzle, { x, y }, word] of fits1Cases()) {
-            yield [caption, expected, puzzle, { x, y }, true, word];
-            yield [caption, expected, transpose(puzzle), { x: y, y: x }, false, word];
+    async function categorize() {
+        function project({ title, runtime }) {
+            return { title, runtime };
         }
-    }
-    function* fits3Cases() {
-        yield [
-            '',
-            true,
-            [
-                'ABCDE'
-            ],
-            { x: 0, y: 0 }, true, 'ABCDE'
-        ];
-        yield [
-            '',
-            true,
-            [
-                'A',
-                'B',
-                'C',
-                'D',
-                'E',
-            ],
-            { x: 0, y: 0 }, false, 'ABCDE'
-        ];
-        yield [
-            'X zit in de weg',
-            false,
-            [
-                'ABXDE'
-            ],
-            { x: 0, y: 0 }, true, 'ABCDE'
-        ];
-        yield [
-            'X zit in de weg',
-            false,
-            [
-                'A',
-                'B',
-                'X',
-                'D',
-                'E',
-            ],
-            { x: 0, y: 0 }, false, 'ABCDE'
-        ];
-        yield [
-            '',
-            true,
-            [
-                'X.Y.Z'
-            ],
-            { x: 0, y: 0 }, true, 'XAYAZ'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 0 }, true, 'PAL'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 0 }, true, 'PBL'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 0 }, false, 'PAL'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 3, y: 1 }, false, 'OBO'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 3 }, true, 'TCKJO'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 3 }, true, 'TCKJOP'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 3 }, true, 'TPKJO'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 3 }, true, 'TCKJ'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 1, y: 3 }, true, 'CD'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 1, y: 3 }, false, 'CD'
-        ];
-        for (const args of fits2Cases()) {
-            yield args;
-        }
-    }
-    function* fits4Cases() {
-        yield [
-            '',
-            true,
-            [
-                'AbCdE'
-            ],
-            { x: 0, y: 0 }, true, 'abCDe'
-        ];
-        yield [
-            '',
-            true,
-            [
-                'A',
-                'b',
-                'c',
-                'd',
-                'E',
-            ],
-            { x: 0, y: 0 }, false, 'ABcDe'
-        ];
-        yield [
-            'X zit in de weg',
-            false,
-            [
-                'ABxDe'
-            ],
-            { x: 0, y: 0 }, true, 'ABCDE'
-        ];
-        yield [
-            'X zit in de weg',
-            false,
-            [
-                'a',
-                'b',
-                'X',
-                'D',
-                'E',
-            ],
-            { x: 0, y: 0 }, false, 'ABCde'
-        ];
-        yield [
-            '',
-            true,
-            [
-                'X.y.Z'
-            ],
-            { x: 0, y: 0 }, true, 'xAYAZ'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 0 }, true, 'pal'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 0 }, true, 'pbl'
-        ];
-        yield [
-            '',
-            false,
-            [
-                '.A.*.',
-                '.....',
-                '**.B.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 0, y: 0 }, false, 'PAL'
-        ];
-        yield [
-            '',
-            true,
-            [
-                '.A.*.',
-                '.....',
-                '**.b.',
-                '.C...',
-                '.D.**',
-            ],
-            { x: 3, y: 1 }, false, 'OBO'
-        ];
-        for (const args of fits3Cases()) {
-            yield args;
-        }
-    }
-    async function fits1() {
-        const prototype = function fits1(grid, position, word) {
+        const prototype = function categorize(movies) {
             throw new Error(`Dummy implementation`);
         };
         const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [grid, position, word] } = prototypeFunctionInformation;
+        const { functionName, signature, parameterNames: [movies] } = prototypeFunctionInformation;
         const testedImplementation = student.typedFetch(functionName);
         return new class extends exercise_section_1.ExerciseSection {
             constructor() {
@@ -2316,135 +1080,31 @@ async function createChapter(student) {
             get description() {
                 return (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: grid, type: 'string[]' }, "Een array van strings die een leeg kruiswoordraadsel voorstelt."),
-                        react_1.default.createElement(Parameter, { name: position, type: '{x, y}' }, "Positie van het vakje waar het woord begint."),
-                        react_1.default.createElement(Parameter, { name: word, type: 'string' }, "Het te plaatsen woord."),
-                        react_1.default.createElement(ReturnValue, { type: 'boolean' },
-                            code(str(true)),
-                            " indien het woord horizontaal geplaatst kan worden op de gegeven positie, ",
-                            code(str(false)),
-                            " in het andere geval.")),
+                        react_1.default.createElement(Parameter, { name: movies, type: 'object[]' }, "Een lijst films."),
+                        react_1.default.createElement(ReturnValue, { type: 'object' }, "Een object waarin filmtitels gecategoriseerd worden volgens lengte.")),
+                    react_1.default.createElement(banner_1.Banner, null, "Recursieve Vraag"),
                     react_1.default.createElement("p", null,
-                        "Schrijf een functie die nagaat of een woord op een gegeven positie ",
-                        react_1.default.createElement("em", null, "horizontaal"),
-                        " in het kruiswoordraadsel past. De volgende regels gelden:"),
-                    react_1.default.createElement("ul", null,
-                        react_1.default.createElement("li", null,
-                            code(position),
-                            " moet verwijzen naar een vakje waar een reeks witte vakjes ",
-                            react_1.default.createElement("em", null, "begint"),
-                            ". Met andere woorden, ",
-                            code(position),
-                            " mag niet verwijzen naar het midden of einde van een witte reeks."),
-                        react_1.default.createElement("li", null,
-                            "Voor elke letter van ",
-                            code(word),
-                            " moet er een wit vakje zijn."),
-                        react_1.default.createElement("li", null, "Er mogen geen witte vakjes te veel zijn. Het woord moet dus afgebakend worden door een zwart vakje oftewel de rand van het kruiswoordraadsel."))));
-            }
-            createExercise() {
-                return new class extends CodingExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.prototypeFunctionInformation = prototypeFunctionInformation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    get maximumScore() { return 3; }
-                    *generateTestCases() {
-                        const me = this;
-                        for (const params of fits1Cases()) {
-                            yield generateTestCase(...params);
-                        }
-                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
-                            return new class extends assertion_test_case_1.AssertionTestCase {
-                                constructor() {
-                                    super(...arguments);
-                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
-                                }
-                                get header() {
-                                    const [gridValue, pos, w] = parameters;
-                                    const { functionName } = me.prototypeFunctionInformation;
-                                    const { width: gw, height: gh, at } = parseCrosswords(gridValue);
-                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
-                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
-                                        caption,
-                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
-                                            react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: grid },
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: gw, height: gh, at: at })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: position },
-                                                    react_1.default.createElement(ObjectViewer, { object: pos })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: word }, code(str(w)))),
-                                            react_1.default.createElement(testcase_header_1.Expected, null,
-                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
-                                }
-                                get assertion() {
-                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameterAssertion = ATF.Assertions.typedParameter(2, grid, ATF.Assertions.unmodified(parameters[2]));
-                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
-                                }
-                            };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function fits2() {
-        const prototype = function fits2(grid, position, horizontal, word) {
-            throw new Error(`Dummy implementation`);
-        };
-        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [grid, position, horizontal, word] } = prototypeFunctionInformation;
-        const testedImplementation = student.typedFetch(functionName);
-        return new class extends exercise_section_1.ExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.prototypeFunctionInformation = prototypeFunctionInformation;
-                this.difficulty = 2;
-                this.testedImplementation = testedImplementation;
-            }
-            get description() {
-                return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: grid, type: 'string[]' }, "Een array van strings die een kruiswoordraadsel voorstelt."),
-                        react_1.default.createElement(Parameter, { name: position, type: '{x, y}' }, "Positie van het vakje waar het woord begint."),
-                        react_1.default.createElement(Parameter, { name: horizontal, type: 'boolean' },
-                            code(str(true)),
-                            " voor horizontale plaatsing, ",
-                            code(str(false)),
-                            " voor verticale."),
-                        react_1.default.createElement(Parameter, { name: word, type: 'string' }, "Het te plaatsen woord."),
-                        react_1.default.createElement(ReturnValue, { type: 'boolean' },
-                            code(str(true)),
-                            " indien het woord geplaatst kan worden op de gegeven positie, ",
-                            code(str(false)),
-                            " in het andere geval.")),
-                    react_1.default.createElement("p", null,
-                        "We bouwen voort op de vorige oefening. Kopieer de code naar een nieuwe functie genaamd ",
+                        "Schrijf een recursieve functie ",
                         code(functionName),
-                        ". Merk ook op dat er een extra parameter werd toegevoegd."),
-                    react_1.default.createElement("p", null,
-                        "We herhalen de regels die moeten gelden. ",
-                        react_1.default.createElement(Change, null, "Nieuwe regels hebben deze opmaak.")),
+                        " die films categoriseert volgens hun lengte. Het resultaat moet in een object bewaard worden. In dit object komen de categorie\u00EBn voor als keys en zijn de corresponderende values arrays met filmtitels in. Deze filmtitels moeten gesorteerd zijn."),
                     react_1.default.createElement("ul", null,
                         react_1.default.createElement("li", null,
-                            code(position),
-                            " moet verwijzen naar een vakje waar een reeks witte vakjes ",
-                            react_1.default.createElement("em", null, "begint"),
-                            ". Met andere woorden, ",
-                            code(position),
-                            " mag niet verwijzen naar het midden of einde van een witte reeks."),
+                            "Categorie ",
+                            code(`short`),
+                            ": films die strikt minder dan 90 minuten duren."),
                         react_1.default.createElement("li", null,
-                            react_1.default.createElement(Change, null,
-                                "Naargelang de waarde van ",
-                                code(horizontal),
-                                " moet het woord horizontaal of verticaal geplaatst worden.")),
+                            "Categorie ",
+                            code(`medium`),
+                            ": films die minstens 90 minuten duren, maar strikt minder dan 150 minuten."),
                         react_1.default.createElement("li", null,
-                            "Voor elke letter van ",
-                            code(word),
-                            " moet er een wit vakje zijn."),
-                        react_1.default.createElement("li", null, "Er mogen geen witte vakjes te veel zijn. Het woord moet dus afgebakend worden door een zwart vakje oftewel de rand van het kruiswoordraadsel."))));
+                            "Categorie ",
+                            code(`long`),
+                            ": films die minstens 150 minuten duren.")),
+                    react_1.default.createElement(HeaderBox, { header: "Hint" },
+                        react_1.default.createElement("p", null,
+                            "Gebruik de ingebouwde ",
+                            code(`sort`),
+                            " methode om te sorteren."))));
             }
             createExercise() {
                 return new class extends CodingExercise {
@@ -2456,9 +1116,56 @@ async function createChapter(student) {
                     get maximumScore() { return 2; }
                     *generateTestCases() {
                         const me = this;
-                        for (const args of fits2Cases()) {
-                            yield generateTestCase(...args);
-                        }
+                        yield generateTestCase('', {
+                            short: [],
+                            medium: [],
+                            long: [],
+                        }, [].map(project));
+                        yield generateTestCase('', {
+                            short: [data_1.library.liarLiar.title],
+                            medium: [],
+                            long: [],
+                        }, [data_1.library.liarLiar].map(project));
+                        yield generateTestCase('', {
+                            short: [],
+                            medium: [data_1.library.handmaiden.title],
+                            long: [],
+                        }, [data_1.library.handmaiden].map(project));
+                        yield generateTestCase('', {
+                            short: [],
+                            medium: [],
+                            long: [data_1.library.heat.title],
+                        }, [data_1.library.heat].map(project));
+                        yield generateTestCase('', {
+                            short: [],
+                            medium: [],
+                            long: [data_1.library.heat.title, data_1.library.magnolia.title],
+                        }, [data_1.library.heat, data_1.library.magnolia].map(project));
+                        yield generateTestCase('', {
+                            short: [],
+                            medium: [],
+                            long: [data_1.library.heat.title, data_1.library.magnolia.title],
+                        }, [data_1.library.magnolia, data_1.library.heat].map(project));
+                        yield generateTestCase('', {
+                            short: [data_1.library.phoneBooth.title],
+                            medium: [data_1.library.requiem.title],
+                            long: [data_1.library.boogie.title],
+                        }, [data_1.library.boogie, data_1.library.phoneBooth, data_1.library.requiem].map(project));
+                        yield generateTestCase('', {
+                            short: [data_1.library.koyaanisqatsi.title, data_1.library.phoneBooth.title],
+                            medium: [data_1.library.goodfellas.title, data_1.library.requiem.title],
+                            long: [data_1.library.boogie.title],
+                        }, [data_1.library.boogie, data_1.library.phoneBooth, data_1.library.requiem, data_1.library.goodfellas, data_1.library.koyaanisqatsi].map(project));
+                        yield generateTestCase('', {
+                            short: [data_1.library.koyaanisqatsi.title, data_1.library.phoneBooth.title],
+                            medium: [data_1.library.goodfellas.title, data_1.library.requiem.title],
+                            long: [data_1.library.boogie.title, data_1.library.casino.title],
+                        }, [data_1.library.boogie, data_1.library.phoneBooth, data_1.library.requiem, data_1.library.goodfellas, data_1.library.koyaanisqatsi, data_1.library.casino].map(project));
+                        yield generateTestCase('', {
+                            short: [data_1.library.koyaanisqatsi.title, data_1.library.phoneBooth.title],
+                            medium: [data_1.library.blackSwan.title, data_1.library.goodfellas.title, data_1.library.requiem.title],
+                            long: [data_1.library.boogie.title, data_1.library.casino.title],
+                        }, [data_1.library.boogie, data_1.library.phoneBooth, data_1.library.requiem, data_1.library.goodfellas, data_1.library.koyaanisqatsi, data_1.library.casino, data_1.library.blackSwan].map(project));
                         function generateTestCase(captionText, expectedReturnValue, ...parameters) {
                             return new class extends assertion_test_case_1.AssertionTestCase {
                                 constructor() {
@@ -2466,26 +1173,22 @@ async function createChapter(student) {
                                     this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
                                 }
                                 get header() {
-                                    const [gridValue, pos, h, w] = parameters;
+                                    const [moviesv] = parameters;
                                     const { functionName } = me.prototypeFunctionInformation;
-                                    const { width: gw, height: gh, at } = parseCrosswords(gridValue);
                                     const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
                                     return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
                                         caption,
                                         react_1.default.createElement(testcase_header_1.Horizontal, null,
                                             react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: grid },
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: gw, height: gh, at: at })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: position },
-                                                    react_1.default.createElement(ObjectViewer, { object: pos })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: horizontal }, code(str(h))),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: word }, code(str(w)))),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(movies_viewer_1.MoviesViewer, { movies: moviesv }))),
                                             react_1.default.createElement(testcase_header_1.Expected, null,
-                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(ObjectViewer, { object: expectedReturnValue }))))));
                                 }
                                 get assertion() {
                                     const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameterAssertion = ATF.Assertions.typedParameter(2, grid, ATF.Assertions.unmodified(parameters[2]));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
                                     return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
                                 }
                             };
@@ -2495,226 +1198,15 @@ async function createChapter(student) {
             }
         };
     }
-    async function fits3() {
-        const prototype = function fits3(grid, position, horizontal, word) {
+    async function moviesWithActor() {
+        function project({ title, actors }) {
+            return { title, actors };
+        }
+        const prototype = function moviesWithActor(movies, actor) {
             throw new Error(`Dummy implementation`);
         };
         const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [grid, position, horizontal, word] } = prototypeFunctionInformation;
-        const testedImplementation = student.typedFetch(functionName);
-        return new class extends exercise_section_1.ExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.prototypeFunctionInformation = prototypeFunctionInformation;
-                this.difficulty = 1;
-                this.testedImplementation = testedImplementation;
-            }
-            get description() {
-                return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: grid, type: 'string[]' }, "Een array van strings die een kruiswoordraadsel voorstelt."),
-                        react_1.default.createElement(Parameter, { name: position, type: '{x, y}' }, "Positie van het vakje waar het woord begint."),
-                        react_1.default.createElement(Parameter, { name: horizontal, type: 'boolean' },
-                            code(str(true)),
-                            " voor horizontale plaatsing, ",
-                            code(str(false)),
-                            " voor verticale."),
-                        react_1.default.createElement(Parameter, { name: word, type: 'string' }, "Het te plaatsen woord."),
-                        react_1.default.createElement(ReturnValue, { type: 'boolean' },
-                            code(str(true)),
-                            " indien het woord geplaatst kan worden op de gegeven positie, ",
-                            code(str(false)),
-                            " in het andere geval.")),
-                    react_1.default.createElement("p", null, "Schrijf een functie die nagaat of een woord op een gegeven positie in het kruiswoordraadsel past. De volgende regels gelden:"),
-                    react_1.default.createElement("ul", null,
-                        react_1.default.createElement("li", null,
-                            code(position),
-                            " moet verwijzen naar een vakje waar een reeks witte vakjes ",
-                            react_1.default.createElement("em", null, "begint"),
-                            ". Met andere woorden, ",
-                            code(position),
-                            " mag niet verwijzen naar het midden of einde van een witte reeks."),
-                        react_1.default.createElement("li", null,
-                            "Naargelang de waarde van ",
-                            code(horizontal),
-                            " moet het woord horizontaal of verticaal geplaatst worden."),
-                        react_1.default.createElement("li", null,
-                            "Voor elke letter van ",
-                            code(word),
-                            " moet er een wit vakje zijn."),
-                        react_1.default.createElement("li", null, "Er mogen geen witte vakjes te veel zijn. Het woord moet dus afgebakend worden door een zwart vakje oftewel de rand van het kruiswoordraadsel."),
-                        react_1.default.createElement("li", null,
-                            react_1.default.createElement(Change, null,
-                                "Mogelijk zijn er reeds letters ingevuld in het kruiswoordraadsel. Deze moet gelijk zijn aan de overeenkomstige letter van ",
-                                code(word),
-                                ".")))));
-            }
-            createExercise() {
-                return new class extends CodingExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.prototypeFunctionInformation = prototypeFunctionInformation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    get maximumScore() { return 1; }
-                    *generateTestCases() {
-                        const me = this;
-                        for (const args of fits3Cases()) {
-                            yield generateTestCase(...args);
-                        }
-                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
-                            return new class extends assertion_test_case_1.AssertionTestCase {
-                                constructor() {
-                                    super(...arguments);
-                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
-                                }
-                                get header() {
-                                    const [gridValue, pos, h, w] = parameters;
-                                    const { functionName } = me.prototypeFunctionInformation;
-                                    const { width: gw, height: gh, at } = parseCrosswords(gridValue);
-                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
-                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
-                                        caption,
-                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
-                                            react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: grid },
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: gw, height: gh, at: at })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: position },
-                                                    react_1.default.createElement(ObjectViewer, { object: pos })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: horizontal }, code(str(h))),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: word }, code(str(w)))),
-                                            react_1.default.createElement(testcase_header_1.Expected, null,
-                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
-                                }
-                                get assertion() {
-                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameterAssertion = ATF.Assertions.typedParameter(2, grid, ATF.Assertions.unmodified(parameters[2]));
-                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
-                                }
-                            };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function fits4() {
-        const prototype = function fits4(grid, position, horizontal, word) {
-            throw new Error(`Dummy implementation`);
-        };
-        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [grid, position, horizontal, word] } = prototypeFunctionInformation;
-        const testedImplementation = student.typedFetch(functionName);
-        return new class extends exercise_section_1.ExerciseSection {
-            constructor() {
-                super(...arguments);
-                this.prototypeFunctionInformation = prototypeFunctionInformation;
-                this.difficulty = 1;
-                this.testedImplementation = testedImplementation;
-            }
-            get description() {
-                return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: grid, type: 'string[]' }, "Een array van strings die een kruiswoordraadsel voorstelt."),
-                        react_1.default.createElement(Parameter, { name: position, type: '{x, y}' }, "Positie van het vakje waar het woord begint."),
-                        react_1.default.createElement(Parameter, { name: horizontal, type: 'boolean' },
-                            code(str(true)),
-                            " voor horizontale plaatsing, ",
-                            code(str(false)),
-                            " voor verticale."),
-                        react_1.default.createElement(Parameter, { name: word, type: 'string' }, "Het te plaatsen woord."),
-                        react_1.default.createElement(ReturnValue, { type: 'boolean' },
-                            code(str(true)),
-                            " indien het woord geplaatst kan worden op de gegeven positie, ",
-                            code(str(false)),
-                            " in het andere geval.")),
-                    react_1.default.createElement("p", null, "Schrijf een functie die nagaat of een woord op een gegeven positie in het kruiswoordraadsel past. De volgende regels gelden:"),
-                    react_1.default.createElement("ul", null,
-                        react_1.default.createElement("li", null,
-                            code(position),
-                            " moet verwijzen naar een vakje waar een reeks witte vakjes ",
-                            react_1.default.createElement("em", null, "begint"),
-                            ". Met andere woorden, ",
-                            code(position),
-                            " mag niet verwijzen naar het midden of einde van een witte reeks."),
-                        react_1.default.createElement("li", null,
-                            "Naargelang de waarde van ",
-                            code(horizontal),
-                            " moet het woord horizontaal of verticaal geplaatst worden."),
-                        react_1.default.createElement("li", null,
-                            "Voor elke letter van ",
-                            code(word),
-                            " moet er een wit vakje zijn."),
-                        react_1.default.createElement("li", null, "Er mogen geen witte vakjes te veel zijn. Het woord moet dus afgebakend worden door een zwart vakje oftewel de rand van het kruiswoordraadsel."),
-                        react_1.default.createElement("li", null,
-                            "Mogelijk zijn er reeds letters ingevuld in het kruiswoordraadsel. Deze moet gelijk zijn aan de overeenkomstige letter van ",
-                            code(word),
-                            "."),
-                        react_1.default.createElement("li", null,
-                            react_1.default.createElement(Change, null,
-                                "De functie werkt hoofdletter",
-                                react_1.default.createElement("em", null, "on"),
-                                "gevoelig: indien een vakje reeds een ",
-                                code(`A`),
-                                " bevat, dan is een ",
-                                code(`a`),
-                                " hier compatibel mee.")))));
-            }
-            createExercise() {
-                return new class extends CodingExercise {
-                    constructor() {
-                        super(...arguments);
-                        this.prototypeFunctionInformation = prototypeFunctionInformation;
-                        this.testedImplementation = testedImplementation;
-                    }
-                    get maximumScore() { return 1; }
-                    *generateTestCases() {
-                        const me = this;
-                        for (const args of fits4Cases()) {
-                            yield generateTestCase(...args);
-                        }
-                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
-                            return new class extends assertion_test_case_1.AssertionTestCase {
-                                constructor() {
-                                    super(...arguments);
-                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
-                                }
-                                get header() {
-                                    const [gridValue, pos, h, w] = parameters;
-                                    const { functionName } = me.prototypeFunctionInformation;
-                                    const { width: gw, height: gh, at } = parseCrosswords(gridValue);
-                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
-                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
-                                        caption,
-                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
-                                            react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: grid },
-                                                    react_1.default.createElement(crossword_viewer_1.CrosswordViewer, { width: gw, height: gh, at: at })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: position },
-                                                    react_1.default.createElement(ObjectViewer, { object: pos })),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: horizontal }, code(str(h))),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: word }, code(str(w)))),
-                                            react_1.default.createElement(testcase_header_1.Expected, null,
-                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
-                                }
-                                get assertion() {
-                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
-                                    const parameterAssertion = ATF.Assertions.typedParameter(2, grid, ATF.Assertions.unmodified(parameters[2]));
-                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
-                                }
-                            };
-                        }
-                    }
-                };
-            }
-        };
-    }
-    async function eraseAt() {
-        const prototype = function eraseAt(string, indices) {
-            throw new Error(`Dummy implementation`);
-        };
-        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
-        const { functionName, signature, parameterNames: [string, indices] } = prototypeFunctionInformation;
+        const { functionName, signature, parameterNames: [movies, actor] } = prototypeFunctionInformation;
         const testedImplementation = student.typedFetch(functionName);
         return new class extends exercise_section_1.ExerciseSection {
             constructor() {
@@ -2725,66 +1217,191 @@ async function createChapter(student) {
             }
             get description() {
                 return (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(banner_1.Banner, null, "\u261E Recursievraag \u261C"),
                     react_1.default.createElement(FunctionSummary, { signature: signature },
-                        react_1.default.createElement(Parameter, { name: string, type: 'string' }, "Een string waarin bepaalde tekens moeten vervangen worden."),
-                        react_1.default.createElement(Parameter, { name: indices, type: 'number[]' },
-                            "Array van geldige indices van de tekens in ",
-                            code(string),
-                            " die vervangen moeten worden. De indices kunnen in willekeurige volgorde of zelfs meermaals voorkomen."),
-                        react_1.default.createElement(ReturnValue, { type: 'string' },
-                            code(string),
-                            " waarbij alle tekens waarvan de index voorkomt in ",
-                            code(indices),
-                            " vervangen werden door een punt (",
-                            code('.'),
-                            ").")),
+                        react_1.default.createElement(Parameter, { name: movies, type: 'object[]' }, "Een lijst van filmobjecten."),
+                        react_1.default.createElement(Parameter, { name: actor, type: 'string' }, "Een acteur."),
+                        react_1.default.createElement(ReturnValue, { type: 'string[]' }, "De titels van de films waarin de gegeven acteur voorkomt.")),
                     react_1.default.createElement("p", null,
-                        "Schrijf een ",
-                        react_1.default.createElement("em", null, "recursieve"),
-                        " functie ",
-                        code(signature),
-                        " die bepaalde tekens uit de gegeven string ",
-                        code(string),
-                        " vervangt door een punt (",
-                        code(`.`),
-                        "). Welke tekens moeten vervangen worden wordt bepaald door ",
-                        code(indices),
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die de titels van de films teruggeeft waarin de gegeven acteur meespeelt. De filmtitels moeten in dezelfde volgorde voorkomen als in ",
+                        code(movies),
+                        ".")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 2; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', [], [].map(project), data_1.actors.deniro);
+                        yield generateTestCase('', [data_1.library.onceamerica.title], [data_1.library.onceamerica].map(project), data_1.actors.deniro);
+                        yield generateTestCase('', [], [data_1.library.oncewest].map(project), data_1.actors.deniro);
+                        yield generateTestCase('', [data_1.library.onceamerica.title], [data_1.library.oncewest, data_1.library.onceamerica].map(project), data_1.actors.deniro);
+                        yield generateTestCase('', [data_1.library.casino.title, data_1.library.onceamerica.title], [data_1.library.casino, data_1.library.oncewest, data_1.library.onceamerica].map(project), data_1.actors.deniro);
+                        yield generateTestCase('', [data_1.library.casino.title, data_1.library.onceamerica.title, data_1.library.goodfellas.title], [data_1.library.casino, data_1.library.oncewest, data_1.library.onceamerica, data_1.library.goodfellas].map(project), data_1.actors.deniro);
+                        yield generateTestCase('', [data_1.library.heat.title], [data_1.library.heat].map(project), data_1.actors.pacino);
+                        yield generateTestCase('', [data_1.library.heat.title], [data_1.library.heat, data_1.library.munich].map(project), data_1.actors.pacino);
+                        yield generateTestCase('', [data_1.library.heat.title, data_1.library.irishman.title], [data_1.library.heat, data_1.library.munich, data_1.library.irishman].map(project), data_1.actors.pacino);
+                        yield generateTestCase('', [], [data_1.library.boogie].map(project), data_1.actors.sheen);
+                        yield generateTestCase('', [data_1.library.catchMe.title], [data_1.library.boogie, data_1.library.catchMe].map(project), data_1.actors.sheen);
+                        yield generateTestCase('', [data_1.library.catchMe.title, data_1.library.departed.title], [data_1.library.boogie, data_1.library.catchMe, data_1.library.departed].map(project), data_1.actors.sheen);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [moviesv, actorv] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(movies_viewer_1.MoviesViewer, { movies: moviesv })),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: actor }, code(str(actorv)))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function moviesByActor() {
+        function project({ title, actors }) {
+            return { title, actors };
+        }
+        const prototype = function moviesByActor(movies) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [movies] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: movies, type: 'object[]' }, "Een lijst van filmobjecten."),
+                        react_1.default.createElement(ReturnValue, { type: 'string[]' }, "Een object waarvan de keys acteurs zijn en de corresponderende value een array van filmtitels is waarin de desbetreffende acteur meespeelt.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die voor elke acteur de filmographie opstelt. Het resultaat moet als een object teruggegeven worden waarbij alle acteurs voorkomen als keys en de overeenkomstige value een array van films is waarin de acteur meespeelt. De films moeten in dezelfde volgorde voorkomen als in het argument ",
+                        code(movies),
                         "."),
                     react_1.default.createElement(HeaderBox, { header: "Hint" },
-                        react_1.default.createElement("p", null,
-                            "Strings zijn ",
-                            react_1.default.createElement("em", null, "immutable"),
-                            ", wat betekent dat je ze niet kunt aanpassen. Om het teken op index ",
-                            code(`i`),
-                            " aan te passen kan je als volgt te werk:"),
-                        react_1.default.createElement("ul", null,
-                            react_1.default.createElement("li", null,
-                                "Neem de substring links van index ",
-                                code(`i`),
-                                ". Noem dit ",
-                                code(`left`),
-                                "."),
-                            react_1.default.createElement("li", null,
-                                "Neem de substring rechts van index ",
-                                code(`i`),
-                                ". Noem dit ",
-                                code(`right`),
-                                "."),
-                            react_1.default.createElement("li", null,
-                                "Voeg de stukken weer samen: ",
-                                code("`${left}${replacement}${right}`"),
-                                ".")),
-                        react_1.default.createElement("p", null,
-                            "Het opvragen van een substring doe je met de ",
-                            code(`substring`),
-                            "-methode van strings: ",
-                            code(`string.substring(i, j)`),
-                            " geeft de substring beginnende op index ",
-                            code(`i`),
-                            " gaande tot index ",
-                            code(`j`),
-                            " (tot, niet tot en met)."))));
+                        react_1.default.createElement("p", null, "Hint: begin met het verzamelen van alle acteurs. Ga dan deze acteurs om beurt af en verzamel zijn/haar films. Herbruik eerder gemaakte functionaliteit."))));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 3; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', {}, [].map(project));
+                        yield generateTestCase('', { [data_1.actors.hanks]: [data_1.library.terminal.title] }, [data_1.library.terminal].map(project));
+                        yield generateTestCase('', { [data_1.actors.hanks]: [data_1.library.terminal.title], [data_1.actors.cruise]: [data_1.library.warWorlds.title] }, [data_1.library.terminal, data_1.library.warWorlds].map(project));
+                        yield generateTestCase('', {
+                            [data_1.actors.dicaprio]: [data_1.library.departed.title],
+                            [data_1.actors.sheen]: [data_1.library.departed.title],
+                            [data_1.actors.nicholson]: [data_1.library.departed.title],
+                            [data_1.actors.wahlberg]: [data_1.library.departed.title],
+                            [data_1.actors.damon]: [data_1.library.departed.title],
+                        }, [data_1.library.departed].map(project));
+                        yield generateTestCase('', {
+                            [data_1.actors.deniro]: [data_1.library.casino.title, data_1.library.goodfellas.title, data_1.library.ragingBull.title],
+                            [data_1.actors.pesci]: [data_1.library.casino.title, data_1.library.goodfellas.title, data_1.library.ragingBull.title],
+                            [data_1.actors.stone]: [data_1.library.casino.title],
+                            [data_1.actors.liotta]: [data_1.library.goodfellas.title],
+                        }, [data_1.library.casino, data_1.library.goodfellas, data_1.library.ragingBull].map(project));
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [moviesv] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(movies_viewer_1.MoviesViewer, { movies: moviesv }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(ObjectViewer, { object: expectedReturnValue }))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function formatTime() {
+        const prototype = function formatTime(runtime) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [runtime] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: runtime, type: 'number' }, "Een duur in minuten."),
+                        react_1.default.createElement(ReturnValue, { type: 'string' }, "De duur in stringformaat.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die, gegeven de duur van een film in minuten, deze omzet naar een string ",
+                        code(`<H>h <M>min`),
+                        " waarbij ",
+                        code(`<H>`),
+                        " het aantal uur voorstelt en ",
+                        code(`<H>`),
+                        " het aantal minuten. Indien de film minder lang duurt dan een uur, moet de functie enkel het aantal minuten teruggeven: ",
+                        code(`<M> min`),
+                        ".")));
             }
             createExercise() {
                 return new class extends CodingExercise {
@@ -2796,49 +1413,569 @@ async function createChapter(student) {
                     get maximumScore() { return 2; }
                     *generateTestCases() {
                         const me = this;
-                        yield generateTestCase('', '', []);
-                        yield generateTestCase('A', 'A', []);
-                        yield generateTestCase('.', 'A', [0]);
-                        yield generateTestCase('.', 'A', [0, 0]);
-                        yield generateTestCase('AB', 'AB', []);
-                        yield generateTestCase('.B', 'AB', [0]);
-                        yield generateTestCase('A.', 'AB', [1]);
-                        yield generateTestCase('..', 'AB', [0, 1]);
-                        yield generateTestCase('..', 'AB', [1, 0]);
-                        yield generateTestCase('.B', 'AB', [0, 0]);
-                        yield generateTestCase('A.', 'AB', [1, 1]);
-                        yield generateTestCase('..', 'AB', [0, 1, 0]);
-                        yield generateTestCase('..', 'AB', [0, 1, 0, 1]);
-                        yield generateTestCase('..', 'AB', [0, 1, 0, 1, 0, 1]);
-                        yield generateTestCase('ABCDEF', 'ABCDEF', []);
-                        yield generateTestCase('A.CDEF', 'ABCDEF', [1]);
-                        yield generateTestCase('A.C.EF', 'ABCDEF', [1, 3]);
-                        yield generateTestCase('A.C.E.', 'ABCDEF', [1, 3, 5]);
-                        yield generateTestCase('A.C.E.', 'ABCDEF', [1, 5, 3]);
-                        yield generateTestCase('A.C.E.', 'ABCDEF', [5, 3, 1]);
-                        yield generateTestCase('A.C.E.', 'ABCDEF', [3, 1, 5]);
-                        yield generateTestCase('A.C.E.', 'ABCDEF', [1, 1, 3, 5, 3, 5]);
-                        yield generateTestCase('AB.D.F', 'ABCDEF', [4, 2]);
-                        function generateTestCase(expectedReturnValue, ...parameters) {
+                        yield generateTestCase('', `0min`, 0);
+                        yield generateTestCase('', `1min`, 1);
+                        yield generateTestCase('', `2min`, 2);
+                        yield generateTestCase('', `1h 0min`, 60);
+                        yield generateTestCase('', `1h 1min`, 61);
+                        yield generateTestCase('', `2h 0min`, 120);
+                        yield generateTestCase('', `2h 3min`, 123);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
                             return new class extends assertion_test_case_1.AssertionTestCase {
                                 constructor() {
                                     super(...arguments);
                                     this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
                                 }
                                 get header() {
-                                    const [s, is] = parameters;
+                                    const [runtimev] = parameters;
                                     const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
                                     return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
                                         react_1.default.createElement(testcase_header_1.Horizontal, null,
                                             react_1.default.createElement(testcase_header_1.Inputs, null,
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: string }, code(str(s))),
-                                                react_1.default.createElement(testcase_header_1.Argument, { name: indices }, code(str(is)))),
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: runtime }, code(str(runtimev)))),
                                             react_1.default.createElement(testcase_header_1.Expected, null,
                                                 react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
                                 }
                                 get assertion() {
                                     const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
                                     return ATF.Assertions.sequence([returnValueAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function directors() {
+        function project({ title, director }) {
+            return { title, director };
+        }
+        const prototype = function directors(movies) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [movies] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: movies, type: 'object[]' }, "Een array film-objecten."),
+                        react_1.default.createElement(ReturnValue, { type: 'string[]' }, "Een lijst van alle regisseurs zonder duplicaten.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die alle regisseurs verzamelt uit de gegeven lijst films en teruggeeft als een array. Elke regisseur mag slechts \u00E9\u00E9n keer voorkomen. De volgorde waarin de regisseurs voorkomen maakt niets uit.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 2; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', [], [].map(project));
+                        yield generateTestCase('', [data_1.library.goodfellas.director], [data_1.library.goodfellas].map(project));
+                        yield generateTestCase('', [data_1.library.goodfellas.director], [data_1.library.goodfellas, data_1.library.casino].map(project));
+                        yield generateTestCase('', [data_1.library.goodfellas.director, data_1.library.warWorlds.director], [data_1.library.goodfellas, data_1.library.warWorlds].map(project));
+                        yield generateTestCase('', [data_1.library.goodfellas.director, data_1.library.warWorlds.director, data_1.library.gbu.director], [data_1.library.goodfellas, data_1.library.warWorlds, data_1.library.gbu].map(project));
+                        yield generateTestCase('', [data_1.library.oldboy.director, data_1.library.warWorlds.director, data_1.library.requiem.director], [data_1.library.oldboy, data_1.library.warWorlds, data_1.library.requiem].map(project));
+                        yield generateTestCase('', [data_1.library.oldboy.director, data_1.library.requiem.director], [data_1.library.oldboy, data_1.library.blackSwan, data_1.library.requiem].map(project));
+                        yield generateTestCase('', [data_1.library.oncewest.director], [data_1.library.oncewest, data_1.library.onceamerica, data_1.library.gbu].map(project));
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [moviesv] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(movies_viewer_1.MoviesViewer, { movies: moviesv }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.permutation(expectedReturnValue));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function actorsExercise() {
+        function project({ title, actors }) {
+            return { title, actors };
+        }
+        const prototype = function actors(movies) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [movies] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: movies, type: 'object[]' }, "Een array film-objecten."),
+                        react_1.default.createElement(ReturnValue, { type: 'string[]' }, "Een lijst van alle acteurs zonder duplicaten.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die alle acteurs verzamelt uit de gegeven lijst films en teruggeeft als een array. Elke acteur mag slechts \u00E9\u00E9n keer voorkomen. De volgorde waarin de acteurs voorkomen maakt niets uit.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 2; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', [], [].map(project));
+                        yield generateTestCase('', [...data_1.library.goodfellas.actors], [data_1.library.goodfellas].map(project));
+                        yield generateTestCase('', [data_1.actors.deniro, data_1.actors.pesci, data_1.actors.liotta, data_1.actors.stone], [data_1.library.goodfellas, data_1.library.casino].map(project));
+                        yield generateTestCase('', [data_1.actors.deniro, data_1.actors.pesci, data_1.actors.liotta, data_1.actors.cruise], [data_1.library.goodfellas, data_1.library.warWorlds].map(project));
+                        yield generateTestCase('', [data_1.actors.deniro, data_1.actors.pesci, data_1.actors.liotta, data_1.actors.cruise, data_1.actors.eastwood, data_1.actors.vancleef, data_1.actors.wallach], [data_1.library.goodfellas, data_1.library.warWorlds, data_1.library.gbu].map(project));
+                        yield generateTestCase('', [data_1.actors.choi, data_1.actors.yoo, data_1.actors.cruise, data_1.actors.connelly, data_1.actors.leto], [data_1.library.oldboy, data_1.library.warWorlds, data_1.library.requiem].map(project));
+                        yield generateTestCase('', [data_1.actors.choi, data_1.actors.yoo, data_1.actors.connelly, data_1.actors.leto, data_1.actors.portman, data_1.actors.kunis, data_1.actors.ryder], [data_1.library.oldboy, data_1.library.blackSwan, data_1.library.requiem].map(project));
+                        yield generateTestCase('', [data_1.actors.bronson, data_1.actors.fonda, data_1.actors.robards, data_1.actors.pesci, data_1.actors.deniro, data_1.actors.woods, data_1.actors.connelly, data_1.actors.eastwood, data_1.actors.vancleef, data_1.actors.wallach], [data_1.library.oncewest, data_1.library.onceamerica, data_1.library.gbu].map(project));
+                        yield generateTestCase('', [data_1.actors.deniro, data_1.actors.pesci, data_1.actors.stone, data_1.actors.woods, data_1.actors.connelly], [data_1.library.casino, data_1.library.onceamerica].map(project));
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [moviesv] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(movies_viewer_1.MoviesViewer, { movies: moviesv }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.permutation(expectedReturnValue));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function actorWithMostMovies() {
+        function project({ title, actors }) {
+            return { title, actors };
+        }
+        const prototype = function actorWithMostMovies(movies) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [movies] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: movies, type: 'object[]' }, "Een lijst filmobjecten."),
+                        react_1.default.createElement(ReturnValue, { type: 'string' }, "De acteur die gespeeld heeft in de meeste films.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die de acteur teruggeeft die meespeelt in het meest aantal films. Je kan ervan uitgaan dat er geen gelijkstand voorkomt.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 3; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', data_1.actors.eastwood, [data_1.library.fistful].map(project));
+                        yield generateTestCase('', data_1.actors.eastwood, [data_1.library.fistful, data_1.library.dollarsmore].map(project));
+                        yield generateTestCase('', data_1.actors.eastwood, [data_1.library.fistful, data_1.library.dollarsmore, data_1.library.gbu].map(project));
+                        yield generateTestCase('', data_1.actors.eastwood, [data_1.library.gbu, data_1.library.fistful, data_1.library.dollarsmore].map(project));
+                        yield generateTestCase('', data_1.actors.cruise, [data_1.library.magnolia, data_1.library.warWorlds].map(project));
+                        yield generateTestCase('', data_1.actors.connelly, [data_1.library.onceamerica, data_1.library.requiem].map(project));
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [moviesv] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(movies_viewer_1.MoviesViewer, { movies: moviesv }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function longestMovie() {
+        function project({ title, runtime }) {
+            return { title, runtime };
+        }
+        const prototype = function longestMovie(movies) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [movies] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: movies, type: 'object[]' }, "Een lijst filmobjecten."),
+                        react_1.default.createElement(ReturnValue, { type: 'string' }, "De titel van de langst durende film.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die titel teruggeeft van de film met de langste duur. Je kan ervan uitgaan dat er geen gelijkstand voorkomt.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 2; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', data_1.library.heat.title, [data_1.library.heat].map(project));
+                        yield generateTestCase('', data_1.library.casino.title, [data_1.library.casino, data_1.library.shutterIsland].map(project));
+                        yield generateTestCase('', data_1.library.casino.title, [data_1.library.casino, data_1.library.shutterIsland].map(project));
+                        yield generateTestCase('', data_1.library.gangs.title, [data_1.library.blackSwan, data_1.library.gangs, data_1.library.koyaanisqatsi].map(project));
+                        yield generateTestCase('', data_1.library.magnolia.title, [data_1.library.magnolia, data_1.library.blood, data_1.library.master, data_1.library.boogie].map(project));
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [moviesv] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(movies_viewer_1.MoviesViewer, { movies: moviesv }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function totalMinutesDirected() {
+        function project({ title, director, runtime }) {
+            return { title, director, runtime };
+        }
+        const prototype = function totalMinutesDirected(movies) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [movies] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: movies, type: 'object[]' }, "Een lijst filmobjecten."),
+                        react_1.default.createElement(ReturnValue, { type: 'string' }, "Een object dat regisseurs associeert met de som van de duur van hun films.")),
+                    react_1.default.createElement("p", null,
+                        "Schrijf een functie ",
+                        code(functionName),
+                        " die per regisseur de totale duur van hun films uitrekent. Het resultaat moet voorgesteld worden door een object met regisseurs als keys en totaal duur als values.")));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 3; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', {
+                            [dirs.mann]: data_1.library.heat.runtime,
+                        }, [data_1.library.heat].map(project));
+                        yield generateTestCase('', {
+                            [dirs.mann]: data_1.library.heat.runtime,
+                            [dirs.spielberg]: data_1.library.munich.runtime,
+                        }, [data_1.library.heat, data_1.library.munich].map(project));
+                        yield generateTestCase('', {
+                            [dirs.mann]: data_1.library.heat.runtime,
+                            [dirs.spielberg]: data_1.library.munich.runtime,
+                            [dirs.scorsese]: data_1.library.departed.runtime,
+                        }, [data_1.library.heat, data_1.library.munich, data_1.library.departed].map(project));
+                        yield generateTestCase('', {
+                            [dirs.mann]: data_1.library.heat.runtime,
+                            [dirs.spielberg]: data_1.library.munich.runtime + data_1.library.terminal.runtime,
+                            [dirs.scorsese]: data_1.library.departed.runtime,
+                        }, [data_1.library.heat, data_1.library.munich, data_1.library.departed, data_1.library.terminal].map(project));
+                        yield generateTestCase('', {
+                            [dirs.mann]: data_1.library.heat.runtime,
+                            [dirs.spielberg]: data_1.library.munich.runtime + data_1.library.terminal.runtime,
+                            [dirs.scorsese]: data_1.library.departed.runtime + data_1.library.taxiDriver.runtime,
+                        }, [data_1.library.heat, data_1.library.munich, data_1.library.departed, data_1.library.terminal, data_1.library.taxiDriver].map(project));
+                        yield generateTestCase('', {
+                            [dirs.mann]: data_1.library.heat.runtime,
+                            [dirs.spielberg]: data_1.library.munich.runtime + data_1.library.terminal.runtime,
+                            [dirs.scorsese]: data_1.library.departed.runtime + data_1.library.taxiDriver.runtime + data_1.library.gangs.runtime,
+                        }, [data_1.library.heat, data_1.library.munich, data_1.library.departed, data_1.library.terminal, data_1.library.taxiDriver, data_1.library.gangs].map(project));
+                        yield generateTestCase('', {
+                            [dirs.leone]: data_1.library.onceamerica.runtime + data_1.library.oncewest.runtime
+                        }, [data_1.library.onceamerica, data_1.library.oncewest].map(project));
+                        yield generateTestCase('', {
+                            [dirs.leone]: data_1.library.onceamerica.runtime + data_1.library.oncewest.runtime + data_1.library.gbu.runtime
+                        }, [data_1.library.onceamerica, data_1.library.oncewest, data_1.library.gbu].map(project));
+                        yield generateTestCase('', {
+                            [dirs.leone]: data_1.library.onceamerica.runtime + data_1.library.oncewest.runtime + data_1.library.gbu.runtime,
+                            [dirs.aronofsky]: data_1.library.blackSwan.runtime,
+                        }, [data_1.library.onceamerica, data_1.library.blackSwan, data_1.library.oncewest, data_1.library.gbu].map(project));
+                        yield generateTestCase('', {
+                            [dirs.leone]: data_1.library.onceamerica.runtime + data_1.library.oncewest.runtime + data_1.library.gbu.runtime,
+                            [dirs.aronofsky]: data_1.library.blackSwan.runtime + data_1.library.requiem.runtime,
+                        }, [data_1.library.onceamerica, data_1.library.blackSwan, data_1.library.requiem, data_1.library.oncewest, data_1.library.gbu].map(project));
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [moviesv] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(movies_viewer_1.MoviesViewer, { movies: moviesv }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null,
+                                                    react_1.default.createElement(ObjectViewer, { object: expectedReturnValue }))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
+                                }
+                            };
+                        }
+                    }
+                };
+            }
+        };
+    }
+    async function extractTitle() {
+        const prototype = function extractTitle(poster) {
+            throw new Error(`Dummy implementation`);
+        };
+        const prototypeFunctionInformation = ATF.Functional.parseFunction(prototype);
+        const { functionName, signature, parameterNames: [movies] } = prototypeFunctionInformation;
+        const testedImplementation = student.typedFetch(functionName);
+        return new class extends exercise_section_1.ExerciseSection {
+            constructor() {
+                super(...arguments);
+                this.prototypeFunctionInformation = prototypeFunctionInformation;
+                this.difficulty = 2;
+                this.testedImplementation = testedImplementation;
+            }
+            get description() {
+                return (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(FunctionSummary, { signature: signature },
+                        react_1.default.createElement(Parameter, { name: movies, type: 'string[]' }, "De regels tekst op de poster."),
+                        react_1.default.createElement(ReturnValue, { type: 'string' }, "De titel van de film op de poster.")),
+                    react_1.default.createElement("p", null, "Je krijgt een poster waarop de titel van de film staat. De poster bestaat uit meerdere regels tekst die we voorstellen als een array strings. De woorden uit de filmtitel staan verspreid over deze regels:"),
+                    react_1.default.createElement("ul", null,
+                        react_1.default.createElement("li", null, "Een regel kan nul of meer woorden bevatten."),
+                        react_1.default.createElement("li", null, "Woorden op eenzelfde regel kunnen gescheiden worden door een willekeurig aantal spaties, d.i. een of meer."),
+                        react_1.default.createElement("li", null, "Voor en na de woorden op een regel kunnen een willekeurig aantal spaties voorkomen.")),
+                    react_1.default.createElement("p", null,
+                        "De functie ",
+                        code(functionName),
+                        " moet de woorden op de poster terugvinden en deze samenvoegen tot een enkele string waarbij de woorden in de juiste volgorde voorkomen en door exact een enkele spatie gescheiden worden."),
+                    react_1.default.createElement(HeaderBox, { header: "Hint" },
+                        react_1.default.createElement("p", null,
+                            "De ",
+                            code(str('split')),
+                            "-methode van strings zou van pas kunnen komen."))));
+            }
+            createExercise() {
+                return new class extends CodingExercise {
+                    constructor() {
+                        super(...arguments);
+                        this.prototypeFunctionInformation = prototypeFunctionInformation;
+                        this.testedImplementation = testedImplementation;
+                    }
+                    get maximumScore() { return 3; }
+                    *generateTestCases() {
+                        const me = this;
+                        yield generateTestCase('', "Oldboy", [
+                            "Oldboy",
+                        ]);
+                        yield generateTestCase('', "Oldboy", [
+                            " Oldboy ",
+                        ]);
+                        yield generateTestCase('', "The Nice Guys", [
+                            "The Nice Guys",
+                        ]);
+                        yield generateTestCase('', "The Nice Guys", [
+                            " The Nice Guys ",
+                        ]);
+                        yield generateTestCase('', "The Nice Guys", [
+                            "  The  Nice  Guys  ",
+                        ]);
+                        yield generateTestCase('', "Oldboy", [
+                            "        ",
+                            "        ",
+                            " Oldboy ",
+                            "        ",
+                            "        ",
+                        ]);
+                        yield generateTestCase('', "The Nice Guys", [
+                            "                   ",
+                            "  The  Nice  Guys  ",
+                        ]);
+                        yield generateTestCase('', "The Nice Guys", [
+                            "  The  Nice  Guys  ",
+                            "                   ",
+                        ]);
+                        yield generateTestCase('', "The Nice Guys", [
+                            "                   ",
+                            "  The  Nice  Guys  ",
+                            "                   ",
+                        ]);
+                        yield generateTestCase('', "The Nice Guys", [
+                            " The  ",
+                            " Nice ",
+                            " Guys ",
+                        ]);
+                        yield generateTestCase('', "The Other Guys", [
+                            " The   ",
+                            " Other ",
+                            "  Guys ",
+                        ]);
+                        yield generateTestCase('', "The Other Guys", [
+                            "   The ",
+                            " Other ",
+                            " Guys  ",
+                        ]);
+                        function generateTestCase(captionText, expectedReturnValue, ...parameters) {
+                            return new class extends assertion_test_case_1.AssertionTestCase {
+                                constructor() {
+                                    super(...arguments);
+                                    this.functionCallResults = me.testedImplementation.lift(f => ATF.Functional.typedCallFunction(f, ...parameters));
+                                }
+                                get header() {
+                                    const [posterv] = parameters;
+                                    const { functionName } = me.prototypeFunctionInformation;
+                                    const caption = captionText.length > 0 ? react_1.default.createElement(testcase_header_1.Caption, null, captionText) : react_1.default.createElement(react_1.default.Fragment, null);
+                                    return (react_1.default.createElement(testcase_header_1.TestcaseHeader, null,
+                                        caption,
+                                        react_1.default.createElement(testcase_header_1.Horizontal, null,
+                                            react_1.default.createElement(testcase_header_1.Inputs, null,
+                                                react_1.default.createElement(testcase_header_1.Argument, { name: movies },
+                                                    react_1.default.createElement(array_viewer_1.ArrayViewer, { array: posterv }))),
+                                            react_1.default.createElement(testcase_header_1.Expected, null,
+                                                react_1.default.createElement(testcase_header_1.ReturnValue, null, code(str(expectedReturnValue)))))));
+                                }
+                                get assertion() {
+                                    const returnValueAssertion = ATF.Assertions.typedReturnValue(ATF.Assertions.equality(expectedReturnValue, maybe_1.Maybe.nothing()));
+                                    const parameterAssertion = ATF.Assertions.typedParameter(0, movies, ATF.Assertions.unmodified(parameters[0]));
+                                    return ATF.Assertions.sequence([returnValueAssertion, parameterAssertion]);
                                 }
                             };
                         }
@@ -2856,7 +1993,7 @@ start();
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2869,7 +2006,7 @@ start();
  * LICENSE file in the root directory of this source tree.
  */
 
-var l=__webpack_require__(8),n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.forward_ref"):60112,y=n?Symbol.for("react.suspense"):60113,z=n?Symbol.for("react.memo"):60115,A=n?Symbol.for("react.lazy"):
+var l=__webpack_require__(10),n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.forward_ref"):60112,y=n?Symbol.for("react.suspense"):60113,z=n?Symbol.for("react.memo"):60115,A=n?Symbol.for("react.lazy"):
 60116,B="function"===typeof Symbol&&Symbol.iterator;function C(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}
 var D={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},E={};function F(a,b,c){this.props=a;this.context=b;this.refs=E;this.updater=c||D}F.prototype.isReactComponent={};F.prototype.setState=function(a,b){if("object"!==typeof a&&"function"!==typeof a&&null!=a)throw Error(C(85));this.updater.enqueueSetState(this,a,b,"setState")};F.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function G(){}G.prototype=F.prototype;function H(a,b,c){this.props=a;this.context=b;this.refs=E;this.updater=c||D}var I=H.prototype=new G;I.constructor=H;l(I,F.prototype);I.isPureReactComponent=!0;var J={current:null},K=Object.prototype.hasOwnProperty,L={key:!0,ref:!0,__self:!0,__source:!0};
@@ -2888,7 +2025,7 @@ exports.useLayoutEffect=function(a,b){return Z().useLayoutEffect(a,b)};exports.u
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2985,7 +2122,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3022,7 +2159,7 @@ exports.ExerciseSection = ExerciseSection;
 
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 (function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
@@ -3140,7 +2277,7 @@ eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var 
 /******/ })));
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3189,67 +2326,7 @@ exports.AssertionTestCase = AssertionTestCase;
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.renderSourceCode = exports.renderArrayAsVerticalTable = void 0;
-const react_1 = __importDefault(__webpack_require__(1));
-const ATF = __importStar(__webpack_require__(0));
-const algo_testing_framework_1 = __webpack_require__(0);
-const code = ATF.Formatters.Jsx.code;
-const str = ATF.Formatters.String.convertToString;
-const RowTable = algo_testing_framework_1.styled.table `
-    border-collapse: collapse;
-    & td {
-        padding: 5px;
-    }
-`;
-function renderArrayAsVerticalTable(xs, render) {
-    if (xs.length === 0) {
-        return code(str([]));
-    }
-    else {
-        return (react_1.default.createElement(RowTable, null,
-            react_1.default.createElement("tbody", null, xs.map(x => react_1.default.createElement("tr", null,
-                react_1.default.createElement("td", null, render(x)))))));
-    }
-}
-exports.renderArrayAsVerticalTable = renderArrayAsVerticalTable;
-function renderSourceCode(sourceCode) {
-    const sc = new algo_testing_framework_1.SourceCode(ATF.Language.JavaScript, sourceCode).beautify();
-    return (react_1.default.createElement("div", { style: { width: '80%', margin: '1em auto' } },
-        react_1.default.createElement(ATF.Components.SourceCodeViewer, { sourceCode: sc })));
-}
-exports.renderSourceCode = renderSourceCode;
-
-
-/***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3285,250 +2362,30 @@ exports.Banner = Banner;
 
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ArrayViewer = void 0;
-const react_1 = __importDefault(__webpack_require__(1));
-const ATF = __importStar(__webpack_require__(0));
-const js_algorithms_1 = __webpack_require__(3);
-const algo_testing_framework_1 = __webpack_require__(0);
-const ArrayTable = algo_testing_framework_1.styled.table `
-    border-collapse: collapse;
-
-    td {
-        border: 1px solid black;
-    }
-
-    td.index {
-        min-width: 2em;
-        text-align: center;
-        background: #999;
-    }
-
-    td.value {
-        min-width: 2em;
-        text-align: center;
-        padding: 5px;
-    }
-`;
-const Empty = algo_testing_framework_1.styled.div `
-    font-family: 'Courier New', Courier, monospace;
-`;
-function defaultRenderer(x) {
-    return ATF.Formatters.Jsx.code(ATF.Formatters.String.convertToString(x));
-}
-class ArrayViewer extends react_1.default.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        if (this.props.array.length === 0) {
-            return this.renderEmptyArray();
-        }
-        else {
-            return this.renderNonEmptyArray();
-        }
-    }
-    renderEmptyArray() {
-        return react_1.default.createElement(Empty, null, "[]");
-    }
-    getIndexRange() {
-        const start = this.props.startIndex;
-        const end = this.props.endIndex || this.props.array.length;
-        return js_algorithms_1.range(start, end);
-    }
-    renderNonEmptyArray() {
-        const rows = this.getIndexRange().map(index => {
-            const elt = this.props.array[index];
-            const jsx = (this.props.render || defaultRenderer)(elt);
-            return (react_1.default.createElement("tr", { key: index },
-                react_1.default.createElement("td", { className: "index" }, index),
-                react_1.default.createElement("td", { className: "value" }, jsx)));
-        });
-        return (react_1.default.createElement(ArrayTable, { className: this.props.className },
-            react_1.default.createElement("tbody", null, rows)));
-    }
-}
-exports.ArrayViewer = ArrayViewer;
-ArrayViewer.defaultProps = {
-    render: defaultRenderer,
-    startIndex: 0
-};
-
-
-/***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CrosswordViewer = exports.whiteCell = exports.blackCell = void 0;
-const react_1 = __importDefault(__webpack_require__(1));
-const algo_testing_framework_1 = __webpack_require__(0);
-const grid_viewer_1 = __webpack_require__(16);
-exports.blackCell = () => ({ tag: 'black' });
-exports.whiteCell = (contents, index) => ({ tag: 'white', index, contents });
-const Cell = algo_testing_framework_1.styled.div `
-    width: ${p => p.size};
-    height: ${p => p.size};
-    user-select: none;
-`;
-const BlackCell = algo_testing_framework_1.styled(Cell) `
-    background: black;
-`;
-const WhiteCell = algo_testing_framework_1.styled(Cell) `
-    background: white;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #AAF;
-`;
-const WhiteCellIndex = algo_testing_framework_1.styled.span `
-    position: absolute;
-    font-size: 75%;
-    left: 0;
-    top: 0;
-    padding: 1px;
-`;
-const WhiteCellLetter = algo_testing_framework_1.styled.span `
-    font-weight: bold;
-`;
-class CrosswordViewer extends react_1.default.Component {
-    constructor() {
-        super(...arguments);
-        this.renderCell = (row, col) => {
-            const value = this.props.at(row, col);
-            if (value.tag === 'black') {
-                return this.renderBlackCell();
-            }
-            else {
-                return this.renderWhiteCell(value);
-            }
-        };
-        this.renderBlackCell = () => {
-            return (react_1.default.createElement(BlackCell, { size: this.props.cellSize }));
-        };
-        this.renderWhiteCell = (cell) => {
-            return (react_1.default.createElement(WhiteCell, { size: this.props.cellSize },
-                this.renderIndex(cell.index),
-                this.renderLetter(cell.contents)));
-        };
-        this.renderIndex = (index) => {
-            if (index) {
-                return (react_1.default.createElement(WhiteCellIndex, null, index));
-            }
-            else {
-                return react_1.default.createElement(react_1.default.Fragment, null);
-            }
-        };
-        this.renderLetter = (letter) => {
-            if (letter.length > 0) {
-                return (react_1.default.createElement(WhiteCellLetter, null, letter));
-            }
-            else {
-                return react_1.default.createElement(react_1.default.Fragment, null);
-            }
-        };
-    }
-    render() {
-        return (react_1.default.createElement(grid_viewer_1.GridViewer, { width: this.props.width, height: this.props.height, render: this.renderCell }));
-    }
-}
-exports.CrosswordViewer = CrosswordViewer;
-CrosswordViewer.defaultProps = { cellSize: '2em' };
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GridViewer = void 0;
-const react_1 = __importDefault(__webpack_require__(1));
-const js_algorithms_1 = __webpack_require__(3);
-const algo_testing_framework_1 = __webpack_require__(0);
-const Table = algo_testing_framework_1.styled.table `
-    border-collapse: collapse;
-`;
-const TableCell = algo_testing_framework_1.styled.td `
-
-`;
-class GridViewer extends react_1.default.Component {
-    constructor() {
-        super(...arguments);
-        this.renderRows = () => js_algorithms_1.range(0, this.props.height).map(this.renderRow);
-        this.renderRow = (row) => (react_1.default.createElement("tr", { key: row }, js_algorithms_1.range(0, this.props.width).map(col => this.renderCell(row, col))));
-        this.renderCell = (row, col) => (react_1.default.createElement("td", { key: col }, this.props.render(row, col)));
-    }
-    render() {
-        return (react_1.default.createElement(Table, { className: this.props.className },
-            react_1.default.createElement("tbody", null, this.renderRows())));
-    }
-}
-exports.GridViewer = GridViewer;
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var testcase_header_1 = __webpack_require__(18);
+var testcase_header_1 = __webpack_require__(16);
 Object.defineProperty(exports, "TestcaseHeader", { enumerable: true, get: function () { return testcase_header_1.TestcaseHeader; } });
-var caption_1 = __webpack_require__(19);
+var caption_1 = __webpack_require__(17);
 Object.defineProperty(exports, "Caption", { enumerable: true, get: function () { return caption_1.Caption; } });
-var argument_1 = __webpack_require__(20);
+var argument_1 = __webpack_require__(18);
 Object.defineProperty(exports, "Argument", { enumerable: true, get: function () { return argument_1.Argument; } });
-var arguments_1 = __webpack_require__(21);
+var arguments_1 = __webpack_require__(19);
 Object.defineProperty(exports, "Inputs", { enumerable: true, get: function () { return arguments_1.Arguments; } });
-var expected_1 = __webpack_require__(22);
+var expected_1 = __webpack_require__(20);
 Object.defineProperty(exports, "Expected", { enumerable: true, get: function () { return expected_1.Expected; } });
-var return_value_1 = __webpack_require__(23);
+var return_value_1 = __webpack_require__(21);
 Object.defineProperty(exports, "ReturnValue", { enumerable: true, get: function () { return return_value_1.ReturnValue; } });
 var horizontal_1 = __webpack_require__(4);
 Object.defineProperty(exports, "Horizontal", { enumerable: true, get: function () { return horizontal_1.Horizontal; } });
 
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3559,7 +2416,7 @@ exports.TestcaseHeader = TestcaseHeader;
 
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3577,7 +2434,7 @@ const Container = algo_testing_framework_1.styled.div `
     margin-bottom: 0.2em;
     color: white;
     background: black;
-    padding: 2px;
+    padding: 2px 0.5em;
 `;
 class Caption extends react_1.default.Component {
     constructor(props) {
@@ -3591,7 +2448,7 @@ exports.Caption = Caption;
 
 
 /***/ }),
-/* 20 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3625,7 +2482,7 @@ exports.Argument = Argument;
 
 
 /***/ }),
-/* 21 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3643,7 +2500,7 @@ class Arguments extends react_1.default.Component {
         super(props);
     }
     render() {
-        return (react_1.default.createElement(header_box_1.HeaderBox, { className: this.props.className, caption: "Parameters" },
+        return (react_1.default.createElement(header_box_1.HeaderBox, { className: this.props.className, caption: "Arguments" },
             react_1.default.createElement(horizontal_1.Horizontal, { center: true }, this.props.children)));
     }
 }
@@ -3651,7 +2508,7 @@ exports.Arguments = Arguments;
 
 
 /***/ }),
-/* 22 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3662,14 +2519,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Expected = void 0;
 const react_1 = __importDefault(__webpack_require__(1));
+const algo_testing_framework_1 = __webpack_require__(0);
 const header_box_1 = __webpack_require__(2);
 const horizontal_1 = __webpack_require__(4);
+const StyledHeaderBox = algo_testing_framework_1.styled(header_box_1.HeaderBox) `
+    margin-left: 1em;
+`;
 class Expected extends react_1.default.Component {
     constructor(props) {
         super(props);
     }
     render() {
-        return (react_1.default.createElement(header_box_1.HeaderBox, { className: this.props.className, caption: "Expected" },
+        return (react_1.default.createElement(StyledHeaderBox, { className: this.props.className, caption: "Expected" },
             react_1.default.createElement(horizontal_1.Horizontal, { center: true }, this.props.children)));
     }
 }
@@ -3677,7 +2538,7 @@ exports.Expected = Expected;
 
 
 /***/ }),
-/* 23 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3711,15 +2572,388 @@ exports.ReturnValue = ReturnValue;
 
 
 /***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "solutions.js");
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GridViewer = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+const js_algorithms_1 = __webpack_require__(5);
+const algo_testing_framework_1 = __webpack_require__(0);
+const Table = algo_testing_framework_1.styled.table `
+    border-collapse: collapse;
+`;
+const TableCell = algo_testing_framework_1.styled.td `
+
+`;
+class GridViewer extends react_1.default.Component {
+    constructor() {
+        super(...arguments);
+        this.renderRows = () => js_algorithms_1.range(0, this.props.height).map(this.renderRow);
+        this.renderRow = (row) => (react_1.default.createElement("tr", { key: row }, js_algorithms_1.range(0, this.props.width).map(col => this.renderCell(row, col))));
+        this.renderCell = (row, col) => (react_1.default.createElement("td", { key: col }, this.props.render(row, col)));
+    }
+    render() {
+        return (react_1.default.createElement(Table, { className: this.props.className },
+            react_1.default.createElement("tbody", null, this.renderRows())));
+    }
+}
+exports.GridViewer = GridViewer;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Center = void 0;
+const react_1 = __importDefault(__webpack_require__(1));
+function Center(props) {
+    return (react_1.default.createElement("div", { style: { display: 'flex', justifyContent: 'center', flexDirection: 'row', margin: '1em' } }, props.children));
+}
+exports.Center = Center;
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.objectMap = exports.library = exports.actors = exports.directors = void 0;
+exports.directors = {
+    anderson: 'Paul Thomas Anderson',
+    spielberg: 'Steven Spielberg',
+    kubrick: 'Stanley Kubrick',
+    scorsese: 'Martin Scorsese',
+    leone: 'Sergio Leone',
+    eastwood: 'Clint Eastwood',
+    aronofsky: 'Darren Aronofsky',
+    park: 'Chan-Wook Park',
+    reggio: 'Godfrey Reggio',
+    mann: 'Michael Mann',
+    dudokdewit: 'Michael Dudok de Wit',
+    schumacher: 'Joel Schumacher',
+    shadyac: 'Tom Shadyac',
+};
+exports.actors = {
+    hoffman: 'Philip Seymour Hoffman',
+    robards: 'Jason Robards',
+    vancleef: 'Lee Van Cleef',
+    wallach: 'Eli Wallach',
+    bronson: 'Charles Bronson',
+    fonda: 'Henry Fonda',
+    eastwood: 'Clint Eastwood',
+    macy: 'William H. Macy',
+    moore: 'Julianne Moore',
+    cruise: 'Tom Cruise',
+    hall: 'Philip Backer Hall',
+    deniro: 'Robert De Niro',
+    woods: 'James Woods',
+    connelly: 'Jennifer Connelly',
+    pesci: 'Joe Pesci',
+    leto: 'Jared Leto',
+    choi: 'Min-sik Choi',
+    yoo: 'Yoo Ji-Tae',
+    liotta: 'Ray Liotta',
+    stone: 'Sharon Stone',
+    dicaprio: 'Leonarde DiCaprio',
+    ruffalo: 'Mark Ruffalo',
+    foster: 'Jodie Foster',
+    keitel: 'Harvey Keitel',
+    hanks: 'Tom Hanks',
+    walken: 'Christopher Walken',
+    sheen: 'Martin Sheen',
+    diaz: 'Cameron Diaz',
+    daylewis: 'Daniel Day Lewis',
+    phoenix: 'Joaquin Phoenix',
+    wahlberg: 'Mark Wahlberg',
+    reynolds: 'Burt Reynolds',
+    creilly: 'John C. Reilly',
+    portman: 'Natalie Portman',
+    kunis: 'Mila Kunis',
+    ryder: 'Winona Ryder',
+    pacino: 'Al Pacino',
+    kilmer: 'Val Kilmer',
+    lee: 'Yeong-ae Lee',
+    kimMinHee: 'Min-hee Kim',
+    kimTaeRi: 'Tae-ri Kim',
+    ha: 'Jung-woo Ha',
+    rush: 'Geoffrey Rush',
+    bana: 'Eric Bana',
+    craig: 'Daniel Craig',
+    nicholson: 'Jack Nicholson',
+    damon: 'Matt Damon',
+    farrell: 'Colin Farrell',
+    carrey: 'Jim Carrey',
+};
+exports.library = {
+    magnolia: {
+        title: 'Magnolia',
+        director: exports.directors.anderson,
+        actors: [exports.actors.hoffman, exports.actors.robards, exports.actors.macy, exports.actors.moore, exports.actors.cruise, exports.actors.hall, exports.actors.creilly],
+        runtime: 188,
+    },
+    blood: {
+        title: 'There Will Be Blood',
+        director: exports.directors.anderson,
+        actors: [exports.actors.daylewis],
+        runtime: 120 + 38,
+    },
+    master: {
+        title: 'The Master',
+        director: exports.directors.anderson,
+        actors: [exports.actors.hoffman, exports.actors.phoenix],
+        runtime: 138,
+    },
+    boogie: {
+        title: 'Boogie Nights',
+        director: exports.directors.anderson,
+        actors: [exports.actors.hoffman, exports.actors.macy, exports.actors.wahlberg, exports.actors.moore, exports.actors.reynolds, exports.actors.creilly],
+        runtime: 120 + 35,
+    },
+    fistful: {
+        title: 'A Fistful of Dollars',
+        director: exports.directors.leone,
+        actors: [exports.actors.eastwood],
+        runtime: 60 + 39,
+    },
+    dollarsmore: {
+        title: 'For A Few Dollars More',
+        director: exports.directors.leone,
+        actors: [exports.actors.eastwood, exports.actors.vancleef],
+        runtime: 120 + 12,
+    },
+    gbu: {
+        title: 'The Good, the Bad and the Ugly',
+        director: exports.directors.leone,
+        actors: [exports.actors.eastwood, exports.actors.vancleef, exports.actors.wallach],
+        runtime: 120 + 12,
+    },
+    oncewest: {
+        title: 'Once Upon a Time in the West',
+        director: exports.directors.leone,
+        actors: [exports.actors.bronson, exports.actors.fonda, exports.actors.robards],
+        runtime: 120 + 12,
+    },
+    onceamerica: {
+        title: 'Once Upon a Time in America',
+        director: exports.directors.leone,
+        actors: [exports.actors.deniro, exports.actors.woods, exports.actors.connelly, exports.actors.pesci],
+        runtime: 180 + 49,
+    },
+    requiem: {
+        title: 'Requiem for a Dream',
+        director: exports.directors.aronofsky,
+        actors: [exports.actors.connelly, exports.actors.leto],
+        runtime: 102,
+    },
+    oldboy: {
+        title: 'Oldboy',
+        director: exports.directors.park,
+        actors: [exports.actors.choi, exports.actors.yoo],
+        runtime: 120,
+    },
+    koyaanisqatsi: {
+        title: 'Koyaanisqatsi',
+        director: exports.directors.reggio,
+        actors: [],
+        runtime: 86,
+    },
+    goodfellas: {
+        title: 'Goodfellas',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.deniro, exports.actors.pesci, exports.actors.liotta],
+        runtime: 146,
+    },
+    casino: {
+        title: 'Casino',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.deniro, exports.actors.pesci, exports.actors.stone],
+        runtime: 178,
+    },
+    irishman: {
+        title: 'The Irishman',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.deniro, exports.actors.pesci, exports.actors.pacino],
+        runtime: 180 + 29,
+    },
+    shutterIsland: {
+        title: 'Shutter Island',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.dicaprio, exports.actors.ruffalo],
+        runtime: 138,
+    },
+    capeFear: {
+        title: 'Cape Fear',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.deniro],
+        runtime: 138,
+    },
+    taxiDriver: {
+        title: 'Taxi Driver',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.deniro, exports.actors.foster, exports.actors.keitel],
+        runtime: 114,
+    },
+    meanStreets: {
+        title: 'Mean Streets',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.deniro, exports.actors.keitel],
+        runtime: 112,
+    },
+    ragingBull: {
+        title: 'Raging Bull',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.deniro, exports.actors.pesci],
+        runtime: 112,
+    },
+    catchMe: {
+        title: 'Catch Me If You Can',
+        director: exports.directors.spielberg,
+        actors: [exports.actors.dicaprio, exports.actors.hanks, exports.actors.walken, exports.actors.sheen],
+        runtime: 120 + 21,
+    },
+    gangs: {
+        title: 'Gangs of New York',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.dicaprio, exports.actors.diaz, exports.actors.daylewis],
+        runtime: 120 + 47,
+    },
+    warWorlds: {
+        title: 'War of the Worlds',
+        director: exports.directors.spielberg,
+        actors: [exports.actors.cruise],
+        runtime: 116,
+    },
+    blackSwan: {
+        title: 'Black Swan',
+        director: exports.directors.aronofsky,
+        actors: [exports.actors.portman, exports.actors.kunis, exports.actors.ryder],
+        runtime: 60 + 48,
+    },
+    heat: {
+        title: 'Heat',
+        director: exports.directors.mann,
+        actors: [exports.actors.pacino, exports.actors.deniro, exports.actors.portman, exports.actors.kilmer],
+        runtime: 170,
+    },
+    ladyVengeance: {
+        title: 'Sympathy for Lady Vengeance',
+        director: exports.directors.park,
+        actors: [exports.actors.lee, exports.actors.choi],
+        runtime: 115,
+    },
+    handmaiden: {
+        title: 'The Handmaiden',
+        director: exports.directors.park,
+        actors: [exports.actors.kimMinHee, exports.actors.kimTaeRi, exports.actors.ha],
+        runtime: 145,
+    },
+    munich: {
+        title: 'Munich',
+        director: exports.directors.spielberg,
+        actors: [exports.actors.craig, exports.actors.bana, exports.actors.rush],
+        runtime: 164,
+    },
+    terminal: {
+        title: 'The Terminal',
+        director: exports.directors.spielberg,
+        actors: [exports.actors.hanks],
+        runtime: 128,
+    },
+    departed: {
+        title: 'The Departed',
+        director: exports.directors.scorsese,
+        actors: [exports.actors.dicaprio, exports.actors.sheen, exports.actors.nicholson, exports.actors.wahlberg, exports.actors.damon],
+        runtime: 151,
+    },
+    fatherDaugther: {
+        title: 'Father and Daughter',
+        director: exports.directors.dudokdewit,
+        actors: [],
+        runtime: 8,
+    },
+    phoneBooth: {
+        title: 'Phone Booth',
+        directors: exports.directors.schumacher,
+        actors: [exports.actors.farrell],
+        runtime: 81,
+    },
+    liarLiar: {
+        title: 'Liar Liar',
+        directors: exports.directors.shadyac,
+        actors: [exports.actors.carrey],
+        runtime: 86,
+    }
+};
+function objectMap(object, f) {
+    return Object.keys(object).reduce((acc, key) => ({ ...acc, [key]: f(object[key]) }), {});
+}
+exports.objectMap = objectMap;
+
 
 /***/ }),
 /* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MoviesViewer = void 0;
+const ATF = __importStar(__webpack_require__(0));
+const react_1 = __importDefault(__webpack_require__(1));
+const array_viewer_1 = __webpack_require__(3);
+const movie_viewer_1 = __webpack_require__(6);
+const { ObjectViewer } = ATF.Components;
+const code = ATF.Formatters.Jsx.code;
+function format(x) {
+    return code(ATF.Formatters.String.convertToString(x));
+}
+function MoviesViewer(props) {
+    return (react_1.default.createElement(array_viewer_1.ArrayViewer, { array: props.movies, render: render }));
+    function render(movie) {
+        return (react_1.default.createElement(movie_viewer_1.MovieViewer, { movie: movie, fields: props.fields }));
+    }
+}
+exports.MoviesViewer = MoviesViewer;
+
+
+/***/ }),
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3727,7 +2961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "tests.html");
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
